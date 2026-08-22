@@ -28,7 +28,7 @@ db.connect((err) => {
 
 // Home page
 app.get("/", (req, res) => {
-    res.send("Welcome to ShopSphere!");
+    res.sendFile(__dirname + "/views/home.html");
 });
 
 // Registration page
