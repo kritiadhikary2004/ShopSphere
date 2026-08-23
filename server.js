@@ -18,6 +18,7 @@ const db = mysql.createConnection({
 
 // Connect to MySQL
 db.connect((err) => {
+
     if (err) {
         console.log("MySQL connection failed:", err);
         return;
@@ -26,38 +27,100 @@ db.connect((err) => {
     console.log("MySQL database connected successfully!");
 });
 
-// Home page
+
+// ===============================
+// HOME PAGE
+// ===============================
+
 app.get("/", (req, res) => {
+
     res.sendFile(__dirname + "/views/home.html");
+
 });
 
-// Registration page
+
+// ===============================
+// REGISTRATION PAGE
+// ===============================
+
 app.get("/register", (req, res) => {
+
     res.sendFile(__dirname + "/views/register.html");
+
 });
 
-// Registration form submission
+
+// ===============================
+// REGISTRATION FORM SUBMISSION
+// ===============================
+
 app.post("/register", (req, res) => {
 
     const { name, email, password, role } = req.body;
+
+
+    // Show registration details in terminal
+    console.log("\n-----------------------------");
+    console.log("New registration received");
+    console.log("Name:", name);
+    console.log("Email:", email);
+    console.log("Role:", role);
+    console.log("-----------------------------");
+
 
     const sql = `
         INSERT INTO users (name, email, password, role)
         VALUES (?, ?, ?, ?)
     `;
 
-    db.query(sql, [name, email, password, role], (err, result) => {
 
-        if (err) {
-            console.log("Registration error:", err);
-            return res.send("Registration failed.");
+    db.query(
+        sql,
+        [name, email, password, role],
+        (err, result) => {
+
+            if (err) {
+
+                console.log("Registration error:", err);
+
+                return res.send(`
+                    <h2>Registration Failed ❌</h2>
+                    <p>${err.message}</p>
+                    <a href="/register">Go Back</a>
+                `);
+            }
+
+
+            // Successful registration
+            console.log("Registration successful! ✅");
+            console.log("New User ID:", result.insertId);
+            console.log("-----------------------------\n");
+
+
+            res.send(`
+                <h2>Registration Successful! 🎉</h2>
+
+                <p>Welcome to ShopSphere, ${name}!</p>
+
+                <p>Account Type: ${role}</p>
+
+                <br>
+
+                <a href="/">Go to Home</a>
+            `);
+
         }
+    );
 
-        res.send("Registration successful! Welcome to ShopSphere.");
-    });
 });
 
-// Start server
+
+// ===============================
+// START SERVER
+// ===============================
+
 app.listen(PORT, () => {
+
     console.log(`Server running at http://localhost:${PORT}`);
+
 });
