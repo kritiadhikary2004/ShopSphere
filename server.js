@@ -5,16 +5,24 @@ const app = express();
 
 const PORT = 3000;
 
-// Middleware
+// ===============================
+// MIDDLEWARE
+// ===============================
+
 app.use(express.urlencoded({ extended: true }));
 
-// MySQL connection
+
+// ===============================
+// MYSQL CONNECTION
+// ===============================
+
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
     database: "shopsphere_db"
 });
+
 
 // Connect to MySQL
 db.connect((err) => {
@@ -25,6 +33,7 @@ db.connect((err) => {
     }
 
     console.log("MySQL database connected successfully!");
+
 });
 
 
@@ -58,8 +67,6 @@ app.post("/register", (req, res) => {
 
     const { name, email, password, role } = req.body;
 
-
-    // Show registration details in terminal
     console.log("\n-----------------------------");
     console.log("New registration received");
     console.log("Name:", name);
@@ -88,10 +95,10 @@ app.post("/register", (req, res) => {
                     <p>${err.message}</p>
                     <a href="/register">Go Back</a>
                 `);
+
             }
 
 
-            // Successful registration
             console.log("Registration successful! ✅");
             console.log("New User ID:", result.insertId);
             console.log("-----------------------------\n");
@@ -103,6 +110,104 @@ app.post("/register", (req, res) => {
                 <p>Welcome to ShopSphere, ${name}!</p>
 
                 <p>Account Type: ${role}</p>
+
+                <br>
+
+                <a href="/login">Login to your account</a>
+                <br><br>
+                <a href="/">Go to Home</a>
+            `);
+
+        }
+    );
+
+});
+
+
+// ===============================
+// LOGIN PAGE
+// ===============================
+
+app.get("/login", (req, res) => {
+
+    res.sendFile(__dirname + "/views/login.html");
+
+});
+
+
+// ===============================
+// LOGIN FORM SUBMISSION
+// ===============================
+
+app.post("/login", (req, res) => {
+
+    const { email, password } = req.body;
+
+
+    console.log("\n-----------------------------");
+    console.log("Login attempt");
+    console.log("Email:", email);
+    console.log("-----------------------------");
+
+
+    const sql = `
+        SELECT * FROM users
+        WHERE email = ? AND password = ?
+    `;
+
+
+    db.query(
+        sql,
+        [email, password],
+        (err, results) => {
+
+            if (err) {
+
+                console.log("Login error:", err);
+
+                return res.send(`
+                    <h2>Login Failed ❌</h2>
+                    <p>Something went wrong.</p>
+                    <a href="/login">Try Again</a>
+                `);
+
+            }
+
+
+            // User not found
+            if (results.length === 0) {
+
+                console.log("Login failed ❌ - Invalid email or password");
+
+                return res.send(`
+                    <h2>Login Failed ❌</h2>
+
+                    <p>Invalid email or password.</p>
+
+                    <br>
+
+                    <a href="/login">Try Again</a>
+                `);
+
+            }
+
+
+            // User found
+            const user = results[0];
+
+
+            console.log("Login successful! ✅");
+            console.log("User:", user.name);
+            console.log("Role:", user.role);
+            console.log("-----------------------------\n");
+
+
+            res.send(`
+                <h2>Login Successful! 🎉</h2>
+
+                <p>Welcome back, ${user.name}!</p>
+
+                <p>Account Type: ${user.role}</p>
 
                 <br>
 
