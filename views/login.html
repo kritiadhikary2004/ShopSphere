@@ -8,7 +8,6 @@
     <title>Login | ShopSphere</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -18,196 +17,422 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #f5f7ff, #eef2ff);
+            background:
+                radial-gradient(circle at top left, #e9e7ff, transparent 35%),
+                linear-gradient(135deg, #f7f8ff, #eef0ff);
+
             display: flex;
             justify-content: center;
             align-items: center;
+
             padding: 30px;
+            color: #222;
         }
+
+
+        /* MAIN CONTAINER */
 
         .container {
             width: 100%;
-            max-width: 950px;
-            min-height: 560px;
+            max-width: 1050px;
+            min-height: 600px;
+
             background: white;
-            border-radius: 25px;
+
+            border-radius: 24px;
             overflow: hidden;
+
             display: flex;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+
+            box-shadow:
+                0 20px 60px rgba(44, 42, 100, 0.15);
         }
 
 
-        /* LEFT SECTION */
+        /* =========================
+           LEFT SECTION
+        ========================= */
 
         .left-section {
             width: 50%;
-            background: linear-gradient(145deg, #5b5cf0, #7b61ff);
+
+            background:
+                radial-gradient(circle at 80% 20%,
+                    rgba(255,255,255,0.18),
+                    transparent 30%),
+                linear-gradient(145deg, #5556e9, #765cf5, #8b70ff);
+
             color: white;
+
             padding: 55px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+            position: relative;
+            overflow: hidden;
         }
+
+
+        /* Decorative circles */
+
+        .left-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.06);
+
+            right: -90px;
+            top: -70px;
+        }
+
+        .left-section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.05);
+
+            left: -80px;
+            bottom: -60px;
+        }
+
+
+        /* LOGO */
 
         .logo {
             font-size: 28px;
-            font-weight: bold;
+            font-weight: 700;
+
             margin-bottom: 65px;
+
+            position: relative;
+            z-index: 2;
         }
+
+
+        /* LEFT HEADING */
 
         .left-section h1 {
-            font-size: 42px;
-            line-height: 1.2;
+            font-size: 46px;
+            line-height: 1.15;
+
             margin-bottom: 20px;
+
+            letter-spacing: -1px;
+
+            position: relative;
+            z-index: 2;
         }
 
+
         .left-section p {
-            font-size: 16px;
-            line-height: 1.7;
+            font-size: 15px;
+
+            line-height: 1.8;
+
             opacity: 0.9;
-            max-width: 380px;
+
+            max-width: 390px;
+
+            position: relative;
+            z-index: 2;
         }
+
+
+        /* FEATURES */
 
         .features {
             margin-top: 35px;
+
+            position: relative;
+            z-index: 2;
         }
+
 
         .feature {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
-            margin-bottom: 15px;
-            font-size: 15px;
+
+            margin-bottom: 17px;
+
+            font-size: 14px;
         }
+
 
         .check {
-            width: 25px;
-            height: 25px;
-            background: rgba(255,255,255,0.2);
+            width: 27px;
+            height: 27px;
+
+            background: rgba(255,255,255,0.18);
+
+            border: 1px solid rgba(255,255,255,0.25);
+
             border-radius: 50%;
+
             display: flex;
+
             justify-content: center;
             align-items: center;
-        }
 
-
-        /* RIGHT SECTION */
-
-        .right-section {
-            width: 50%;
-            padding: 55px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .right-section h2 {
-            font-size: 30px;
-            color: #222;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #777;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-
-        /* FORM */
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 14px 15px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-size: 14px;
-            outline: none;
-            background: #fafafa;
-            transition: 0.3s;
-        }
-
-        .form-group input:focus {
-            border-color: #625cf5;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(98,92,245,0.1);
-        }
-
-
-        /* FORGOT PASSWORD */
-
-        .forgot {
-            text-align: right;
-            margin-top: -8px;
-            margin-bottom: 20px;
-        }
-
-        .forgot a {
-            color: #5b5cf0;
-            text-decoration: none;
             font-size: 13px;
         }
 
 
-        /* LOGIN BUTTON */
+        /* =========================
+           RIGHT SECTION
+        ========================= */
 
-        .login-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #5b5cf0, #7b61ff);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+        .right-section {
+            width: 50%;
 
-        .login-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(91,92,240,0.3);
+            padding: 55px 65px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
 
-        /* REGISTER TEXT */
+        .right-section h2 {
+            font-size: 32px;
 
-        .register-text {
-            text-align: center;
-            margin-top: 25px;
-            color: #777;
+            margin-bottom: 9px;
+
+            color: #20202b;
+        }
+
+
+        .subtitle {
+            color: #858593;
+
+            margin-bottom: 32px;
+
             font-size: 14px;
         }
 
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form-group {
+            margin-bottom: 21px;
+        }
+
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: #34343f;
+        }
+
+
+        .form-group input {
+            width: 100%;
+
+            padding: 15px 16px;
+
+            border: 1px solid #dedee8;
+
+            border-radius: 11px;
+
+            font-size: 14px;
+
+            outline: none;
+
+            background: #fafaff;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .form-group input:hover {
+            border-color: #bcbcf0;
+        }
+
+
+        .form-group input:focus {
+            border-color: #625cf5;
+
+            background: white;
+
+            box-shadow:
+                0 0 0 4px rgba(98,92,245,0.09);
+        }
+
+
+        .form-group input::placeholder {
+            color: #aaaab5;
+        }
+
+
+        /* =========================
+           FORGOT PASSWORD
+        ========================= */
+
+        .forgot {
+            text-align: right;
+
+            margin-top: -5px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .forgot a {
+            color: #5b5cf0;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+
+        .forgot a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-btn {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5959eb,
+                    #785ff5
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+
+            box-shadow:
+                0 7px 18px rgba(91,92,240,0.18);
+        }
+
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 10px 25px rgba(91,92,240,0.28);
+        }
+
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           REGISTER
+        ========================= */
+
+        .register-text {
+            text-align: center;
+
+            margin-top: 26px;
+
+            color: #858593;
+
+            font-size: 14px;
+        }
+
+
         .register-text a {
             color: #5b5cf0;
+
             text-decoration: none;
-            font-weight: bold;
+
+            font-weight: 700;
+
+            margin-left: 4px;
         }
+
 
         .register-text a:hover {
             text-decoration: underline;
         }
 
 
-        /* MOBILE */
+        /* =========================
+           SECURITY MESSAGE
+        ========================= */
 
-        @media (max-width: 750px) {
+        .security-note {
+            margin-top: 24px;
+
+            padding: 11px 14px;
+
+            border-radius: 9px;
+
+            background: #f6f6ff;
+
+            color: #77778a;
+
+            font-size: 12px;
+
+            text-align: center;
+
+            border: 1px solid #eeeeff;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
+
+            body {
+                padding: 20px;
+            }
 
             .container {
                 flex-direction: column;
+
+                max-width: 550px;
             }
 
             .left-section,
@@ -224,11 +449,31 @@
             }
 
             .left-section h1 {
-                font-size: 32px;
+                font-size: 36px;
             }
 
             .right-section {
-                padding: 40px;
+                padding: 45px 40px;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .left-section {
+                padding: 32px;
+            }
+
+            .right-section {
+                padding: 35px 25px;
+            }
+
+            .left-section h1 {
+                font-size: 32px;
+            }
+
+            .right-section h2 {
+                font-size: 28px;
             }
         }
 
@@ -242,7 +487,9 @@
     <div class="container">
 
 
-        <!-- LEFT SIDE -->
+        <!-- =========================
+             LEFT SIDE
+        ========================= -->
 
         <div class="left-section">
 
@@ -250,10 +497,12 @@
                 🛒 ShopSphere
             </div>
 
+
             <h1>
                 Welcome<br>
                 Back!
             </h1>
+
 
             <p>
                 Login to your ShopSphere account and
@@ -264,18 +513,41 @@
             <div class="features">
 
                 <div class="feature">
-                    <span class="check">✓</span>
-                    <span>Access your account</span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Access your account
+                    </span>
+
                 </div>
 
-                <div class="feature">
-                    <span class="check">✓</span>
-                    <span>Manage your orders</span>
-                </div>
 
                 <div class="feature">
-                    <span class="check">✓</span>
-                    <span>Shop with confidence</span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Manage your orders
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <span class="check">
+                        ✓
+                    </span>
+
+                    <span>
+                        Shop with confidence
+                    </span>
+
                 </div>
 
             </div>
@@ -283,15 +555,23 @@
         </div>
 
 
-        <!-- RIGHT SIDE -->
+
+        <!-- =========================
+             RIGHT SIDE
+        ========================= -->
 
         <div class="right-section">
 
-            <h2>Login</h2>
+
+            <h2>
+                Login
+            </h2>
+
 
             <p class="subtitle">
                 Welcome back! Please login to your account.
             </p>
+
 
 
             <form action="/login" method="POST">
@@ -316,6 +596,7 @@
                 </div>
 
 
+
                 <!-- PASSWORD -->
 
                 <div class="form-group">
@@ -335,6 +616,7 @@
                 </div>
 
 
+
                 <!-- FORGOT PASSWORD -->
 
                 <div class="forgot">
@@ -346,15 +628,19 @@
                 </div>
 
 
+
                 <!-- LOGIN BUTTON -->
 
                 <button
                     type="submit"
                     class="login-btn">
+
                     Login
+
                 </button>
 
             </form>
+
 
 
             <!-- REGISTER -->
@@ -368,6 +654,14 @@
                 </a>
 
             </p>
+
+
+            <div class="security-note">
+
+                🔒 Your account information is kept secure.
+
+            </div>
+
 
         </div>
 
