@@ -1,8 +1,9 @@
+
 const express = require("express");
 const mysql = require("mysql2");
+const path = require("path");
 
 const app = express();
-
 const PORT = 3000;
 
 
@@ -11,6 +12,7 @@ const PORT = 3000;
 // ===============================
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 // ===============================
@@ -47,43 +49,36 @@ db.connect((err) => {
 
 app.get("/", (req, res) => {
 
-    res.sendFile(__dirname + "/views/home.html");
+    res.sendFile(path.join(__dirname, "views", "home.html"));
 
 });
 
 
 // ===============================
-// REGISTRATION PAGE
+// REGISTER PAGE
 // ===============================
 
 app.get("/register", (req, res) => {
 
-    res.sendFile(__dirname + "/views/register.html");
+    res.sendFile(path.join(__dirname, "views", "register.html"));
 
 });
 
 
 // ===============================
-// REGISTRATION FORM SUBMISSION
+// REGISTER FORM
 // ===============================
 
 app.post("/register", (req, res) => {
 
     const { name, email, password, role } = req.body;
 
-    console.log("\n-----------------------------");
-    console.log("New registration received");
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Role:", role);
-    console.log("-----------------------------");
-
+    console.log("New registration:", name, email, role);
 
     const sql = `
         INSERT INTO users (name, email, password, role)
         VALUES (?, ?, ?, ?)
     `;
-
 
     db.query(
         sql,
@@ -99,20 +94,15 @@ app.post("/register", (req, res) => {
                     <p>${err.message}</p>
                     <a href="/register">Go Back</a>
                 `);
-
             }
-
 
             console.log("Registration successful! ✅");
             console.log("New User ID:", result.insertId);
-            console.log("-----------------------------\n");
-
 
             res.send(`
                 <h2>Registration Successful! 🎉</h2>
 
                 <p>Welcome to ShopSphere, ${name}!</p>
-
                 <p>Account Type: ${role}</p>
 
                 <br>
@@ -136,31 +126,25 @@ app.post("/register", (req, res) => {
 
 app.get("/login", (req, res) => {
 
-    res.sendFile(__dirname + "/views/login.html");
+    res.sendFile(path.join(__dirname, "views", "login.html"));
 
 });
 
 
 // ===============================
-// LOGIN FORM SUBMISSION
+// LOGIN FORM
 // ===============================
 
 app.post("/login", (req, res) => {
 
     const { email, password } = req.body;
 
-
-    console.log("\n-----------------------------");
-    console.log("Login attempt");
-    console.log("Email:", email);
-    console.log("-----------------------------");
-
+    console.log("Login attempt:", email);
 
     const sql = `
         SELECT * FROM users
         WHERE email = ? AND password = ?
     `;
-
 
     db.query(
         sql,
@@ -179,47 +163,24 @@ app.post("/login", (req, res) => {
 
             }
 
-
-            // ===============================
-            // INVALID LOGIN
-            // ===============================
-
             if (results.length === 0) {
-
-                console.log(
-                    "Login failed ❌ - Invalid email or password"
-                );
 
                 return res.send(`
                     <h2>Login Failed ❌</h2>
-
                     <p>Invalid email or password.</p>
-
-                    <br>
-
                     <a href="/login">Try Again</a>
                 `);
 
             }
 
-
-            // ===============================
-            // USER FOUND
-            // ===============================
-
             const user = results[0];
-
 
             console.log("Login successful! ✅");
             console.log("User:", user.name);
             console.log("Role:", user.role);
-            console.log("-----------------------------\n");
 
 
-            // ===============================
-            // CUSTOMER DASHBOARD
-            // ===============================
-
+            // CUSTOMER
             if (user.role === "customer") {
 
                 return res.redirect("/customer-dashboard");
@@ -227,21 +188,18 @@ app.post("/login", (req, res) => {
             }
 
 
-            // ===============================
-            // OTHER ROLES
-            // ===============================
+            // SELLER
+            if (user.role === "seller") {
 
-            res.send(`
-                <h2>Login Successful! 🎉</h2>
+                return res.send(`
+                    <h2>Seller Login Successful! 🎉</h2>
+                    <p>Welcome, ${user.name}!</p>
+                    <p>You are logged in as a Seller.</p>
+                    <br>
+                    <a href="/">Go to Home</a>
+                `);
 
-                <p>Welcome back, ${user.name}!</p>
-
-                <p>Account Type: ${user.role}</p>
-
-                <br>
-
-                <a href="/">Go to Home</a>
-            `);
+            }
 
         }
     );
@@ -256,7 +214,7 @@ app.post("/login", (req, res) => {
 app.get("/customer-dashboard", (req, res) => {
 
     res.sendFile(
-        __dirname + "/views/customer-dashboard.html"
+        path.join(__dirname, "views", "customer-dashboard.html")
     );
 
 });
@@ -269,7 +227,20 @@ app.get("/customer-dashboard", (req, res) => {
 app.get("/products", (req, res) => {
 
     res.sendFile(
-        __dirname + "/views/products.html"
+        path.join(__dirname, "views", "products.html")
+    );
+
+});
+
+
+// ===============================
+// CART PAGE
+// ===============================
+
+app.get("/cart", (req, res) => {
+
+    res.sendFile(
+        path.join(__dirname, "views", "cart.html")
     );
 
 });
@@ -281,8 +252,6 @@ app.get("/products", (req, res) => {
 
 app.listen(PORT, () => {
 
-    console.log(
-        `Server running at http://localhost:${PORT}`
-    );
+    console.log(`Server running at http://localhost:${PORT}`);
 
 });

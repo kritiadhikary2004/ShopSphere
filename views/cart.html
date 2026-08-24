@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | ShopSphere</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
+
+        nav {
+            height: 72px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5b5cf0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #5b5cf0;
+        }
+
+        .cart-btn {
+            background: #5b5cf0;
+            color: white !important;
+            padding: 10px 17px;
+            border-radius: 8px;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .cart-box {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.06);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-cart .icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+        }
+
+        .empty-cart h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-cart p {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #5b5cf0;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #4849d8;
+        }
+
+        footer {
+            margin-top: 100px;
+            background: #202033;
+            color: white;
+            text-align: center;
+            padding: 35px;
+        }
+
+        footer p {
+            color: #aaa;
+            margin-top: 8px;
+            font-size: 13px;
+        }
+
+        @media(max-width: 600px) {
+
+            .nav-links a:not(.cart-btn) {
+                display: none;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            🛒 ShopSphere
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/products">
+                Products
+            </a>
+
+            <a href="/customer-dashboard">
+                Dashboard
+            </a>
+
+            <a href="/cart" class="cart-btn">
+                🛒 Cart
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>
+            Shopping Cart 🛒
+        </h1>
+
+        <p class="subtitle">
+            Review the products you want to purchase.
+        </p>
+
+
+        <div class="cart-box">
+
+            <div class="empty-cart">
+
+                <div class="icon">
+                    🛒
+                </div>
+
+                <h2>
+                    Your Cart is Empty
+                </h2>
+
+                <p>
+                    You haven't added any products to your cart yet.
+                </p>
+
+                <a href="/products" class="shop-btn">
+                    🛍️ Browse Products
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        <h3>
+            🛒 ShopSphere
+        </h3>
+
+        <p>
+            Your marketplace for everything you need.
+        </p>
+
+        <p>
+            © 2026 ShopSphere. All rights reserved.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
+
