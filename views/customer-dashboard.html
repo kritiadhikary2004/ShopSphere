@@ -111,6 +111,8 @@
             background: rgba(255,255,255,0.1);
 
             font-size: 14px;
+
+            transition: 0.25s;
         }
 
         .logout:hover {
@@ -128,7 +130,9 @@
         }
 
 
-        /* TOP BAR */
+        /* =========================
+           TOP BAR
+        ========================= */
 
         .topbar {
             display: flex;
@@ -175,13 +179,12 @@
         ========================= */
 
         .welcome {
-            background:
-                linear-gradient(
-                    135deg,
-                    #5959eb,
-                    #785ff5,
-                    #8b70ff
-                );
+            background: linear-gradient(
+                135deg,
+                #5959eb,
+                #785ff5,
+                #8b70ff
+            );
 
             border-radius: 20px;
 
@@ -530,11 +533,12 @@
 
         <div class="menu">
 
-            <a href="#" class="active">
+            <a href="/customer-dashboard" class="active">
                 🏠 &nbsp; Dashboard
             </a>
 
-            <a href="#">
+            <!-- PRODUCTS LINK -->
+            <a href="/products">
                 🛍️ &nbsp; Browse Products
             </a>
 
@@ -588,6 +592,8 @@
 
             </div>
 
+
+            <!-- CUSTOMER PROFILE -->
 
             <div class="profile">
                 C
@@ -699,7 +705,10 @@
 
         <section class="actions">
 
-            <a href="#" class="action">
+
+            <!-- PRODUCTS -->
+
+            <a href="/products" class="action">
 
                 <div class="action-icon">
                     🛍️
@@ -715,6 +724,9 @@
 
             </a>
 
+
+
+            <!-- ORDERS -->
 
             <a href="#" class="action">
 
@@ -732,6 +744,9 @@
 
             </a>
 
+
+
+            <!-- WISHLIST -->
 
             <a href="#" class="action">
 

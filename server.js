@@ -25,7 +25,10 @@ const db = mysql.createConnection({
 });
 
 
-// Connect to MySQL
+// ===============================
+// CONNECT TO MYSQL
+// ===============================
+
 db.connect((err) => {
 
     if (err) {
@@ -115,7 +118,9 @@ app.post("/register", (req, res) => {
                 <br>
 
                 <a href="/login">Login to your account</a>
+
                 <br><br>
+
                 <a href="/">Go to Home</a>
             `);
 
@@ -175,10 +180,15 @@ app.post("/login", (req, res) => {
             }
 
 
-            // User not found
+            // ===============================
+            // INVALID LOGIN
+            // ===============================
+
             if (results.length === 0) {
 
-                console.log("Login failed ❌ - Invalid email or password");
+                console.log(
+                    "Login failed ❌ - Invalid email or password"
+                );
 
                 return res.send(`
                     <h2>Login Failed ❌</h2>
@@ -193,7 +203,10 @@ app.post("/login", (req, res) => {
             }
 
 
-            // User found
+            // ===============================
+            // USER FOUND
+            // ===============================
+
             const user = results[0];
 
 
@@ -202,6 +215,21 @@ app.post("/login", (req, res) => {
             console.log("Role:", user.role);
             console.log("-----------------------------\n");
 
+
+            // ===============================
+            // CUSTOMER DASHBOARD
+            // ===============================
+
+            if (user.role === "customer") {
+
+                return res.redirect("/customer-dashboard");
+
+            }
+
+
+            // ===============================
+            // OTHER ROLES
+            // ===============================
 
             res.send(`
                 <h2>Login Successful! 🎉</h2>
@@ -222,12 +250,27 @@ app.post("/login", (req, res) => {
 
 
 // ===============================
+// CUSTOMER DASHBOARD
+// ===============================
+
+app.get("/customer-dashboard", (req, res) => {
+
+    res.sendFile(
+        __dirname + "/views/customer-dashboard.html"
+    );
+
+});
+
+
+// ===============================
 // PRODUCTS PAGE
 // ===============================
 
 app.get("/products", (req, res) => {
 
-    res.sendFile(__dirname + "/views/products.html");
+    res.sendFile(
+        __dirname + "/views/products.html"
+    );
 
 });
 
@@ -238,6 +281,8 @@ app.get("/products", (req, res) => {
 
 app.listen(PORT, () => {
 
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(
+        `Server running at http://localhost:${PORT}`
+    );
 
 });
