@@ -5,6 +5,7 @@ const app = express();
 
 const PORT = 3000;
 
+
 // ===============================
 // MIDDLEWARE
 // ===============================
@@ -216,6 +217,17 @@ app.post("/login", (req, res) => {
 
         }
     );
+
+});
+
+
+// ===============================
+// PRODUCTS PAGE
+// ===============================
+
+app.get("/products", (req, res) => {
+
+    res.sendFile(__dirname + "/views/products.html");
 
 });
 

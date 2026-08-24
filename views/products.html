@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Products | ShopSphere</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            height: 72px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5b5cf0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #5b5cf0;
+        }
+
+        .cart-btn {
+            text-decoration: none;
+            color: white !important;
+            background: #5b5cf0;
+            padding: 10px 17px;
+            border-radius: 8px;
+        }
+
+
+        /* =========================
+           PAGE HEADER
+        ========================= */
+
+        .page-header {
+            padding: 55px 7% 30px;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .page-header p {
+            color: #777;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           SEARCH AREA
+        ========================= */
+
+        .search-section {
+            padding: 0 7% 35px;
+
+            display: flex;
+            gap: 15px;
+        }
+
+        .search-box {
+            flex: 1;
+
+            padding: 14px 18px;
+
+            border: 1px solid #ddd;
+            border-radius: 10px;
+
+            background: white;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: #5b5cf0;
+
+            box-shadow:
+                0 0 0 3px rgba(91, 92, 240, 0.08);
+        }
+
+        .search-btn {
+            border: none;
+
+            background: #5b5cf0;
+            color: white;
+
+            padding: 0 25px;
+
+            border-radius: 10px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           CATEGORIES
+        ========================= */
+
+        .categories {
+            padding: 0 7% 40px;
+        }
+
+        .categories h2 {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .category-list {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            background: white;
+
+            border: 1px solid #eee;
+
+            padding: 12px 20px;
+
+            border-radius: 25px;
+
+            cursor: pointer;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .category:hover {
+            background: #5b5cf0;
+            color: white;
+            border-color: #5b5cf0;
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           PRODUCTS
+        ========================= */
+
+        .products-section {
+            padding: 10px 7% 70px;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+        }
+
+        .products-header h2 {
+            font-size: 25px;
+        }
+
+        .products-header span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .product-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* =========================
+           PRODUCT CARD
+        ========================= */
+
+        .product-card {
+            background: white;
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 6px 22px rgba(0, 0, 0, 0.06);
+
+            transition: 0.3s;
+
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* PRODUCT IMAGE */
+
+        .product-image {
+            height: 210px;
+
+            background: #f0f1ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 80px;
+        }
+
+
+        /* PRODUCT INFO */
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: #777;
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+        .product-name {
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            color: #f4a623;
+
+            font-size: 13px;
+
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 20px;
+
+            font-weight: bold;
+
+            color: #5b5cf0;
+
+            margin-bottom: 15px;
+        }
+
+
+        /* ADD TO CART */
+
+        .add-cart {
+            width: 100%;
+
+            padding: 11px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #5b5cf0;
+
+            color: white;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .add-cart:hover {
+            background: #4849d8;
+        }
+
+
+        /* WISHLIST */
+
+        .wishlist {
+            position: absolute;
+
+            top: 12px;
+            right: 12px;
+
+            width: 35px;
+            height: 35px;
+
+            border-radius: 50%;
+
+            border: none;
+
+            background: white;
+
+            box-shadow:
+                0 3px 10px rgba(0,0,0,0.08);
+
+            cursor: pointer;
+
+            font-size: 17px;
+        }
+
+        .wishlist:hover {
+            color: #e74c3c;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #202033;
+
+            color: white;
+
+            padding: 35px 7%;
+
+            text-align: center;
+        }
+
+        footer p {
+            color: #aaa;
+
+            font-size: 13px;
+
+            margin-top: 8px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width: 1000px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+        }
+
+
+        @media(max-width: 750px) {
+
+            .nav-links a:not(.cart-btn) {
+                display: none;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .search-section {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 13px;
+            }
+
+        }
+
+
+        @media(max-width: 500px) {
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav>
+
+        <div class="logo">
+            🛒 ShopSphere
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/products">
+                Products
+            </a>
+
+            <a href="/login">
+                Account
+            </a>
+
+            <a href="#" class="cart-btn">
+                🛒 Cart
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
+
+    <section class="page-header">
+
+        <h1>
+            Explore Products 🛍️
+        </h1>
+
+        <p>
+            Discover products from trusted sellers on ShopSphere.
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
+    <section class="search-section">
+
+        <input
+            type="text"
+            class="search-box"
+            placeholder="Search for products..."
+        >
+
+        <button class="search-btn">
+            🔍 Search
+        </button>
+
+    </section>
+
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================= -->
+
+    <section class="categories">
+
+        <h2>
+            Categories
+        </h2>
+
+        <div class="category-list">
+
+            <div class="category">
+                👕 Fashion
+            </div>
+
+            <div class="category">
+                📱 Electronics
+            </div>
+
+            <div class="category">
+                🏠 Home & Living
+            </div>
+
+            <div class="category">
+                💄 Beauty
+            </div>
+
+            <div class="category">
+                📚 Books
+            </div>
+
+            <div class="category">
+                🎮 Gaming
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================= -->
+
+    <section class="products-section">
+
+        <div class="products-header">
+
+            <h2>
+                Popular Products
+            </h2>
+
+            <span>
+                8 Products
+            </span>
+
+        </div>
+
+
+        <div class="product-grid">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    👟
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Fashion
+                    </div>
+
+                    <h3 class="product-name">
+                        Casual Sneakers
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <div class="price">
+                        Rs. 2,499
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    🎧
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Electronics
+                    </div>
+
+                    <h3 class="product-name">
+                        Wireless Headphones
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <div class="price">
+                        Rs. 3,999
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    ⌚
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Electronics
+                    </div>
+
+                    <h3 class="product-name">
+                        Smart Watch
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <div class="price">
+                        Rs. 4,499
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    👕
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Fashion
+                    </div>
+
+                    <h3 class="product-name">
+                        Cotton T-Shirt
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <div class="price">
+                        Rs. 899
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 5 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    💄
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Beauty
+                    </div>
+
+                    <h3 class="product-name">
+                        Beauty Essentials
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <div class="price">
+                        Rs. 1,499
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 6 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    👜
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Fashion
+                    </div>
+
+                    <h3 class="product-name">
+                        Ladies Handbag
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <div class="price">
+                        Rs. 1,999
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 7 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    📚
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Books
+                    </div>
+
+                    <h3 class="product-name">
+                        Programming Book
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+
+                    <div class="price">
+                        Rs. 799
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRODUCT 8 -->
+
+            <div class="product-card">
+
+                <button class="wishlist">
+                    ♡
+                </button>
+
+                <div class="product-image">
+                    🎮
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-category">
+                        Gaming
+                    </div>
+
+                    <h3 class="product-name">
+                        Gaming Controller
+                    </h3>
+
+                    <div class="rating">
+                        ⭐⭐⭐⭐☆
+                    </div>
+
+                    <div class="price">
+                        Rs. 2,999
+                    </div>
+
+                    <button class="add-cart">
+                        🛒 Add to Cart
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <h3>
+            🛒 ShopSphere
+        </h3>
+
+        <p>
+            Your marketplace for everything you need.
+        </p>
+
+        <p>
+            © 2026 ShopSphere. All rights reserved.
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
