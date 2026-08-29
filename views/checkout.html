@@ -1,345 +1,441 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checkout | ShopSphere</title>
+    <title>Checkout | ShopSphere</title>
 
-<style>
+    <style>
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    body {
-        background: #f7f8ff;
-        color: #222;
-    }
+        body {
+            background: #f7f8ff;
+            color: #222;
+        }
 
-    nav {
-        height: 72px;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 7%;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.06);
-    }
+        nav {
+            height: 72px;
+            background: white;
 
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        color: #5b5cf0;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-    .nav-links {
-        display: flex;
-        gap: 25px;
-        align-items: center;
-    }
+            padding: 0 7%;
 
-    .nav-links a {
-        text-decoration: none;
-        color: #555;
-        font-size: 14px;
-    }
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+        }
 
-    .nav-links a:hover {
-        color: #5b5cf0;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #5b5cf0;
+        }
 
-    .cart-btn {
-        background: #5b5cf0;
-        color: white !important;
-        padding: 10px 17px;
-        border-radius: 8px;
-    }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
 
-    .container {
-        width: 86%;
-        max-width: 1100px;
-        margin: 50px auto;
-    }
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-size: 14px;
+        }
 
-    h1 {
-        font-size: 35px;
-        margin-bottom: 10px;
-    }
+        .nav-links a:hover {
+            color: #5b5cf0;
+        }
 
-    .subtitle {
-        color: #777;
-        margin-bottom: 30px;
-    }
-
-    .checkout-grid {
-        display: grid;
-        grid-template-columns: 1.5fr 1fr;
-        gap: 25px;
-    }
-
-    .box {
-        background: white;
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: 0 7px 25px rgba(0,0,0,0.06);
-    }
-
-    .box h2 {
-        margin-bottom: 25px;
-        font-size: 22px;
-    }
-
-    .form-group {
-        margin-bottom: 18px;
-    }
-
-    .form-group label {
-        display: block;
-        margin-bottom: 7px;
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 13px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        outline: none;
-        font-size: 14px;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: #5b5cf0;
-    }
-
-    .form-group textarea {
-        height: 90px;
-        resize: none;
-    }
-
-    .order-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 12px 0;
-        border-bottom: 1px solid #eee;
-        font-size: 14px;
-    }
-
-    .total {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #5b5cf0;
-    }
-
-    .place-order {
-        width: 100%;
-        margin-top: 25px;
-        padding: 14px;
-        border: none;
-        border-radius: 9px;
-        background: linear-gradient(135deg, #5b5cf0, #785ff5);
-        color: white;
-        font-weight: bold;
-        font-size: 15px;
-        cursor: pointer;
-    }
-
-    .place-order:hover {
-        opacity: 0.9;
-    }
-
-    footer {
-        margin-top: 100px;
-        background: #202033;
-        color: white;
-        text-align: center;
-        padding: 35px;
-    }
-
-    footer p {
-        color: #aaa;
-        margin-top: 8px;
-        font-size: 13px;
-    }
-
-    @media(max-width: 750px) {
-
-        .checkout-grid {
-            grid-template-columns: 1fr;
+        .cart-btn {
+            background: #5b5cf0;
+            color: white !important;
+            padding: 10px 17px;
+            border-radius: 8px;
         }
 
         .container {
-            width: 90%;
-        }
-
-        .nav-links a:not(.cart-btn) {
-            display: none;
+            width: 86%;
+            max-width: 1100px;
+            margin: 50px auto;
         }
 
         h1 {
-            font-size: 28px;
+            font-size: 35px;
+            margin-bottom: 10px;
         }
-    }
 
-</style>
-```
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 25px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+
+            box-shadow:
+                0 7px 25px rgba(0,0,0,0.06);
+        }
+
+        .box h2 {
+            margin-bottom: 25px;
+            font-size: 22px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 13px;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            outline: none;
+            font-size: 14px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #5b5cf0;
+
+            box-shadow:
+                0 0 0 3px rgba(91,92,240,0.08);
+        }
+
+        .form-group textarea {
+            height: 90px;
+            resize: none;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eee;
+
+            font-size: 14px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-name {
+            font-weight: 600;
+        }
+
+        .quantity-text {
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .item-price {
+            color: #5b5cf0;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 20px;
+            padding-top: 20px;
+
+            border-top: 2px solid #eee;
+
+            font-size: 20px;
+            font-weight: bold;
+
+            color: #5b5cf0;
+        }
+
+        .place-order {
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5b5cf0,
+                    #785ff5
+                );
+
+            color: white;
+
+            font-weight: bold;
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+        .place-order:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 20px rgba(91,92,240,0.25);
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 30px 10px;
+            color: #888;
+        }
+
+        .back-cart {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            text-decoration: none;
+
+            color: #5b5cf0;
+
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 100px;
+
+            background: #202033;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px;
+        }
+
+        footer p {
+            color: #aaa;
+
+            margin-top: 8px;
+
+            font-size: 13px;
+        }
+
+        @media(max-width: 750px) {
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .nav-links a:not(.cart-btn) {
+                display: none;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+
+    </style>
 
 </head>
 
 <body>
 
-```
-<nav>
+    <!-- NAVBAR -->
 
-    <div class="logo">
-        🛒 ShopSphere
-    </div>
+    <nav>
 
-    <div class="nav-links">
+        <div class="logo">
+            🛒 ShopSphere
+        </div>
 
-        <a href="/">
-            Home
-        </a>
+        <div class="nav-links">
 
-        <a href="/products">
-            Products
-        </a>
+            <a href="/">
+                Home
+            </a>
 
-        <a href="/cart" class="cart-btn">
-            🛒 Cart
-        </a>
+            <a href="/products">
+                Products
+            </a>
 
-    </div>
-
-</nav>
-
-
-<div class="container">
-
-    <h1>
-        Checkout 💳
-    </h1>
-
-    <p class="subtitle">
-        Enter your delivery details and place your order.
-    </p>
-
-
-    <div class="checkout-grid">
-
-
-        <!-- CUSTOMER DETAILS -->
-
-        <div class="box">
-
-            <h2>
-                Delivery Information 📦
-            </h2>
-
-            <form id="checkoutForm">
-
-                <div class="form-group">
-
-                    <label>
-                        Full Name
-                    </label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your full name"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Phone Number
-                    </label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="Enter your phone number"
-                        required>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Delivery Address
-                    </label>
-
-                    <textarea
-                        id="address"
-                        placeholder="Enter your delivery address"
-                        required></textarea>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Payment Method
-                    </label>
-
-                    <input
-                        type="text"
-                        value="Cash on Delivery"
-                        readonly>
-
-                </div>
-
-
-                <button
-                    type="submit"
-                    class="place-order">
-
-                    🛍️ Place Order
-
-                </button>
-
-            </form>
+            <a href="/cart" class="cart-btn">
+                🛒 Cart
+            </a>
 
         </div>
 
+    </nav>
 
-        <!-- ORDER SUMMARY -->
 
-        <div class="box">
+    <!-- MAIN -->
 
-            <h2>
-                Order Summary 🛒
-            </h2>
+    <div class="container">
 
-            <div id="orderItems"></div>
+        <h1>
+            Checkout 💳
+        </h1>
 
-            <div class="total">
+        <p class="subtitle">
+            Enter your delivery details and place your order.
+        </p>
 
-                <span>
-                    Total
-                </span>
 
-                <span id="totalPrice">
-                    Rs. 0
-                </span>
+        <div class="checkout-grid">
+
+
+            <!-- DELIVERY INFORMATION -->
+
+            <div class="box">
+
+                <h2>
+                    Delivery Information 📦
+                </h2>
+
+                <form id="checkoutForm">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter your phone number"
+                            required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Delivery Address
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="Enter your delivery address"
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Payment Method
+                        </label>
+
+                        <input
+                            type="text"
+                            value="Cash on Delivery"
+                            readonly>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="place-order">
+
+                        🛍️ Place Order
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="box">
+
+                <h2>
+                    Order Summary 🛒
+                </h2>
+
+                <div id="orderItems"></div>
+
+                <div class="total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="totalPrice">
+                        Rs. 0
+                    </span>
+
+                </div>
+
+                <a
+                    href="/cart"
+                    class="back-cart">
+
+                    ← Back to Cart
+
+                </a>
 
             </div>
 
@@ -347,125 +443,202 @@
 
     </div>
 
-</div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <h3>
+            🛒 ShopSphere
+        </h3>
+
+        <p>
+            Your marketplace for everything you need.
+        </p>
+
+        <p>
+            © 2026 ShopSphere. All rights reserved.
+        </p>
+
+    </footer>
 
 
-<footer>
+    <!-- JAVASCRIPT -->
 
-    <h3>
-        🛒 ShopSphere
-    </h3>
+    <script>
 
-    <p>
-        Your marketplace for everything you need.
-    </p>
+        // =========================
+        // GET CART
+        // =========================
 
-    <p>
-        © 2026 ShopSphere. All rights reserved.
-    </p>
-
-</footer>
+        let cart =
+            JSON.parse(localStorage.getItem("cart")) || [];
 
 
-<script>
+        const orderItems =
+            document.getElementById("orderItems");
 
-    // Get cart from localStorage
-
-    const cart =
-        JSON.parse(localStorage.getItem("cart")) || [];
-
-
-    const orderItems =
-        document.getElementById("orderItems");
-
-    const totalPrice =
-        document.getElementById("totalPrice");
+        const totalPrice =
+            document.getElementById("totalPrice");
 
 
-    let total = 0;
+        let total = 0;
 
 
-    if (cart.length === 0) {
+        // =========================
+        // EMPTY CART
+        // =========================
 
-        orderItems.innerHTML =
-            "<p>Your cart is empty.</p>";
+        if (cart.length === 0) {
 
-    } else {
+            orderItems.innerHTML = `
 
-        cart.forEach(product => {
+                <div class="empty-message">
 
-            const itemTotal =
-                product.price * product.quantity;
+                    <p>
+                        Your cart is empty 🛒
+                    </p>
 
-            total += itemTotal;
+                    <a
+                        href="/products"
+                        class="back-cart">
 
+                        Browse Products
 
-            const item =
-                document.createElement("div");
+                    </a>
 
-            item.className = "order-item";
+                </div>
 
-            item.innerHTML = `
-                <span>
-                    ${product.name} × ${product.quantity}
-                </span>
-
-                <span>
-                    Rs. ${itemTotal.toLocaleString()}
-                </span>
             `;
 
-            orderItems.appendChild(item);
-
-        });
-
-    }
+        }
 
 
-    totalPrice.textContent =
-        "Rs. " + total.toLocaleString();
+        // =========================
+        // DISPLAY CART PRODUCTS
+        // =========================
+
+        else {
+
+            cart.forEach(product => {
+
+                const itemTotal =
+                    product.price * product.quantity;
 
 
-    // Place order
-
-    document
-        .getElementById("checkoutForm")
-        .addEventListener("submit", function(event) {
-
-            event.preventDefault();
+                total += itemTotal;
 
 
-            if (cart.length === 0) {
+                orderItems.innerHTML += `
 
-                alert("Your cart is empty!");
+                    <div class="order-item">
 
-                return;
+                        <span>
 
-            }
+                            <span class="product-name">
+                                ${product.name}
+                            </span>
+
+                            <span class="quantity-text">
+                                × ${product.quantity}
+                            </span>
+
+                        </span>
+
+                        <span class="item-price">
+
+                            Rs. ${itemTotal.toLocaleString()}
+
+                        </span>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
 
 
-            const name =
-                document.getElementById("name").value;
+        // =========================
+        // SHOW TOTAL
+        // =========================
 
-            alert(
-                "🎉 Order placed successfully!\n\n" +
-                "Thank you, " + name + "!"
-            );
-
-
-            // Clear cart
-
-            localStorage.removeItem("cart");
+        totalPrice.textContent =
+            "Rs. " + total.toLocaleString();
 
 
-            // Go to products
+        // =========================
+        // PLACE ORDER
+        // =========================
 
-            window.location.href = "/products";
+        document
+            .getElementById("checkoutForm")
+            .addEventListener("submit", function(event) {
 
-        });
+                event.preventDefault();
 
-</script>
+
+                if (cart.length === 0) {
+
+                    alert(
+                        "Your cart is empty! 🛒"
+                    );
+
+                    window.location.href =
+                        "/products";
+
+                    return;
+                }
+
+
+                const name =
+                    document.getElementById("name").value.trim();
+
+
+                const phone =
+                    document.getElementById("phone").value.trim();
+
+
+                const address =
+                    document.getElementById("address").value.trim();
+
+
+                if (!name || !phone || !address) {
+
+                    alert(
+                        "Please fill in all delivery details."
+                    );
+
+                    return;
+
+                }
+
+
+                alert(
+                    "🎉 Order placed successfully!\n\n" +
+                    "Thank you, " + name + "!\n" +
+                    "Total Amount: Rs. " +
+                    total.toLocaleString() +
+                    "\n\nYour order will be delivered soon. 📦"
+                );
+
+
+                // Clear cart
+
+                localStorage.removeItem("cart");
+
+
+                // Go back to products
+
+                window.location.href =
+                    "/products";
+
+            });
+
+    </script>
 
 </body>
 
 </html>
+
