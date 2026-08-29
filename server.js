@@ -245,7 +245,17 @@ app.get("/cart", (req, res) => {
 
 });
 
+// ===============================
+// CHECKOUT PAGE
+// ===============================
 
+app.get("/checkout", (req, res) => {
+
+    res.sendFile(
+        path.join(__dirname, "views", "checkout.html")
+    );
+
+});
 // ===============================
 // START SERVER
 // ===============================
