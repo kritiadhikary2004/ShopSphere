@@ -465,180 +465,174 @@
 
     <!-- JAVASCRIPT -->
 
-    <script>
+   <script>
 
-        // =========================
-        // GET CART
-        // =========================
+    // =========================
+    // GET CART
+    // =========================
 
-        let cart =
-            JSON.parse(localStorage.getItem("cart")) || [];
+    let cart =
+        JSON.parse(localStorage.getItem("cart")) || [];
 
+    const orderItems =
+        document.getElementById("orderItems");
 
-        const orderItems =
-            document.getElementById("orderItems");
+    const totalPrice =
+        document.getElementById("totalPrice");
 
-        const totalPrice =
-            document.getElementById("totalPrice");
-
-
-        let total = 0;
+    let total = 0;
 
 
-        // =========================
-        // EMPTY CART
-        // =========================
+    // =========================
+    // EMPTY CART
+    // =========================
 
-        if (cart.length === 0) {
+    if (cart.length === 0) {
 
-            orderItems.innerHTML = `
+        orderItems.innerHTML = `
 
-                <div class="empty-message">
+            <div class="empty-message">
 
-                    <p>
-                        Your cart is empty 🛒
-                    </p>
+                <p>
+                    Your cart is empty 🛒
+                </p>
 
-                    <a
-                        href="/products"
-                        class="back-cart">
+                <a
+                    href="/products"
+                    class="back-cart">
 
-                        Browse Products
+                    Browse Products
 
-                    </a>
+                </a>
+
+            </div>
+
+        `;
+
+    }
+
+
+    // =========================
+    // DISPLAY CART PRODUCTS
+    // =========================
+
+    else {
+
+        cart.forEach(product => {
+
+            const itemTotal =
+                product.price * product.quantity;
+
+            total += itemTotal;
+
+            orderItems.innerHTML += `
+
+                <div class="order-item">
+
+                    <span>
+
+                        <span class="product-name">
+                            ${product.name}
+                        </span>
+
+                        <span class="quantity-text">
+                            × ${product.quantity}
+                        </span>
+
+                    </span>
+
+                    <span class="item-price">
+
+                        Rs. ${itemTotal.toLocaleString()}
+
+                    </span>
 
                 </div>
 
             `;
 
-        }
+        });
+
+    }
 
 
-        // =========================
-        // DISPLAY CART PRODUCTS
-        // =========================
+    // =========================
+    // SHOW TOTAL
+    // =========================
 
-        else {
-
-            cart.forEach(product => {
-
-                const itemTotal =
-                    product.price * product.quantity;
+    totalPrice.textContent =
+        "Rs. " + total.toLocaleString();
 
 
-                total += itemTotal;
+    // =========================
+    // PLACE ORDER
+    // =========================
+
+    document
+        .getElementById("checkoutForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
 
 
-                orderItems.innerHTML += `
+            // Check empty cart
 
-                    <div class="order-item">
+            if (cart.length === 0) {
 
-                        <span>
+                alert("Your cart is empty! 🛒");
 
-                            <span class="product-name">
-                                ${product.name}
-                            </span>
+                window.location.href = "/products";
 
-                            <span class="quantity-text">
-                                × ${product.quantity}
-                            </span>
+                return;
 
-                        </span>
-
-                        <span class="item-price">
-
-                            Rs. ${itemTotal.toLocaleString()}
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
+            }
 
 
-        // =========================
-        // SHOW TOTAL
-        // =========================
+            // Get customer details
 
-        totalPrice.textContent =
-            "Rs. " + total.toLocaleString();
+            const name =
+                document.getElementById("name").value.trim();
 
+            const phone =
+                document.getElementById("phone").value.trim();
 
-        // =========================
-        // PLACE ORDER
-        // =========================
-
-        document
-            .getElementById("checkoutForm")
-            .addEventListener("submit", function(event) {
-
-                event.preventDefault();
+            const address =
+                document.getElementById("address").value.trim();
 
 
-                if (cart.length === 0) {
+            // Validate details
 
-                    alert(
-                        "Your cart is empty! 🛒"
-                    );
-
-                    window.location.href =
-                        "/products";
-
-                    return;
-                }
-
-
-                const name =
-                    document.getElementById("name").value.trim();
-
-
-                const phone =
-                    document.getElementById("phone").value.trim();
-
-
-                const address =
-                    document.getElementById("address").value.trim();
-
-
-                if (!name || !phone || !address) {
-
-                    alert(
-                        "Please fill in all delivery details."
-                    );
-
-                    return;
-
-                }
-
+            if (!name || !phone || !address) {
 
                 alert(
-                    "🎉 Order placed successfully!\n\n" +
-                    "Thank you, " + name + "!\n" +
-                    "Total Amount: Rs. " +
-                    total.toLocaleString() +
-                    "\n\nYour order will be delivered soon. 📦"
+                    "Please fill in all delivery details."
                 );
 
+                return;
 
-                // Clear cart
-
-                localStorage.removeItem("cart");
+            }
 
 
-                // Go back to products
+            // Order success
 
-                window.location.href =
-                    "/products";
+            alert(
+                "🎉 Order placed successfully!\n\n" +
+                "Thank you, " + name + "!\n" +
+                "Total Amount: Rs. " +
+                total.toLocaleString() +
+                "\n\nYour order will be delivered soon. 📦"
+            );
 
-            });
 
-    </script>
+            // Clear cart
 
-</body>
+            localStorage.removeItem("cart");
 
-</html>
 
+            // Go to products page
+
+            window.location.href = "/products";
+
+        });
+
+</script>
