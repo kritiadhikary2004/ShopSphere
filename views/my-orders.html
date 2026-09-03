@@ -1,569 +1,922 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Orders | ShopSphere</title>
+<title>My Orders | ShopSphere</title>
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f8fafc;
+        color: #1e293b;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+        height: 72px;
+        background: #ffffff;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 7%;
+
+        border-bottom: 1px solid #e2e8f0;
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: #4f46e5;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: #64748b;
+
+        font-size: 14px;
+        font-weight: 600;
+
+        transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+        color: #4f46e5;
+    }
+
+    .cart-btn {
+        background: #4f46e5;
+        color: white !important;
+
+        padding: 10px 17px;
+        border-radius: 9px;
+
+        box-shadow: 0 5px 15px rgba(79,70,229,0.2);
+    }
+
+    .cart-btn:hover {
+        background: #4338ca;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .container {
+        width: 86%;
+        max-width: 1150px;
+
+        margin: 45px auto 70px;
+    }
+
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        margin-bottom: 28px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+        color: #0f172a;
+
+        margin-bottom: 8px;
+    }
+
+    .page-header p {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    .shop-more {
+        text-decoration: none;
+
+        background: #eef2ff;
+        color: #4f46e5;
+
+        padding: 11px 17px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+        font-weight: bold;
+
+        transition: 0.2s;
+    }
+
+    .shop-more:hover {
+        background: #4f46e5;
+        color: white;
+    }
+
+
+    /* =========================
+       STATS
+    ========================= */
+
+    .order-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+
+        margin-bottom: 30px;
+    }
+
+    .stat {
+        background: white;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 15px;
+
+        padding: 21px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 15px;
+
+        transition: 0.25s;
+    }
+
+    .stat:hover {
+        transform: translateY(-3px);
+
+        box-shadow: 0 10px 25px rgba(15,23,42,0.06);
+    }
+
+    .stat-icon {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 13px;
+
+        background: #eef2ff;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 23px;
+    }
+
+    .stat h3 {
+        font-size: 21px;
+
+        color: #0f172a;
+
+        margin-bottom: 4px;
+    }
+
+    .stat p {
+        color: #64748b;
+
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       ORDERS BOX
+    ========================= */
+
+    .orders-box {
+        background: white;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        box-shadow: 0 5px 20px rgba(15,23,42,0.03);
+    }
+
+    .orders-header {
+        padding: 22px 25px;
+
+        border-bottom: 1px solid #e2e8f0;
+
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        gap: 20px;
+    }
+
+    .orders-header h2 {
+        font-size: 20px;
+
+        color: #1e293b;
+    }
+
+    .orders-header span {
+        font-size: 13px;
+
+        color: #64748b;
+    }
+
+
+    /* =========================
+       FILTER AREA
+    ========================= */
+
+    .filter-area {
+        padding: 16px 25px;
+
+        background: #fafbff;
+
+        border-bottom: 1px solid #e2e8f0;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 15px;
+    }
+
+    .search-box {
+        flex: 1;
+
+        max-width: 450px;
+
+        position: relative;
+    }
+
+    .search-box input {
+        width: 100%;
+
+        padding: 11px 15px 11px 40px;
+
+        border: 1px solid #dbe1ea;
+
+        border-radius: 9px;
+
+        outline: none;
+
+        font-size: 13px;
+
+        background: white;
+    }
+
+    .search-box input:focus {
+        border-color: #818cf8;
+
+        box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
+    }
+
+    .search-icon {
+        position: absolute;
+
+        left: 13px;
+        top: 10px;
+
+        color: #94a3b8;
+    }
+
+    .filter-select {
+        padding: 11px 13px;
+
+        border: 1px solid #dbe1ea;
+
+        border-radius: 9px;
+
+        background: white;
+
+        color: #475569;
+
+        outline: none;
+
+        font-size: 13px;
+
+        cursor: pointer;
+    }
+
+    .clear-btn {
+        border: none;
+
+        background: #fef2f2;
+
+        color: #dc2626;
+
+        padding: 10px 13px;
+
+        border-radius: 8px;
+
+        font-size: 12px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+    }
+
+    .clear-btn:hover {
+        background: #dc2626;
+        color: white;
+    }
+
+
+    /* =========================
+       ORDER CARD
+    ========================= */
+
+    .order-card {
+        padding: 25px;
+
+        border-bottom: 1px solid #edf0f4;
+
+        transition: 0.2s;
+    }
+
+    .order-card:last-child {
+        border-bottom: none;
+    }
+
+    .order-card:hover {
+        background: #fafaff;
+    }
+
+    .order-top {
+        display: flex;
+
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 20px;
+    }
+
+    .order-id {
+        font-size: 14px;
+
+        font-weight: bold;
+
+        color: #1e293b;
+    }
+
+    .order-date {
+        font-size: 12px;
+
+        color: #94a3b8;
+
+        margin-top: 5px;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+        padding: 7px 13px;
+
+        border-radius: 20px;
+
+        font-size: 11px;
+
+        font-weight: bold;
+    }
+
+    .status.pending {
+        background: #fff7ed;
+        color: #ea580c;
+    }
+
+    .status.processing {
+        background: #eef2ff;
+        color: #4f46e5;
+    }
+
+    .status.shipped {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+
+    .status.delivered {
+        background: #ecfdf5;
+        color: #059669;
+    }
+
+    .status.cancelled {
+        background: #fef2f2;
+        color: #dc2626;
+    }
+
+
+    /* =========================
+       PRODUCT
+    ========================= */
+
+    .product-row {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 20px;
+    }
+
+    .product-info {
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+
+        flex: 1;
+    }
+
+    .product-image {
+        width: 60px;
+        height: 60px;
+
+        border-radius: 13px;
+
+        background: #eef2ff;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 27px;
+
+        flex-shrink: 0;
+    }
+
+    .product-info h3 {
+        font-size: 15px;
+
+        margin-bottom: 6px;
+
+        color: #1e293b;
+    }
+
+    .product-info p {
+        font-size: 12px;
+
+        color: #64748b;
+    }
+
+    .product-price {
+        text-align: right;
+    }
+
+    .product-price strong {
+        display: block;
+
+        color: #4f46e5;
+
+        font-size: 15px;
+
+        margin-bottom: 5px;
+    }
+
+    .product-price span {
+        font-size: 12px;
+
+        color: #94a3b8;
+    }
+
+
+    /* =========================
+       ORDER BOTTOM
+    ========================= */
+
+    .order-bottom {
+        margin-top: 20px;
+
+        padding-top: 17px;
+
+        border-top: 1px solid #f0f1f4;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+    .total-label {
+        color: #64748b;
+
+        font-size: 12px;
+    }
+
+    .total {
+        font-size: 18px;
+
+        font-weight: bold;
+
+        color: #0f172a;
+
+        margin-top: 3px;
+    }
+
+    .order-actions {
+        display: flex;
+
+        gap: 9px;
+    }
+
+    .view-btn {
+        text-decoration: none;
+
+        padding: 9px 15px;
+
+        border: 1px solid #c7d2fe;
+
+        border-radius: 8px;
+
+        color: #4f46e5;
+
+        font-size: 12px;
+
+        font-weight: bold;
+
+        transition: 0.2s;
+    }
+
+    .view-btn:hover {
+        background: #4f46e5;
+
+        color: white;
+    }
+
+    .buy-again {
+        text-decoration: none;
+
+        padding: 9px 15px;
+
+        background: #4f46e5;
+
+        color: white;
+
+        border-radius: 8px;
+
+        font-size: 12px;
+
+        font-weight: bold;
+
+        transition: 0.2s;
+    }
+
+    .buy-again:hover {
+        background: #4338ca;
+    }
+
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    .empty-orders {
+        text-align: center;
+
+        padding: 75px 20px;
+    }
+
+    .empty-icon {
+        width: 80px;
+        height: 80px;
+
+        margin: 0 auto 20px;
+
+        border-radius: 50%;
+
+        background: #eef2ff;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 38px;
+    }
+
+    .empty-orders h2 {
+        font-size: 21px;
+
+        margin-bottom: 9px;
+    }
+
+    .empty-orders p {
+        color: #64748b;
+
+        font-size: 14px;
+
+        max-width: 450px;
+
+        line-height: 1.6;
+
+        margin: 0 auto 25px;
+    }
+
+    .shop-btn {
+        display: inline-block;
+
+        text-decoration: none;
+
+        background: #4f46e5;
+
+        color: white;
+
+        padding: 12px 22px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+
+        font-weight: bold;
+
+        transition: 0.2s;
+    }
+
+    .shop-btn:hover {
+        background: #4338ca;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+        display: none;
+
+        position: fixed;
+
+        inset: 0;
+
+        background: rgba(15,23,42,0.55);
+
+        align-items: center;
+        justify-content: center;
+
+        z-index: 999;
+
+        padding: 20px;
+    }
+
+    .modal-box {
+        width: 100%;
+        max-width: 480px;
+
+        background: white;
+
+        border-radius: 17px;
+
+        padding: 28px;
+
+        box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+
+        animation: popup 0.2s ease;
+    }
+
+    @keyframes popup {
+
+        from {
+            opacity: 0;
+            transform: translateY(10px) scale(0.98);
         }
 
-        body {
-            background: #f7f8fc;
-            color: #1e293b;
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
 
-        /* =========================
-           NAVBAR
-        ========================= */
+    }
+
+    .modal-header {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 20px;
+    }
+
+    .close-btn {
+        border: none;
+
+        background: #f1f5f9;
+
+        width: 32px;
+        height: 32px;
+
+        border-radius: 50%;
+
+        cursor: pointer;
+
+        font-size: 18px;
+
+        color: #64748b;
+    }
+
+    .close-btn:hover {
+        background: #e2e8f0;
+    }
+
+    .detail-row {
+        display: flex;
+
+        justify-content: space-between;
+
+        padding: 12px 0;
+
+        border-bottom: 1px solid #eef2f7;
+
+        font-size: 13px;
+    }
+
+    .detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .detail-row span:first-child {
+        color: #64748b;
+    }
+
+    .detail-row strong {
+        color: #1e293b;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+        background: #111827;
+
+        color: white;
+
+        text-align: center;
+
+        padding: 38px 20px;
+    }
+
+    footer h3 {
+        margin-bottom: 8px;
+    }
+
+    footer p {
+        color: #94a3b8;
+
+        font-size: 13px;
+
+        margin-top: 6px;
+    }
+
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media(max-width: 850px) {
+
+        .order-stats {
+            grid-template-columns: 1fr;
+        }
+
+        .filter-area {
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            max-width: none;
+            width: 100%;
+        }
+
+    }
+
+
+    @media(max-width: 650px) {
 
         nav {
-            height: 72px;
-            background: white;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 7%;
-
-            border-bottom: 1px solid #e5e7eb;
-
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: #4f46e5;
+            padding: 0 5%;
         }
 
         .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
+            gap: 8px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #64748b;
-            font-size: 14px;
-            font-weight: 600;
-
-            transition: 0.2s;
+        .nav-links a:not(.cart-btn) {
+            display: none;
         }
-
-        .nav-links a:hover {
-            color: #4f46e5;
-        }
-
-        .cart-btn {
-            background: #4f46e5;
-            color: white !important;
-
-            padding: 10px 17px;
-            border-radius: 8px;
-        }
-
-
-        /* =========================
-           MAIN CONTAINER
-        ========================= */
 
         .container {
-            width: 86%;
-            max-width: 1100px;
+            width: 90%;
 
-            margin: 45px auto 70px;
+            margin-top: 30px;
         }
 
         .page-header {
-            margin-bottom: 30px;
+            align-items: flex-start;
+
+            flex-direction: column;
+
+            gap: 18px;
         }
 
         .page-header h1 {
-            font-size: 32px;
-            color: #0f172a;
-            margin-bottom: 8px;
-        }
-
-        .page-header p {
-            color: #64748b;
-            font-size: 14px;
-        }
-
-
-        /* =========================
-           ORDER SUMMARY CARDS
-        ========================= */
-
-        .order-stats {
-            display: grid;
-
-            grid-template-columns: repeat(3, 1fr);
-
-            gap: 18px;
-
-            margin-bottom: 30px;
-        }
-
-        .stat {
-            background: white;
-
-            border: 1px solid #e2e8f0;
-
-            border-radius: 14px;
-
-            padding: 20px;
-
-            display: flex;
-            align-items: center;
-
-            gap: 15px;
-        }
-
-        .stat-icon {
-            width: 48px;
-            height: 48px;
-
-            border-radius: 12px;
-
-            background: #eef2ff;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-size: 22px;
-        }
-
-        .stat h3 {
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-
-        .stat p {
-            color: #64748b;
-            font-size: 12px;
-        }
-
-
-        /* =========================
-           ORDERS BOX
-        ========================= */
-
-        .orders-box {
-            background: white;
-
-            border: 1px solid #e2e8f0;
-
-            border-radius: 16px;
-
-            overflow: hidden;
+            font-size: 27px;
         }
 
         .orders-header {
-            padding: 22px 25px;
-
-            border-bottom: 1px solid #e2e8f0;
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
+            padding: 18px;
         }
 
-        .orders-header h2 {
-            font-size: 20px;
-            color: #1e293b;
+        .filter-area {
+            padding: 15px 18px;
         }
-
-        .orders-header span {
-            font-size: 13px;
-            color: #64748b;
-        }
-
-
-        /* =========================
-           ORDER CARD
-        ========================= */
 
         .order-card {
-            padding: 24px 25px;
-
-            border-bottom: 1px solid #edf0f4;
-
-            transition: 0.2s;
-        }
-
-        .order-card:last-child {
-            border-bottom: none;
-        }
-
-        .order-card:hover {
-            background: #fafaff;
+            padding: 20px 18px;
         }
 
         .order-top {
-            display: flex;
+            align-items: flex-start;
 
-            justify-content: space-between;
-            align-items: center;
-
-            margin-bottom: 20px;
+            gap: 10px;
         }
-
-        .order-id {
-            font-size: 14px;
-            font-weight: bold;
-
-            color: #1e293b;
-        }
-
-        .order-date {
-            font-size: 12px;
-            color: #94a3b8;
-
-            margin-top: 5px;
-        }
-
-
-        /* =========================
-           STATUS
-        ========================= */
-
-        .status {
-            padding: 7px 13px;
-
-            border-radius: 20px;
-
-            font-size: 11px;
-
-            font-weight: bold;
-        }
-
-        .status.pending {
-            background: #fff7ed;
-            color: #ea580c;
-        }
-
-        .status.processing {
-            background: #eef2ff;
-            color: #4f46e5;
-        }
-
-        .status.delivered {
-            background: #ecfdf5;
-            color: #059669;
-        }
-
-        .status.cancelled {
-            background: #fef2f2;
-            color: #dc2626;
-        }
-
-
-        /* =========================
-           PRODUCT
-        ========================= */
 
         .product-row {
-            display: flex;
+            flex-direction: column;
 
-            align-items: center;
-
-            justify-content: space-between;
-
-            gap: 20px;
+            align-items: flex-start;
         }
 
-        .product-info {
-            display: flex;
+        .product-price {
+            text-align: left;
 
-            align-items: center;
+            margin-left: 75px;
+        }
+
+        .order-bottom {
+            align-items: flex-start;
 
             gap: 15px;
+
+            flex-direction: column;
+        }
+
+        .order-actions {
+            width: 100%;
+        }
+
+        .view-btn,
+        .buy-again {
+            text-align: center;
 
             flex: 1;
         }
 
-        .product-image {
-            width: 58px;
-            height: 58px;
+    }
 
-            border-radius: 12px;
-
-            background: #eef2ff;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            font-size: 27px;
-        }
-
-        .product-info h3 {
-            font-size: 15px;
-
-            margin-bottom: 6px;
-        }
-
-        .product-info p {
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        .product-price {
-            text-align: right;
-        }
-
-        .product-price strong {
-            display: block;
-
-            color: #4f46e5;
-
-            font-size: 15px;
-
-            margin-bottom: 5px;
-        }
-
-        .product-price span {
-            font-size: 12px;
-            color: #94a3b8;
-        }
-
-
-        /* =========================
-           ORDER BOTTOM
-        ========================= */
-
-        .order-bottom {
-            margin-top: 20px;
-
-            padding-top: 17px;
-
-            border-top: 1px solid #f0f1f4;
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-        }
-
-        .total-label {
-            color: #64748b;
-            font-size: 13px;
-        }
-
-        .total {
-            font-size: 18px;
-            font-weight: bold;
-
-            color: #0f172a;
-        }
-
-        .view-btn {
-            text-decoration: none;
-
-            padding: 9px 15px;
-
-            border: 1px solid #c7d2fe;
-
-            border-radius: 8px;
-
-            color: #4f46e5;
-
-            font-size: 12px;
-
-            font-weight: bold;
-
-            transition: 0.2s;
-        }
-
-        .view-btn:hover {
-            background: #4f46e5;
-            color: white;
-        }
-
-
-        /* =========================
-           EMPTY ORDERS
-        ========================= */
-
-        .empty-orders {
-            text-align: center;
-
-            padding: 70px 20px;
-        }
-
-        .empty-icon {
-            font-size: 65px;
-
-            margin-bottom: 18px;
-        }
-
-        .empty-orders h2 {
-            font-size: 21px;
-
-            margin-bottom: 9px;
-        }
-
-        .empty-orders p {
-            color: #64748b;
-
-            font-size: 14px;
-
-            margin-bottom: 25px;
-        }
-
-        .shop-btn {
-            display: inline-block;
-
-            text-decoration: none;
-
-            background: #4f46e5;
-
-            color: white;
-
-            padding: 12px 22px;
-
-            border-radius: 8px;
-
-            font-size: 13px;
-
-            font-weight: bold;
-
-            transition: 0.2s;
-        }
-
-        .shop-btn:hover {
-            background: #4338ca;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            background: #111827;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 35px;
-        }
-
-        footer h3 {
-            margin-bottom: 8px;
-        }
-
-        footer p {
-            color: #94a3b8;
-
-            font-size: 13px;
-
-            margin-top: 6px;
-        }
-
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
-        @media(max-width: 800px) {
-
-            .order-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .product-row {
-                align-items: flex-start;
-            }
-
-        }
-
-
-        @media(max-width: 600px) {
-
-            nav {
-                padding: 0 5%;
-            }
-
-            .nav-links {
-                gap: 10px;
-            }
-
-            .nav-links a:not(.cart-btn) {
-                display: none;
-            }
-
-            .container {
-                width: 90%;
-                margin-top: 30px;
-            }
-
-            .page-header h1 {
-                font-size: 27px;
-            }
-
-            .orders-header {
-                padding: 18px;
-            }
-
-            .order-card {
-                padding: 20px 18px;
-            }
-
-            .order-top {
-                align-items: flex-start;
-
-                gap: 10px;
-            }
-
-            .product-row {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-            .product-price {
-                text-align: left;
-
-                margin-left: 73px;
-            }
-
-            .order-bottom {
-                align-items: flex-start;
-
-                gap: 15px;
-
-                flex-direction: column;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
-
 <body>
-
 
 <!-- =========================
      NAVBAR
@@ -571,33 +924,33 @@
 
 <nav>
 
-    <div class="logo">
-        🛒 ShopSphere
-    </div>
 
-    <div class="nav-links">
+<div class="logo">
+    🛒 ShopSphere
+</div>
 
-        <a href="/">
-            Home
-        </a>
+<div class="nav-links">
 
-        <a href="/products">
-            Products
-        </a>
+    <a href="/">
+        Home
+    </a>
 
-        <a href="/customer-dashboard">
-            Dashboard
-        </a>
+    <a href="/products">
+        Products
+    </a>
 
-        <a href="/cart" class="cart-btn">
-            🛒 Cart
-        </a>
+    <a href="/customer-dashboard">
+        Dashboard
+    </a>
 
-    </div>
+    <a href="/cart" class="cart-btn">
+        🛒 Cart
+    </a>
+
+</div>
+```
 
 </nav>
-
-
 
 <!-- =========================
      MAIN
@@ -605,127 +958,226 @@
 
 <div class="container">
 
+```
+<div class="page-header">
 
-    <!-- PAGE HEADER -->
-
-    <div class="page-header">
+    <div>
 
         <h1>
             My Orders 📦
         </h1>
 
         <p>
-            Track and manage your ShopSphere orders.
+            Track your purchases and manage your ShopSphere orders.
         </p>
 
     </div>
 
-
-
-    <!-- =========================
-         ORDER STATS
-    ========================= -->
-
-    <section class="order-stats">
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                📦
-            </div>
-
-            <div>
-
-                <h3 id="totalOrders">
-                    0
-                </h3>
-
-                <p>
-                    Total Orders
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                🚚
-            </div>
-
-            <div>
-
-                <h3 id="activeOrders">
-                    0
-                </h3>
-
-                <p>
-                    Active Orders
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="stat">
-
-            <div class="stat-icon">
-                💰
-            </div>
-
-            <div>
-
-                <h3 id="totalSpent">
-                    Rs. 0
-                </h3>
-
-                <p>
-                    Total Spent
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         ORDERS
-    ========================= -->
-
-    <section class="orders-box">
-
-
-        <div class="orders-header">
-
-            <h2>
-                Order History
-            </h2>
-
-            <span id="orderCount">
-                0 Orders
-            </span>
-
-        </div>
-
-
-        <!-- ORDERS WILL LOAD HERE -->
-
-        <div id="ordersContainer"></div>
-
-
-    </section>
-
+    <a href="/products" class="shop-more">
+        🛍️ Continue Shopping
+    </a>
 
 </div>
 
 
+
+<!-- =========================
+     STATS
+========================= -->
+
+<section class="order-stats">
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            📦
+        </div>
+
+        <div>
+
+            <h3 id="totalOrders">
+                0
+            </h3>
+
+            <p>
+                Total Orders
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            🚚
+        </div>
+
+        <div>
+
+            <h3 id="activeOrders">
+                0
+            </h3>
+
+            <p>
+                Active Orders
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="stat">
+
+        <div class="stat-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h3 id="totalSpent">
+                Rs. 0
+            </h3>
+
+            <p>
+                Total Spent
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================
+     ORDERS
+========================= -->
+
+<section class="orders-box">
+
+
+    <div class="orders-header">
+
+        <h2>
+            Order History
+        </h2>
+
+        <span id="orderCount">
+            0 Orders
+        </span>
+
+    </div>
+
+
+    <!-- FILTER -->
+
+    <div class="filter-area">
+
+        <div class="search-box">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by order ID or product name..."
+                oninput="displayOrders()">
+
+        </div>
+
+
+        <select
+            class="filter-select"
+            id="statusFilter"
+            onchange="displayOrders()">
+
+            <option value="all">
+                All Status
+            </option>
+
+            <option value="Pending">
+                Pending
+            </option>
+
+            <option value="Processing">
+                Processing
+            </option>
+
+            <option value="Shipped">
+                Shipped
+            </option>
+
+            <option value="Delivered">
+                Delivered
+            </option>
+
+            <option value="Cancelled">
+                Cancelled
+            </option>
+
+        </select>
+
+
+        <button
+            class="clear-btn"
+            onclick="clearOrders()">
+
+            🗑 Clear History
+
+        </button>
+
+    </div>
+
+
+    <!-- ORDERS -->
+
+    <div id="ordersContainer"></div>
+
+</section>
+
+
+</div>
+
+<!-- =========================
+     ORDER DETAILS MODAL
+========================= -->
+
+<div
+    class="modal"
+    id="orderModal"
+    onclick="closeModalOutside(event)">
+
+
+<div class="modal-box">
+
+    <div class="modal-header">
+
+        <h2>
+            Order Details
+        </h2>
+
+        <button
+            class="close-btn"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
+
+    </div>
+
+    <div id="modalContent"></div>
+
+</div>
+```
+
+</div>
 
 <!-- =========================
      FOOTER
@@ -733,66 +1185,145 @@
 
 <footer>
 
-    <h3>
-        🛒 ShopSphere
-    </h3>
+```
+<h3>
+    🛒 ShopSphere
+</h3>
 
-    <p>
-        Your marketplace for everything you need.
-    </p>
+<p>
+    Your marketplace for everything you need.
+</p>
 
-    <p>
-        © 2026 ShopSphere. All rights reserved.
-    </p>
+<p>
+    © 2026 ShopSphere. All rights reserved.
+</p>
+```
 
 </footer>
-
-
 
 <script>
 
     // ==================================
-    // LOAD ORDERS
+    // GET ORDERS
     // ==================================
 
-    function loadOrders() {
+    function getOrders() {
 
-        /*
-         * For now orders are stored in localStorage.
-         *
-         * Later we can replace this with
-         * orders from the MySQL database.
-         */
+        return JSON.parse(
+            localStorage.getItem("orders")
+        ) || [];
 
-        let orders =
-            JSON.parse(localStorage.getItem("orders")) || [];
+    }
 
+
+
+    // ==================================
+    // LOAD ORDER STATS
+    // ==================================
+
+    function loadStats() {
+
+        const orders = getOrders();
+
+        let active = 0;
+
+        let spent = 0;
+
+
+        orders.forEach(order => {
+
+            spent += Number(order.total || 0);
+
+
+            const status =
+                order.status || "Pending";
+
+
+            if (
+                status !== "Delivered" &&
+                status !== "Cancelled"
+            ) {
+
+                active++;
+
+            }
+
+        });
+
+
+        document.getElementById("totalOrders").textContent =
+            orders.length;
+
+
+        document.getElementById("activeOrders").textContent =
+            active;
+
+
+        document.getElementById("totalSpent").textContent =
+            "Rs. " + spent.toLocaleString();
+
+
+        document.getElementById("orderCount").textContent =
+            orders.length +
+            (orders.length === 1 ? " Order" : " Orders");
+
+    }
+
+
+
+    // ==================================
+    // DISPLAY ORDERS
+    // ==================================
+
+    function displayOrders() {
+
+        const orders = getOrders();
 
         const container =
             document.getElementById("ordersContainer");
 
+        const search =
+            document.getElementById("searchInput")
+            .value
+            .toLowerCase();
 
-        const orderCount =
-            document.getElementById("orderCount");
-
-
-        const totalOrders =
-            document.getElementById("totalOrders");
-
-
-        const activeOrders =
-            document.getElementById("activeOrders");
+        const filter =
+            document.getElementById("statusFilter")
+            .value;
 
 
-        const totalSpent =
-            document.getElementById("totalSpent");
+        let filteredOrders = orders.filter(order => {
+
+            const productName =
+                (order.productName || "")
+                .toLowerCase();
+
+            const orderId =
+                String(order.id || "")
+                .toLowerCase();
+
+            const status =
+                order.status || "Pending";
 
 
-        // =========================
-        // EMPTY ORDERS
-        // =========================
+            const matchesSearch =
+                productName.includes(search) ||
+                orderId.includes(search);
 
-        if (orders.length === 0) {
+
+            const matchesStatus =
+                filter === "all" ||
+                status === filter;
+
+
+            return matchesSearch && matchesStatus;
+
+        });
+
+
+        // EMPTY
+
+        if (filteredOrders.length === 0) {
 
             container.innerHTML = `
 
@@ -803,12 +1334,15 @@
                     </div>
 
                     <h2>
-                        No Orders Yet
+                        ${orders.length === 0
+                            ? "No Orders Yet"
+                            : "No Matching Orders"}
                     </h2>
 
                     <p>
-                        You haven't placed any orders yet.
-                        Start shopping and your orders will appear here.
+                        ${orders.length === 0
+                            ? "You haven't placed any orders yet. Start shopping and your orders will appear here."
+                            : "Try changing your search or status filter."}
                     </p>
 
                     <a
@@ -823,75 +1357,25 @@
 
             `;
 
-
-            totalOrders.textContent = "0";
-            activeOrders.textContent = "0";
-            totalSpent.textContent = "Rs. 0";
-            orderCount.textContent = "0 Orders";
-
             return;
+
         }
 
-
-
-        // =========================
-        // CALCULATE STATS
-        // =========================
-
-        let spent = 0;
-
-        let active = 0;
-
-
-        orders.forEach(order => {
-
-            spent += Number(order.total || 0);
-
-
-            if (
-                order.status !== "Delivered" &&
-                order.status !== "Cancelled"
-            ) {
-
-                active++;
-
-            }
-
-        });
-
-
-        totalOrders.textContent =
-            orders.length;
-
-
-        activeOrders.textContent =
-            active;
-
-
-        totalSpent.textContent =
-            "Rs. " + spent.toLocaleString();
-
-
-        orderCount.textContent =
-            orders.length +
-            (orders.length === 1 ? " Order" : " Orders");
-
-
-
-        // =========================
-        // DISPLAY ORDERS
-        // =========================
 
         container.innerHTML = "";
 
 
-        orders.forEach((order, index) => {
+        filteredOrders.forEach((order) => {
+
+            const originalIndex =
+                orders.indexOf(order);
+
 
             const status =
                 order.status || "Pending";
 
 
-            const statusClass =
+            let statusClass =
                 status.toLowerCase();
 
 
@@ -906,13 +1390,13 @@
 
                             <div class="order-id">
 
-                                Order #${order.id || (1000 + index)}
+                                Order #${order.id || (1000 + originalIndex)}
 
                             </div>
 
                             <div class="order-date">
 
-                                ${order.date || "Recently placed"}
+                                📅 ${order.date || "Recently placed"}
 
                             </div>
 
@@ -988,9 +1472,7 @@
                         <div>
 
                             <span class="total-label">
-
                                 Total Amount
-
                             </span>
 
                             <div class="total">
@@ -1002,14 +1484,26 @@
                         </div>
 
 
-                        <a
-                            href="#"
-                            class="view-btn"
-                            onclick="viewOrder(${index})">
+                        <div class="order-actions">
 
-                            View Details
+                            <a
+                                href="#"
+                                class="view-btn"
+                                onclick="viewOrder(${originalIndex}); return false;">
 
-                        </a>
+                                👁 View Details
+
+                            </a>
+
+                            <a
+                                href="/products"
+                                class="buy-again">
+
+                                🛍 Buy Again
+
+                            </a>
+
+                        </div>
 
                     </div>
 
@@ -1030,56 +1524,206 @@
 
     function viewOrder(index) {
 
-        let orders =
-            JSON.parse(localStorage.getItem("orders")) || [];
+        const orders = getOrders();
+
+        const order = orders[index];
 
 
-        if (!orders[index]) {
-
+        if (!order) {
             return;
-
         }
 
 
-        const order =
-            orders[index];
+        const orderId =
+            order.id || (1000 + index);
+
+        const status =
+            order.status || "Pending";
 
 
-        alert(
+        document.getElementById("modalContent").innerHTML = `
 
-            "Order #" +
-            (order.id || 1000 + index) +
-            "\n\n" +
+            <div class="detail-row">
 
-            "Product: " +
-            (order.productName || "ShopSphere Product") +
-            "\n" +
+                <span>
+                    Order ID
+                </span>
 
-            "Quantity: " +
-            (order.quantity || 1) +
-            "\n" +
+                <strong>
+                    #${orderId}
+                </strong>
 
-            "Total: Rs. " +
-            Number(order.total || 0).toLocaleString() +
-            "\n" +
+            </div>
 
-            "Status: " +
-            (order.status || "Pending")
 
-        );
+            <div class="detail-row">
+
+                <span>
+                    Product
+                </span>
+
+                <strong>
+                    ${order.productName || "ShopSphere Product"}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Quantity
+                </span>
+
+                <strong>
+                    ${order.quantity || 1}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Order Date
+                </span>
+
+                <strong>
+                    ${order.date || "Recently placed"}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Status
+                </span>
+
+                <strong>
+                    ${status}
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong>
+                    Rs. ${Number(order.total || 0).toLocaleString()}
+                </strong>
+
+            </div>
+
+        `;
+
+
+        document.getElementById("orderModal").style.display =
+            "flex";
 
     }
 
 
 
     // ==================================
-    // LOAD PAGE
+    // CLOSE MODAL
     // ==================================
 
-    loadOrders();
+    function closeModal() {
+
+        document.getElementById("orderModal").style.display =
+            "none";
+
+    }
+
+
+
+    function closeModalOutside(event) {
+
+        if (
+            event.target.id === "orderModal"
+        ) {
+
+            closeModal();
+
+        }
+
+    }
+
+
+
+    // ==================================
+    // CLEAR ORDERS
+    // ==================================
+
+    function clearOrders() {
+
+        const orders = getOrders();
+
+
+        if (orders.length === 0) {
+
+            alert("There are no orders to clear.");
+
+            return;
+
+        }
+
+
+        const confirmClear =
+            confirm(
+                "Are you sure you want to clear your order history?"
+            );
+
+
+        if (!confirmClear) {
+            return;
+        }
+
+
+        localStorage.removeItem("orders");
+
+        loadStats();
+
+        displayOrders();
+
+    }
+
+
+
+    // ==================================
+    // ESCAPE KEY FOR MODAL
+    // ==================================
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                closeModal();
+
+            }
+
+        }
+    );
+
+
+
+    // ==================================
+    // INITIAL LOAD
+    // ==================================
+
+    loadStats();
+
+    displayOrders();
 
 </script>
-
 
 </body>
 
