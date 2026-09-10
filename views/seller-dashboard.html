@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +18,7 @@
         }
 
         body {
-            background: #f8fafc;
+            background: #f5f7fb;
             color: #1e293b;
         }
 
@@ -26,15 +27,16 @@
         ========================= */
 
         .navbar {
-            height: 70px;
-            background: #111827;
-            color: white;
+            height: 72px;
+            background: #ffffff;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 0 40px;
+            padding: 0 38px;
+
+            border-bottom: 1px solid #e8eaf0;
 
             position: sticky;
             top: 0;
@@ -42,42 +44,49 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 800;
+            color: #111827;
         }
 
         .logo span {
-            color: #a78bfa;
+            color: #6d5dfc;
         }
 
         .nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 14px;
         }
 
         .seller-name {
             font-size: 13px;
-            color: #d1d5db;
+            color: #64748b;
+            font-weight: 600;
         }
 
         .profile {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
 
             border-radius: 50%;
 
             background: linear-gradient(
                 135deg,
-                #6366f1,
+                #6d5dfc,
                 #8b5cf6
             );
+
+            color: white;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            font-size: 14px;
             font-weight: bold;
+
+            box-shadow: 0 5px 15px rgba(109,93,252,0.25);
         }
 
 
@@ -87,7 +96,7 @@
 
         .layout {
             display: flex;
-            min-height: calc(100vh - 70px);
+            min-height: calc(100vh - 72px);
         }
 
 
@@ -96,30 +105,30 @@
         ========================= */
 
         .sidebar {
-            width: 240px;
-            background: white;
+            width: 245px;
+            background: #ffffff;
 
-            border-right: 1px solid #e5e7eb;
+            border-right: 1px solid #e8eaf0;
 
             padding: 30px 18px;
         }
 
         .sidebar-title {
-            font-size: 11px;
-            font-weight: bold;
+            font-size: 10px;
+            font-weight: 800;
 
-            color: #94a3b8;
+            color: #9ca3af;
 
-            margin: 0 12px 15px;
+            margin: 0 13px 15px;
 
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
         }
 
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .menu a {
@@ -127,9 +136,9 @@
 
             padding: 12px 14px;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
-            color: #475569;
+            color: #64748b;
 
             font-size: 13px;
 
@@ -138,23 +147,34 @@
 
             gap: 12px;
 
-            transition: 0.2s;
+            transition: all 0.25s ease;
         }
 
         .menu a:hover {
-            background: #f1f5f9;
-            color: #4f46e5;
+            background: #f4f2ff;
+            color: #6d5dfc;
+            transform: translateX(3px);
         }
 
         .menu a.active {
-            background: #eef2ff;
-            color: #4f46e5;
-            font-weight: bold;
+            background: linear-gradient(
+                90deg,
+                #f0edff,
+                #f7f5ff
+            );
+
+            color: #5b4cf0;
+
+            font-weight: 700;
+
+            box-shadow:
+                inset 3px 0 0 #6d5dfc;
         }
 
         .menu-icon {
-            width: 22px;
+            width: 23px;
             text-align: center;
+            font-size: 15px;
         }
 
 
@@ -164,8 +184,9 @@
 
         .main {
             flex: 1;
-            padding: 35px;
-            max-width: 1400px;
+            padding: 38px;
+
+            max-width: 1450px;
         }
 
 
@@ -181,10 +202,16 @@
             margin-bottom: 30px;
         }
 
+        .welcome-text {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
         .page-header h1 {
-            font-size: 28px;
-            color: #0f172a;
-            margin-bottom: 6px;
+            font-size: 30px;
+            color: #111827;
+            letter-spacing: -0.5px;
         }
 
         .page-header p {
@@ -197,31 +224,35 @@
 
             background: linear-gradient(
                 135deg,
-                #4f46e5,
+                #635bff,
                 #7c3aed
             );
 
             color: white;
 
-            padding: 12px 18px;
+            padding: 13px 20px;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             font-size: 13px;
-            font-weight: bold;
+            font-weight: 700;
 
-            box-shadow: 0 6px 18px rgba(79,70,229,0.18);
+            box-shadow:
+                0 8px 20px rgba(99,91,255,0.22);
 
-            transition: 0.2s;
+            transition: all 0.25s ease;
         }
 
         .add-product:hover {
             transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(99,91,255,0.30);
         }
 
 
         /* =========================
-           STAT CARDS
+           STATISTICS
         ========================= */
 
         .stats {
@@ -231,61 +262,91 @@
 
             gap: 18px;
 
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .stat-card {
-            background: white;
+            background: #ffffff;
 
-            border: 1px solid #e5e7eb;
+            border: 1px solid #e7e9ef;
 
-            border-radius: 14px;
+            border-radius: 16px;
 
             padding: 22px;
 
-            transition: 0.2s;
+            position: relative;
+
+            overflow: hidden;
+
+            transition: all 0.25s ease;
+        }
+
+        .stat-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: #f1efff;
+
+            right: -30px;
+            bottom: -30px;
         }
 
         .stat-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
 
             box-shadow:
-                0 10px 30px rgba(15,23,42,0.07);
+                0 15px 35px rgba(15,23,42,0.08);
         }
 
         .stat-top {
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
-            margin-bottom: 18px;
+            margin-bottom: 17px;
         }
 
         .stat-icon {
-            width: 40px;
-            height: 40px;
+            width: 42px;
+            height: 42px;
 
-            border-radius: 10px;
+            border-radius: 11px;
 
-            background: #eef2ff;
+            background: #f0edff;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
             font-size: 18px;
+
+            position: relative;
+            z-index: 2;
         }
 
         .stat-label {
             font-size: 12px;
             color: #64748b;
+            font-weight: 600;
         }
 
         .stat-value {
-            font-size: 25px;
+            font-size: 26px;
+
             font-weight: 800;
 
-            color: #0f172a;
+            color: #111827;
+
+            position: relative;
+            z-index: 2;
         }
 
 
@@ -307,35 +368,47 @@
         ========================= */
 
         .card {
-            background: white;
+            background: #ffffff;
 
-            border: 1px solid #e5e7eb;
+            border: 1px solid #e7e9ef;
 
-            border-radius: 14px;
+            border-radius: 16px;
 
             overflow: hidden;
+
+            box-shadow:
+                0 5px 18px rgba(15,23,42,0.025);
         }
 
         .card-header {
-            padding: 20px;
+            padding: 21px 22px;
 
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid #edf0f4;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
         }
 
         .card-header h2 {
             font-size: 16px;
-            color: #0f172a;
+            color: #111827;
         }
 
         .view-all {
-            color: #4f46e5;
+            color: #635bff;
+
             font-size: 12px;
+
             text-decoration: none;
-            font-weight: bold;
+
+            font-weight: 700;
+        }
+
+        .view-all:hover {
+            text-decoration: underline;
         }
 
 
@@ -351,40 +424,44 @@
         th {
             text-align: left;
 
-            padding: 14px 20px;
+            padding: 14px 22px;
 
-            background: #f8fafc;
+            background: #fafbfc;
 
-            color: #64748b;
+            color: #94a3b8;
 
-            font-size: 11px;
+            font-size: 10px;
 
             text-transform: uppercase;
+
+            letter-spacing: 0.7px;
         }
 
         td {
-            padding: 17px 20px;
+            padding: 18px 22px;
 
-            border-top: 1px solid #f1f5f9;
+            border-top: 1px solid #f1f3f6;
 
             font-size: 12px;
+
+            color: #64748b;
         }
 
         .product-name {
-            font-weight: bold;
+            font-weight: 700;
             color: #334155;
         }
 
         .status {
             display: inline-block;
 
-            padding: 5px 9px;
+            padding: 6px 10px;
 
             border-radius: 20px;
 
             font-size: 10px;
 
-            font-weight: bold;
+            font-weight: 700;
         }
 
         .delivered {
@@ -393,13 +470,13 @@
         }
 
         .pending {
-            background: #fef3c7;
+            background: #fff7d6;
             color: #b45309;
         }
 
         .processing {
             background: #dbeafe;
-            color: #1d4ed8;
+            color: #2563eb;
         }
 
 
@@ -420,31 +497,38 @@
         .action {
             text-decoration: none;
 
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e6e8ee;
 
-            border-radius: 10px;
+            border-radius: 12px;
 
-            padding: 17px 12px;
+            padding: 20px 10px;
 
             text-align: center;
 
             color: #475569;
 
-            transition: 0.2s;
+            background: #ffffff;
+
+            transition: all 0.25s ease;
         }
 
         .action:hover {
-            border-color: #c7d2fe;
+            border-color: #c9c3ff;
 
-            background: #f8faff;
+            background: #faf9ff;
 
-            color: #4f46e5;
+            color: #5b4cf0;
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 20px rgba(99,91,255,0.08);
         }
 
         .action-icon {
-            font-size: 21px;
+            font-size: 22px;
 
-            margin-bottom: 7px;
+            margin-bottom: 9px;
         }
 
         .action span {
@@ -452,7 +536,45 @@
 
             font-size: 11px;
 
-            font-weight: bold;
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        .empty-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 50%;
+
+            background: #f3f1ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: 0 auto 12px;
+
+            font-size: 22px;
+        }
+
+        .empty-state h3 {
+            font-size: 14px;
+            color: #334155;
+            margin-bottom: 5px;
+        }
+
+        .empty-state p {
+            font-size: 11px;
+            color: #94a3b8;
         }
 
 
@@ -460,7 +582,7 @@
            RESPONSIVE
         ========================= */
 
-        @media(max-width: 1000px) {
+        @media(max-width: 1050px) {
 
             .stats {
                 grid-template-columns: repeat(2, 1fr);
@@ -489,8 +611,15 @@
 
             .page-header {
                 align-items: flex-start;
-                gap: 15px;
+
+                gap: 16px;
+
                 flex-direction: column;
+            }
+
+            .add-product {
+                width: 100%;
+                text-align: center;
             }
 
         }
@@ -506,12 +635,24 @@
                 display: none;
             }
 
+            .main {
+                padding: 20px 14px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
             .card {
                 overflow-x: auto;
             }
 
             table {
                 min-width: 600px;
+            }
+
+            .actions {
+                grid-template-columns: 1fr 1fr;
             }
 
         }
@@ -616,14 +757,14 @@
 
         <div class="page-header">
 
-            <div>
+            <div class="welcome-text">
 
                 <h1>
                     Seller Dashboard
                 </h1>
 
                 <p>
-                    Manage your products, orders and sales from one place.
+                    Welcome back! Manage your store from one place.
                 </p>
 
             </div>
@@ -788,22 +929,24 @@
 
                         <tr>
 
-                            <td class="product-name">
-                                No orders yet
-                            </td>
+                            <td colspan="4">
 
-                            <td>
-                                —
-                            </td>
+                                <div class="empty-state">
 
-                            <td>
-                                —
-                            </td>
+                                    <div class="empty-icon">
+                                        🛍️
+                                    </div>
 
-                            <td>
-                                <span class="status pending">
-                                    Pending
-                                </span>
+                                    <h3>
+                                        No orders yet
+                                    </h3>
+
+                                    <p>
+                                        Your recent orders will appear here.
+                                    </p>
+
+                                </div>
+
                             </td>
 
                         </tr>
@@ -895,3 +1038,4 @@
 </body>
 
 </html>
+
