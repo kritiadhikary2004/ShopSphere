@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -5,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Seller Dashboard | ShopSphere</title>
 
 <style>
@@ -18,26 +18,25 @@
     }
 
     body {
-        background: #f6f7fb;
-        color: #1f2937;
+        background: #f3f4f8;
+        color: #202124;
     }
-
 
     /* =========================
        NAVBAR
     ========================= */
 
     .navbar {
-        height: 74px;
-        background: white;
+        height: 70px;
+        background: #ffffff;
 
         display: flex;
         align-items: center;
         justify-content: space-between;
 
-        padding: 0 42px;
+        padding: 0 35px;
 
-        border-bottom: 1px solid #e8e9f0;
+        border-bottom: 1px solid #e4e5eb;
 
         position: sticky;
         top: 0;
@@ -45,35 +44,33 @@
     }
 
     .logo {
-        font-size: 25px;
+        font-size: 24px;
         font-weight: 800;
-        color: #171725;
-        letter-spacing: -0.5px;
+        color: #202124;
     }
 
     .logo span {
-        color: #635bff;
+        color: #6558f5;
     }
 
     .nav-right {
         display: flex;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
     }
 
     .seller-name {
         font-size: 13px;
-        color: #6b7280;
-        font-weight: 600;
+        color: #737780;
     }
 
     .profile {
-        width: 42px;
-        height: 42px;
+        width: 38px;
+        height: 38px;
 
         border-radius: 50%;
 
-        background: linear-gradient(135deg, #635bff, #8b5cf6);
+        background: #6558f5;
 
         color: white;
 
@@ -82,9 +79,9 @@
         justify-content: center;
 
         font-size: 14px;
-        font-weight: 700;
+        font-weight: bold;
 
-        box-shadow: 0 6px 18px rgba(99, 91, 255, 0.25);
+        box-shadow: 0 5px 12px rgba(101, 88, 245, 0.25);
     }
 
 
@@ -94,7 +91,7 @@
 
     .layout {
         display: flex;
-        min-height: calc(100vh - 74px);
+        min-height: calc(100vh - 70px);
     }
 
 
@@ -103,85 +100,87 @@
     ========================= */
 
     .sidebar {
-        width: 250px;
-        background: white;
+        width: 235px;
 
-        border-right: 1px solid #e8e9f0;
+        background: #ffffff;
 
-        padding: 32px 18px;
+        border-right: 1px solid #e4e5eb;
+
+        padding: 28px 15px;
     }
 
     .sidebar-title {
         font-size: 10px;
-        font-weight: 800;
 
-        color: #9ca3af;
+        font-weight: 700;
 
-        margin: 0 14px 16px;
+        color: #9a9da5;
 
         text-transform: uppercase;
-        letter-spacing: 1.3px;
+
+        letter-spacing: 1px;
+
+        margin: 0 12px 14px;
     }
 
     .menu {
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 5px;
     }
 
     .menu a {
         text-decoration: none;
 
-        padding: 13px 15px;
+        color: #686c76;
 
-        border-radius: 11px;
+        padding: 12px 14px;
 
-        color: #667085;
+        border-radius: 9px;
 
         font-size: 13px;
 
         display: flex;
+
         align-items: center;
 
         gap: 12px;
 
-        transition: all 0.25s ease;
+        transition: 0.2s ease;
     }
 
     .menu a:hover {
-        background: #f5f3ff;
-        color: #5b4cf0;
-        transform: translateX(3px);
+        background: #f4f2ff;
+        color: #6558f5;
     }
 
     .menu a.active {
-        background: linear-gradient(
-            90deg,
-            #eeeaff,
-            #f8f7ff
-        );
+        background: #6558f5;
 
-        color: #5b4cf0;
+        color: white;
 
         font-weight: 700;
 
-        box-shadow: inset 3px 0 0 #635bff;
+        box-shadow: 0 6px 15px rgba(101, 88, 245, 0.18);
     }
 
     .menu-icon {
-        width: 24px;
+        width: 23px;
+
         text-align: center;
-        font-size: 16px;
+
+        font-size: 15px;
     }
 
 
     /* =========================
-       MAIN
+       MAIN CONTENT
     ========================= */
 
     .main {
         flex: 1;
-        padding: 40px;
+
+        padding: 35px;
 
         max-width: 1500px;
     }
@@ -193,55 +192,54 @@
 
     .page-header {
         display: flex;
+
         justify-content: space-between;
+
         align-items: center;
 
-        margin-bottom: 32px;
+        margin-bottom: 28px;
     }
 
     .welcome-text h1 {
-        font-size: 30px;
-        color: #171725;
+        font-size: 28px;
 
-        margin-bottom: 7px;
+        color: #202124;
 
-        letter-spacing: -0.7px;
+        margin-bottom: 6px;
     }
 
     .welcome-text p {
-        color: #7b8190;
+        color: #7b7f89;
+
         font-size: 13px;
     }
 
     .add-product {
         text-decoration: none;
 
-        background: linear-gradient(
-            135deg,
-            #5d55f5,
-            #7958f5
-        );
+        background: #6558f5;
 
         color: white;
 
-        padding: 13px 21px;
+        padding: 12px 19px;
 
-        border-radius: 11px;
+        border-radius: 9px;
 
         font-size: 13px;
+
         font-weight: 700;
 
-        box-shadow:
-            0 8px 20px rgba(93, 85, 245, 0.22);
+        box-shadow: 0 7px 16px rgba(101, 88, 245, 0.2);
 
-        transition: all 0.25s ease;
+        transition: 0.2s ease;
     }
 
     .add-product:hover {
-        transform: translateY(-3px);
+        background: #5548e8;
 
-        box-shadow:
-            0 12px 28px rgba(93, 85, 245, 0.30);
+        transform: translateY(-2px);
+
+        box-shadow: 0 10px 22px rgba(101, 88, 245, 0.28);
     }
 
 
@@ -254,147 +252,128 @@
 
         grid-template-columns: repeat(4, 1fr);
 
-        gap: 20px;
+        gap: 17px;
 
-        margin-bottom: 28px;
+        margin-bottom: 25px;
     }
 
     .stat-card {
         background: white;
 
-        border: 1px solid #e7e8ef;
+        border: 1px solid #e5e6eb;
 
-        border-radius: 17px;
+        border-radius: 13px;
 
-        padding: 23px;
+        padding: 21px;
 
-        position: relative;
-
-        overflow: hidden;
-
-        transition: all 0.25s ease;
-    }
-
-    .stat-card::before {
-        content: "";
-
-        position: absolute;
-
-        width: 90px;
-        height: 90px;
-
-        border-radius: 50%;
-
-        background: #f1efff;
-
-        right: -35px;
-        bottom: -35px;
+        transition: 0.2s ease;
     }
 
     .stat-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-3px);
 
-        box-shadow:
-            0 15px 35px rgba(30, 41, 59, 0.09);
+        border-color: #d9d5ff;
+
+        box-shadow: 0 10px 25px rgba(32, 33, 36, 0.06);
     }
 
     .stat-top {
         display: flex;
-        justify-content: space-between;
+
         align-items: center;
 
-        margin-bottom: 18px;
+        justify-content: space-between;
+
+        margin-bottom: 15px;
     }
 
     .stat-label {
-        color: #747b8a;
-
         font-size: 12px;
+
+        color: #777b85;
 
         font-weight: 600;
     }
 
     .stat-icon {
-        width: 43px;
-        height: 43px;
+        width: 39px;
+        height: 39px;
 
-        border-radius: 12px;
+        border-radius: 10px;
 
-        background: #f0edff;
+        background: #f0eeff;
 
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
-        font-size: 19px;
-
-        position: relative;
-        z-index: 2;
+        font-size: 17px;
     }
 
     .stat-value {
-        font-size: 27px;
+        font-size: 25px;
+
+        color: #202124;
 
         font-weight: 800;
-
-        color: #151522;
-
-        position: relative;
-        z-index: 2;
     }
 
 
     /* =========================
-       CONTENT
+       CONTENT GRID
     ========================= */
 
     .content-grid {
         display: grid;
 
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1.8fr 1fr;
 
-        gap: 22px;
+        gap: 18px;
     }
 
 
     /* =========================
-       CARDS
+       CARD
     ========================= */
 
     .card {
         background: white;
 
-        border: 1px solid #e7e8ef;
+        border: 1px solid #e5e6eb;
 
-        border-radius: 17px;
+        border-radius: 13px;
 
         overflow: hidden;
 
-        box-shadow:
-            0 4px 18px rgba(15, 23, 42, 0.025);
+        box-shadow: 0 3px 12px rgba(32, 33, 36, 0.025);
     }
 
     .card-header {
-        padding: 21px 23px;
+        padding: 19px 21px;
 
-        border-bottom: 1px solid #eef0f4;
+        border-bottom: 1px solid #ececf0;
 
         display: flex;
-        align-items: center;
+
         justify-content: space-between;
+
+        align-items: center;
     }
 
     .card-header h2 {
-        font-size: 16px;
-        color: #20202c;
+        font-size: 15px;
+
+        color: #292b30;
     }
 
     .view-all {
-        color: #635bff;
+        text-decoration: none;
+
+        color: #6558f5;
 
         font-size: 12px;
-
-        text-decoration: none;
 
         font-weight: 700;
     }
@@ -410,29 +389,30 @@
 
     table {
         width: 100%;
+
         border-collapse: collapse;
     }
 
     th {
         text-align: left;
 
-        padding: 14px 22px;
+        padding: 13px 20px;
 
-        background: #fafbfc;
+        background: #fafafa;
 
-        color: #98a0af;
+        color: #979ba5;
 
         font-size: 10px;
 
         text-transform: uppercase;
 
-        letter-spacing: 0.7px;
+        letter-spacing: 0.6px;
     }
 
     td {
-        padding: 0;
+        border-top: 1px solid #f0f1f3;
 
-        border-top: 1px solid #f0f2f5;
+        padding: 0;
     }
 
 
@@ -443,38 +423,40 @@
     .empty-state {
         text-align: center;
 
-        padding: 42px 20px;
+        padding: 38px 20px;
     }
 
     .empty-icon {
-        width: 58px;
-        height: 58px;
+        width: 55px;
+        height: 55px;
 
         border-radius: 50%;
 
-        background: #f2efff;
+        background: #f1efff;
 
         display: flex;
+
         align-items: center;
+
         justify-content: center;
 
-        margin: 0 auto 13px;
+        margin: 0 auto 12px;
 
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .empty-state h3 {
         font-size: 14px;
 
-        color: #374151;
+        color: #383b42;
 
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 
     .empty-state p {
         font-size: 11px;
 
-        color: #9aa1af;
+        color: #969aa4;
     }
 
 
@@ -483,50 +465,45 @@
     ========================= */
 
     .actions {
-        padding: 21px;
+        padding: 19px;
 
         display: grid;
 
         grid-template-columns: 1fr 1fr;
 
-        gap: 13px;
+        gap: 11px;
     }
 
     .action {
         text-decoration: none;
 
-        border: 1px solid #e5e7ed;
+        border: 1px solid #e5e6eb;
 
-        border-radius: 13px;
+        border-radius: 10px;
 
-        padding: 20px 10px;
+        padding: 18px 10px;
 
         text-align: center;
 
-        color: #596273;
+        color: #646872;
 
-        background: #fff;
-
-        transition: all 0.25s ease;
+        transition: 0.2s ease;
     }
 
     .action:hover {
-        border-color: #c8c1ff;
+        border-color: #cfcaff;
 
         background: #faf9ff;
 
-        color: #5b4cf0;
+        color: #5d50e8;
 
-        transform: translateY(-3px);
-
-        box-shadow:
-            0 9px 22px rgba(99, 91, 255, 0.09);
+        transform: translateY(-2px);
     }
 
     .action-icon {
-        font-size: 23px;
+        font-size: 21px;
 
-        margin-bottom: 9px;
+        margin-bottom: 8px;
     }
 
     .action span {
@@ -539,25 +516,25 @@
 
 
     /* =========================
-       DASHBOARD INFO
+       STORE TIP
     ========================= */
 
     .info-box {
-        margin: 20px 21px 21px;
+        margin: 0 19px 19px;
 
-        padding: 15px;
+        padding: 14px;
 
-        background: #f7f6ff;
+        background: #f6f5ff;
 
-        border: 1px solid #ebe8ff;
+        border-left: 3px solid #6558f5;
 
-        border-radius: 12px;
+        border-radius: 8px;
     }
 
     .info-box strong {
         display: block;
 
-        color: #5146c8;
+        color: #5145c7;
 
         font-size: 12px;
 
@@ -565,7 +542,7 @@
     }
 
     .info-box p {
-        color: #858a99;
+        color: #7d818c;
 
         font-size: 11px;
 
@@ -577,7 +554,7 @@
        RESPONSIVE
     ========================= */
 
-    @media(max-width: 1100px) {
+    @media(max-width: 1050px) {
 
         .stats {
             grid-template-columns: repeat(2, 1fr);
@@ -601,7 +578,7 @@
         }
 
         .main {
-            padding: 28px 18px;
+            padding: 25px 18px;
         }
 
         .page-header {
@@ -609,7 +586,7 @@
 
             align-items: flex-start;
 
-            gap: 17px;
+            gap: 15px;
         }
 
         .add-product {
@@ -632,11 +609,11 @@
         }
 
         .main {
-            padding: 22px 14px;
+            padding: 20px 14px;
         }
 
         .welcome-text h1 {
-            font-size: 25px;
+            font-size: 24px;
         }
 
         .actions {
@@ -645,6 +622,10 @@
 
         .card {
             overflow-x: auto;
+        }
+
+        table {
+            min-width: 550px;
         }
 
     }
@@ -656,388 +637,380 @@
 
 <body>
 
+```
 <!-- =========================
      NAVBAR
 ========================= -->
 
 <nav class="navbar">
 
-```
-<div class="logo">
-    🛒 Shop<span>Sphere</span>
-</div>
-
-<div class="nav-right">
-
-    <span class="seller-name">
-        Seller Account
-    </span>
-
-    <div class="profile">
-        S
+    <div class="logo">
+        🛒 Shop<span>Sphere</span>
     </div>
 
-</div>
+    <div class="nav-right">
+
+        <span class="seller-name">
+            Seller Account
+        </span>
+
+        <div class="profile">
+            S
+        </div>
+
+    </div>
 
 </nav>
 
+
 <div class="layout">
 
-<!-- =========================
-     SIDEBAR
-========================= -->
 
-<aside class="sidebar">
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
 
-    <div class="sidebar-title">
-        Seller Menu
-    </div>
+    <aside class="sidebar">
 
-    <div class="menu">
+        <div class="sidebar-title">
+            Seller Menu
+        </div>
 
-        <a href="/seller-dashboard" class="active">
-            <span class="menu-icon">📊</span>
-            Dashboard
-        </a>
+        <div class="menu">
 
-        <a href="/products">
-            <span class="menu-icon">📦</span>
-            My Products
-        </a>
+            <a href="/seller-dashboard" class="active">
+                <span class="menu-icon">📊</span>
+                Dashboard
+            </a>
 
-        <a href="#">
-            <span class="menu-icon">➕</span>
-            Add Product
-        </a>
+            <a href="/products">
+                <span class="menu-icon">📦</span>
+                My Products
+            </a>
 
-        <a href="#">
-            <span class="menu-icon">🛍️</span>
-            Orders
-        </a>
+            <a href="#">
+                <span class="menu-icon">➕</span>
+                Add Product
+            </a>
 
-        <a href="#">
-            <span class="menu-icon">📈</span>
-            Sales
-        </a>
+            <a href="#">
+                <span class="menu-icon">🛍️</span>
+                Orders
+            </a>
 
-        <a href="#">
-            <span class="menu-icon">👤</span>
-            Profile
-        </a>
+            <a href="#">
+                <span class="menu-icon">📈</span>
+                Sales
+            </a>
 
-        <a href="/">
-            <span class="menu-icon">🏠</span>
-            Back to Shop
-        </a>
+            <a href="#">
+                <span class="menu-icon">👤</span>
+                Profile
+            </a>
 
-    </div>
-
-</aside>
-
-
-
-<!-- =========================
-     MAIN CONTENT
-========================= -->
-
-<main class="main">
-
-
-    <!-- HEADER -->
-
-    <div class="page-header">
-
-        <div class="welcome-text">
-
-            <h1>
-                Seller Dashboard
-            </h1>
-
-            <p>
-                Welcome back! Manage your store from one place.
-            </p>
+            <a href="/">
+                <span class="menu-icon">🏠</span>
+                Back to Shop
+            </a>
 
         </div>
 
-        <a href="#" class="add-product">
-            + Add Product
-        </a>
-
-    </div>
-
+    </aside>
 
 
     <!-- =========================
-         STATISTICS
+         MAIN
     ========================= -->
 
-    <div class="stats">
+    <main class="main">
 
 
-        <div class="stat-card">
+        <!-- HEADER -->
 
-            <div class="stat-top">
+        <div class="page-header">
 
-                <span class="stat-label">
-                    Total Sales
-                </span>
+            <div class="welcome-text">
 
-                <div class="stat-icon">
-                    💰
-                </div>
-
-            </div>
-
-            <div class="stat-value">
-                Rs. 0
-            </div>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <span class="stat-label">
-                    Total Orders
-                </span>
-
-                <div class="stat-icon">
-                    🛍️
-                </div>
-
-            </div>
-
-            <div class="stat-value">
-                0
-            </div>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <span class="stat-label">
-                    Products
-                </span>
-
-                <div class="stat-icon">
-                    📦
-                </div>
-
-            </div>
-
-            <div class="stat-value">
-                0
-            </div>
-
-        </div>
-
-
-
-        <div class="stat-card">
-
-            <div class="stat-top">
-
-                <span class="stat-label">
-                    Pending Orders
-                </span>
-
-                <div class="stat-icon">
-                    ⏳
-                </div>
-
-            </div>
-
-            <div class="stat-value">
-                0
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================
-         CONTENT GRID
-    ========================= -->
-
-    <div class="content-grid">
-
-
-        <!-- RECENT ORDERS -->
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    Recent Orders
-                </h2>
-
-                <a href="#" class="view-all">
-                    View All
-                </a>
-
-            </div>
-
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Product
-                        </th>
-
-                        <th>
-                            Customer
-                        </th>
-
-                        <th>
-                            Amount
-                        </th>
-
-                        <th>
-                            Status
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    <tr>
-
-                        <td colspan="4">
-
-                            <div class="empty-state">
-
-                                <div class="empty-icon">
-                                    🛍️
-                                </div>
-
-                                <h3>
-                                    No orders yet
-                                </h3>
-
-                                <p>
-                                    Your recent orders will appear here.
-                                </p>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-
-
-        <!-- QUICK ACTIONS -->
-
-        <div class="card">
-
-            <div class="card-header">
-
-                <h2>
-                    Quick Actions
-                </h2>
-
-            </div>
-
-
-            <div class="actions">
-
-                <a href="#" class="action">
-
-                    <div class="action-icon">
-                        ➕
-                    </div>
-
-                    <span>
-                        Add Product
-                    </span>
-
-                </a>
-
-
-                <a href="/products" class="action">
-
-                    <div class="action-icon">
-                        📦
-                    </div>
-
-                    <span>
-                        My Products
-                    </span>
-
-                </a>
-
-
-                <a href="#" class="action">
-
-                    <div class="action-icon">
-                        🛍️
-                    </div>
-
-                    <span>
-                        Orders
-                    </span>
-
-                </a>
-
-
-                <a href="#" class="action">
-
-                    <div class="action-icon">
-                        📈
-                    </div>
-
-                    <span>
-                        Sales Report
-                    </span>
-
-                </a>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <strong>
-                    💡 Store Tip
-                </strong>
+                <h1>
+                    Seller Dashboard
+                </h1>
 
                 <p>
-                    Add your first product to start building
-                    your ShopSphere store.
+                    Welcome back! Manage your store from one place.
                 </p>
 
             </div>
 
+            <a href="#" class="add-product">
+                + Add Product
+            </a>
+
         </div>
 
-    </div>
 
-</main>
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Total Sales
+                    </span>
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    Rs. 0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Total Orders
+                    </span>
+
+                    <div class="stat-icon">
+                        🛍️
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Products
+                    </span>
+
+                    <div class="stat-icon">
+                        📦
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <span class="stat-label">
+                        Pending Orders
+                    </span>
+
+                    <div class="stat-icon">
+                        ⏳
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTENT -->
+
+        <div class="content-grid">
+
+
+            <!-- RECENT ORDERS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Recent Orders
+                    </h2>
+
+                    <a href="#" class="view-all">
+                        View All
+                    </a>
+
+                </div>
+
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Product
+                            </th>
+
+                            <th>
+                                Customer
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td colspan="4">
+
+                                <div class="empty-state">
+
+                                    <div class="empty-icon">
+                                        🛍️
+                                    </div>
+
+                                    <h3>
+                                        No orders yet
+                                    </h3>
+
+                                    <p>
+                                        Your recent orders will appear here.
+                                    </p>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+                </div>
+
+
+                <div class="actions">
+
+                    <a href="#" class="action">
+
+                        <div class="action-icon">
+                            ➕
+                        </div>
+
+                        <span>
+                            Add Product
+                        </span>
+
+                    </a>
+
+
+                    <a href="/products" class="action">
+
+                        <div class="action-icon">
+                            📦
+                        </div>
+
+                        <span>
+                            My Products
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="action">
+
+                        <div class="action-icon">
+                            🛍️
+                        </div>
+
+                        <span>
+                            Orders
+                        </span>
+
+                    </a>
+
+
+                    <a href="#" class="action">
+
+                        <div class="action-icon">
+                            📈
+                        </div>
+
+                        <span>
+                            Sales Report
+                        </span>
+
+                    </a>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <strong>
+                        💡 Store Tip
+                    </strong>
+
+                    <p>
+                        Add your first product to start building
+                        your ShopSphere store.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
 
 </div>
+
 
 </body>
 
