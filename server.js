@@ -1,4 +1,3 @@
-
 const express = require("express");
 const mysql = require("mysql2");
 const path = require("path");
@@ -234,6 +233,19 @@ app.get("/products", (req, res) => {
 
 
 // ===============================
+// ADD PRODUCT PAGE
+// ===============================
+
+app.get("/add-product", (req, res) => {
+
+    res.sendFile(
+        path.join(__dirname, "views", "add-product.html")
+    );
+
+});
+
+
+// ===============================
 // CART PAGE
 // ===============================
 
@@ -244,6 +256,7 @@ app.get("/cart", (req, res) => {
     );
 
 });
+
 
 // ===============================
 // CHECKOUT PAGE
@@ -256,6 +269,8 @@ app.get("/checkout", (req, res) => {
     );
 
 });
+
+
 // ===============================
 // START SERVER
 // ===============================
