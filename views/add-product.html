@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,69 +19,156 @@
         }
 
         body {
-            background: #f5f6fa;
+            background: #f7f7fb;
             color: #202124;
         }
 
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
         .navbar {
-            height: 70px;
+            height: 72px;
             background: white;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 0 40px;
+            padding: 0 50px;
 
-            border-bottom: 1px solid #e5e6eb;
+            border-bottom: 1px solid #ececf2;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 25px;
             font-weight: 800;
+            color: #202124;
         }
 
         .logo span {
-            color: #6558f5;
+            color: #635bff;
         }
 
         .back {
             text-decoration: none;
-            color: #6558f5;
+
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: #635bff;
+
             font-size: 13px;
-            font-weight: 600;
+            font-weight: 700;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            transition: 0.2s;
         }
 
+        .back:hover {
+            background: #f0efff;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
         .container {
-            max-width: 850px;
+            max-width: 900px;
+
             margin: 45px auto;
+
             padding: 0 20px;
         }
+
+
+        /* =========================
+           PAGE HEADING
+        ========================= */
 
         .heading {
             margin-bottom: 25px;
         }
 
+        .badge {
+            display: inline-block;
+
+            background: #eeecff;
+            color: #635bff;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            padding: 6px 11px;
+
+            border-radius: 20px;
+
+            margin-bottom: 12px;
+        }
+
         .heading h1 {
-            font-size: 28px;
-            margin-bottom: 7px;
+            font-size: 30px;
+
+            margin-bottom: 8px;
+
+            color: #191a1f;
         }
 
         .heading p {
-            color: #7b7f89;
-            font-size: 13px;
+            color: #777b87;
+
+            font-size: 14px;
         }
+
+
+        /* =========================
+           FORM CARD
+        ========================= */
 
         .form-card {
             background: white;
-            border: 1px solid #e5e6eb;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.04);
+
+            border: 1px solid #e8e8ef;
+
+            border-radius: 18px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 12px 35px rgba(40, 35, 100, 0.06);
         }
 
+
+        /* =========================
+           SECTION TITLE
+        ========================= */
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 800;
+
+            color: #292a31;
+
+            margin-bottom: 22px;
+
+            padding-bottom: 13px;
+
+            border-bottom: 1px solid #eeeeF3;
+        }
+
+
+        /* =========================
+           FORM GROUP
+        ========================= */
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 21px;
         }
 
         label {
@@ -94,49 +182,102 @@
             margin-bottom: 8px;
         }
 
+        .required {
+            color: #635bff;
+        }
+
+
+        /* =========================
+           INPUTS
+        ========================= */
+
         input,
         textarea,
         select {
             width: 100%;
 
-            padding: 12px 13px;
+            padding: 13px 14px;
 
-            border: 1px solid #dfe1e7;
+            border: 1px solid #dedfe7;
 
-            border-radius: 8px;
+            border-radius: 9px;
 
             outline: none;
 
             font-size: 13px;
 
-            color: #333;
+            color: #292a31;
 
-            background: white;
+            background: #fff;
+
+            transition: 0.2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #a2a4ad;
+        }
+
+        input:hover,
+        textarea:hover,
+        select:hover {
+            border-color: #c8c7e8;
         }
 
         input:focus,
         textarea:focus,
         select:focus {
-            border-color: #6558f5;
+            border-color: #635bff;
 
-            box-shadow: 0 0 0 3px rgba(101, 88, 245, 0.08);
+            box-shadow:
+                0 0 0 3px rgba(99, 91, 255, 0.09);
         }
 
         textarea {
-            min-height: 120px;
+            min-height: 125px;
+
             resize: vertical;
         }
+
+
+        /* =========================
+           TWO COLUMN ROW
+        ========================= */
 
         .row {
             display: grid;
 
             grid-template-columns: 1fr 1fr;
 
-            gap: 18px;
+            gap: 20px;
         }
 
+
+        /* =========================
+           IMAGE URL
+        ========================= */
+
+        .input-hint {
+            display: block;
+
+            margin-top: 7px;
+
+            font-size: 11px;
+
+            color: #999ca7;
+        }
+
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
         .button-area {
-            margin-top: 28px;
+            margin-top: 30px;
+
+            padding-top: 24px;
+
+            border-top: 1px solid #eeeeF3;
 
             display: flex;
 
@@ -146,7 +287,7 @@
         .btn {
             border: none;
 
-            padding: 13px 22px;
+            padding: 13px 23px;
 
             border-radius: 9px;
 
@@ -155,55 +296,112 @@
             font-weight: 700;
 
             cursor: pointer;
-        }
-
-        .submit-btn {
-            background: #6558f5;
-            color: white;
-
-            flex: 1;
-        }
-
-        .submit-btn:hover {
-            background: #5548e8;
-        }
-
-        .cancel-btn {
-            background: #f0f1f4;
-            color: #555963;
 
             text-decoration: none;
 
+            transition: 0.2s;
+        }
+
+        .submit-btn {
+            background: linear-gradient(
+                135deg,
+                #635bff,
+                #756cff
+            );
+
+            color: white;
+
+            flex: 1;
+
+            box-shadow:
+                0 7px 18px rgba(99, 91, 255, 0.20);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-1px);
+
+            box-shadow:
+                0 10px 22px rgba(99, 91, 255, 0.28);
+        }
+
+        .cancel-btn {
+            background: #f1f1f5;
+
+            color: #555963;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
+            min-width: 100px;
         }
 
         .cancel-btn:hover {
-            background: #e6e7eb;
+            background: #e8e8ed;
         }
 
-        @media(max-width: 600px) {
+
+        /* =========================
+           FOOTER NOTE
+        ========================= */
+
+        .security-note {
+            margin-top: 18px;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #999ca6;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
 
             .navbar {
                 padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .back {
+                font-size: 12px;
             }
 
             .container {
                 margin: 30px auto;
             }
 
+            .heading h1 {
+                font-size: 25px;
+            }
+
             .form-card {
                 padding: 22px;
+
+                border-radius: 14px;
             }
 
             .row {
                 grid-template-columns: 1fr;
+
                 gap: 0;
             }
 
             .button-area {
-                flex-direction: column;
+                flex-direction: column-reverse;
+            }
+
+            .cancel-btn {
+                width: 100%;
             }
 
         }
@@ -215,6 +413,10 @@
 
 <body>
 
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
 
     <nav class="navbar">
 
@@ -229,9 +431,20 @@
     </nav>
 
 
+    <!-- =========================
+         MAIN CONTENT
+    ========================= -->
+
     <div class="container">
 
+
+        <!-- HEADING -->
+
         <div class="heading">
+
+            <span class="badge">
+                SELLER PANEL
+            </span>
 
             <h1>
                 Add New Product
@@ -244,15 +457,24 @@
         </div>
 
 
+        <!-- FORM -->
+
         <div class="form-card">
+
+            <div class="section-title">
+                Product Information
+            </div>
+
 
             <form action="/add-product" method="POST">
 
 
+                <!-- PRODUCT NAME -->
+
                 <div class="form-group">
 
                     <label for="name">
-                        Product Name
+                        Product Name <span class="required">*</span>
                     </label>
 
                     <input
@@ -265,6 +487,8 @@
 
                 </div>
 
+
+                <!-- DESCRIPTION -->
 
                 <div class="form-group">
 
@@ -281,13 +505,15 @@
                 </div>
 
 
+                <!-- PRICE + STOCK -->
+
                 <div class="row">
 
 
                     <div class="form-group">
 
                         <label for="price">
-                            Price (Rs.)
+                            Price (Rs.) <span class="required">*</span>
                         </label>
 
                         <input
@@ -306,7 +532,7 @@
                     <div class="form-group">
 
                         <label for="stock">
-                            Stock Quantity
+                            Stock Quantity <span class="required">*</span>
                         </label>
 
                         <input
@@ -320,16 +546,23 @@
 
                     </div>
 
+
                 </div>
 
+
+                <!-- CATEGORY -->
 
                 <div class="form-group">
 
                     <label for="category">
-                        Category
+                        Category <span class="required">*</span>
                     </label>
 
-                    <select id="category" name="category" required>
+                    <select
+                        id="category"
+                        name="category"
+                        required
+                    >
 
                         <option value="">
                             Select Category
@@ -368,6 +601,8 @@
                 </div>
 
 
+                <!-- IMAGE -->
+
                 <div class="form-group">
 
                     <label for="image_url">
@@ -378,11 +613,17 @@
                         type="text"
                         id="image_url"
                         name="image_url"
-                        placeholder="Enter image URL"
+                        placeholder="https://example.com/product-image.jpg"
                     >
+
+                    <span class="input-hint">
+                        Add a direct URL to your product image.
+                    </span>
 
                 </div>
 
+
+                <!-- BUTTONS -->
 
                 <div class="button-area">
 
@@ -405,7 +646,14 @@
 
             </form>
 
+
         </div>
+
+
+        <div class="security-note">
+            🔒 Your product information will be securely stored in ShopSphere.
+        </div>
+
 
     </div>
 
