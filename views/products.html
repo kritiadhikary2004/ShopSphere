@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Add Product | ShopSphere</title>
+    <title>Products | ShopSphere</title>
 
     <style>
 
@@ -18,18 +18,16 @@
         }
 
         body {
-            background: #f8f7fc;
-            color: #1e1e2d;
+            background: #f6f8fb;
+            color: #202124;
         }
-
 
         /* =========================
            NAVBAR
         ========================= */
 
         .navbar {
-            height: 72px;
-
+            height: 70px;
             background: #ffffff;
 
             display: flex;
@@ -38,7 +36,7 @@
 
             padding: 0 45px;
 
-            border-bottom: 1px solid #e8e7ef;
+            border-bottom: 1px solid #e5e7eb;
 
             position: sticky;
             top: 0;
@@ -46,544 +44,493 @@
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 24px;
             font-weight: 800;
-            color: #191923;
-            letter-spacing: -0.6px;
+            color: #1f2937;
         }
 
         .logo span {
-            color: #635bff;
+            color: #5b5ce2;
         }
 
-        .back {
-            text-decoration: none;
-
+        .nav-links {
             display: flex;
             align-items: center;
-            gap: 8px;
-
-            color: #5c54dc;
-
-            background: #f5f3ff;
-
-            border: 1px solid #e4e0ff;
-
-            padding: 10px 16px;
-
-            border-radius: 10px;
-
-            font-size: 12px;
-            font-weight: 700;
-
-            transition: 0.25s ease;
+            gap: 10px;
         }
 
-        .back:hover {
-            background: #ebe8ff;
-            border-color: #d4cffd;
-            transform: translateX(-2px);
+        .nav-links a {
+            text-decoration: none;
+            color: #555b66;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            padding: 9px 14px;
+
+            border-radius: 8px;
+
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #f0f1f8;
+            color: #4f50c8;
+        }
+
+        .cart-btn {
+            background: #5b5ce2;
+            color: white !important;
+        }
+
+        .cart-btn:hover {
+            background: #494acb !important;
         }
 
 
         /* =========================
-           PAGE
+           PAGE HEADER
         ========================= */
 
-        .page {
-            max-width: 1100px;
+        .container {
+            max-width: 1150px;
 
             margin: 42px auto;
 
             padding: 0 25px;
         }
 
-
-        /* =========================
-           HEADER
-        ========================= */
-
         .page-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+
             margin-bottom: 28px;
         }
 
-        .small-title {
-            display: inline-block;
+        .header-left h1 {
+            font-size: 31px;
 
-            background: #ebe9ff;
-
-            color: #5d54df;
-
-            padding: 6px 11px;
-
-            border-radius: 20px;
-
-            font-size: 10px;
-
-            font-weight: 800;
-
-            letter-spacing: 1px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 12px;
-        }
-
-        .page-header h1 {
-            font-size: 32px;
-
-            color: #181822;
+            color: #181a20;
 
             margin-bottom: 7px;
 
-            letter-spacing: -0.8px;
+            letter-spacing: -0.5px;
         }
 
-        .page-header p {
-            color: #858593;
+        .header-left p {
+            color: #858b96;
 
             font-size: 13px;
         }
 
+        .product-count {
+            background: #eef0ff;
 
-        /* =========================
-           FORM LAYOUT
-        ========================= */
+            color: #5758c9;
 
-        .form-layout {
-            display: grid;
+            padding: 8px 13px;
 
-            grid-template-columns: minmax(0, 2fr) minmax(260px, 0.9fr);
-
-            gap: 24px;
-
-            align-items: start;
-        }
-
-
-        /* =========================
-           CARD
-        ========================= */
-
-        .card {
-            background: #ffffff;
-
-            border: 1px solid #e8e7ef;
-
-            border-radius: 18px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 10px 35px rgba(44, 39, 100, 0.055);
-        }
-
-        .card-header {
-            padding: 23px 26px;
-
-            background: linear-gradient(
-                135deg,
-                #ffffff,
-                #faf9ff
-            );
-
-            border-bottom: 1px solid #eeedf3;
-        }
-
-        .card-header h2 {
-            font-size: 16px;
-
-            color: #242431;
-
-            margin-bottom: 5px;
-        }
-
-        .card-header p {
-            color: #9999a7;
+            border-radius: 20px;
 
             font-size: 11px;
-        }
 
-        .card-body {
-            padding: 27px;
+            font-weight: 700;
         }
 
 
         /* =========================
-           FORM
+           SEARCH / FILTER AREA
         ========================= */
 
-        .form-group {
-            margin-bottom: 21px;
-        }
-
-        label {
-            display: block;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            color: #383844;
-
-            margin-bottom: 8px;
-        }
-
-        .required {
-            color: #635bff;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-
-            padding: 13px 14px;
-
-            border: 1px solid #dedee8;
-
-            border-radius: 10px;
-
+        .toolbar {
             background: #ffffff;
 
-            color: #292936;
+            border: 1px solid #e4e6eb;
+
+            border-radius: 14px;
+
+            padding: 17px;
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            box-shadow: 0 5px 18px rgba(30, 35, 55, 0.035);
+        }
+
+        .search-box {
+            flex: 1;
+
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+
+            padding: 12px 14px 12px 40px;
+
+            border: 1px solid #dfe2e8;
+
+            border-radius: 9px;
 
             outline: none;
 
             font-size: 13px;
 
-            transition: all 0.2s ease;
+            color: #333;
+
+            transition: 0.2s;
         }
 
-        input::placeholder,
-        textarea::placeholder {
-            color: #aaaab5;
+        .search-box input:focus {
+            border-color: #6869df;
+
+            box-shadow: 0 0 0 3px rgba(104, 105, 223, 0.08);
         }
 
-        input:hover,
-        textarea:hover,
-        select:hover {
-            border-color: #c9c6e5;
+        .search-icon {
+            position: absolute;
+
+            left: 14px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #969ba5;
+
+            font-size: 15px;
         }
 
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: #635bff;
+        .filter {
+            padding: 12px 14px;
 
-            background: #fdfdff;
+            border: 1px solid #dfe2e8;
 
-            box-shadow:
-                0 0 0 4px rgba(99, 91, 255, 0.08);
-        }
+            border-radius: 9px;
 
-        textarea {
-            min-height: 125px;
+            background: white;
 
-            resize: vertical;
+            color: #555a65;
+
+            font-size: 13px;
+
+            outline: none;
+
+            min-width: 150px;
         }
 
 
         /* =========================
-           PRICE + STOCK
+           PRODUCT GRID
         ========================= */
 
-        .row {
+        .product-grid {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                repeat(4, minmax(0, 1fr));
 
-            gap: 17px;
+            gap: 20px;
         }
 
 
         /* =========================
-           IMAGE HINT
+           PRODUCT CARD
         ========================= */
 
-        .input-hint {
-            display: block;
+        .product-card {
+            background: white;
 
-            margin-top: 7px;
-
-            color: #a0a0ac;
-
-            font-size: 10px;
-        }
-
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        .button-area {
-            display: flex;
-
-            gap: 12px;
-
-            margin-top: 28px;
-
-            padding-top: 23px;
-
-            border-top: 1px solid #eeeeF3;
-        }
-
-        .btn {
-            border: none;
-
-            border-radius: 10px;
-
-            padding: 13px 21px;
-
-            font-size: 12px;
-
-            font-weight: 700;
-
-            cursor: pointer;
-
-            text-decoration: none;
-
-            transition: all 0.25s ease;
-        }
-
-        .cancel-btn {
-            background: #f1f1f5;
-
-            color: #62626d;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            min-width: 100px;
-        }
-
-        .cancel-btn:hover {
-            background: #e7e7ec;
-
-            transform: translateY(-1px);
-        }
-
-        .submit-btn {
-            flex: 1;
-
-            color: white;
-
-            background: linear-gradient(
-                135deg,
-                #5c55ef,
-                #786cf7
-            );
-
-            box-shadow:
-                0 8px 20px rgba(92, 85, 239, 0.22);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 12px 27px rgba(92, 85, 239, 0.30);
-        }
-
-
-        /* =========================
-           SIDE CARD
-        ========================= */
-
-        .side-card {
-            padding: 25px;
-
-            position: sticky;
-
-            top: 95px;
-        }
-
-        .side-icon {
-            width: 54px;
-            height: 54px;
+            border: 1px solid #e4e6eb;
 
             border-radius: 15px;
 
-            background: linear-gradient(
-                135deg,
-                #eeecff,
-                #e3e0ff
-            );
+            overflow: hidden;
 
-            display: flex;
+            transition: 0.25s ease;
 
-            align-items: center;
-            justify-content: center;
-
-            font-size: 24px;
-
-            margin-bottom: 17px;
+            box-shadow:
+                0 5px 18px rgba(30, 35, 55, 0.035);
         }
 
-        .side-card h3 {
-            font-size: 16px;
+        .product-card:hover {
+            transform: translateY(-5px);
 
-            color: #292934;
+            box-shadow:
+                0 12px 28px rgba(30, 35, 55, 0.10);
 
-            margin-bottom: 8px;
-        }
-
-        .side-card > p {
-            color: #898996;
-
-            font-size: 11px;
-
-            line-height: 1.65;
-
-            margin-bottom: 21px;
+            border-color: #d7d8ef;
         }
 
 
         /* =========================
-           TIPS
+           PRODUCT IMAGE
         ========================= */
 
-        .tips {
-            border-top: 1px solid #eeeeF3;
+        .product-image {
+            height: 190px;
 
-            padding-top: 19px;
-        }
-
-        .tips-title {
-            font-size: 10px;
-
-            color: #a0a0ac;
-
-            text-transform: uppercase;
-
-            font-weight: 800;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 16px;
-        }
-
-        .tip {
-            display: flex;
-
-            align-items: flex-start;
-
-            gap: 11px;
-
-            margin-bottom: 17px;
-        }
-
-        .tip:last-child {
-            margin-bottom: 0;
-        }
-
-        .tip-icon {
-            width: 29px;
-            height: 29px;
-
-            flex-shrink: 0;
-
-            border-radius: 8px;
-
-            background: #f4f2ff;
+            background: #f0f1f5;
 
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
-            font-size: 14px;
+            overflow: hidden;
+
+            position: relative;
         }
 
-        .tip p {
-            color: #777784;
+        .product-image img {
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .category-badge {
+            position: absolute;
+
+            top: 12px;
+
+            left: 12px;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            color: #5658bd;
+
+            padding: 6px 9px;
+
+            border-radius: 7px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           PRODUCT INFO
+        ========================= */
+
+        .product-info {
+            padding: 17px;
+        }
+
+        .product-info h3 {
+            font-size: 15px;
+
+            color: #252730;
+
+            margin-bottom: 7px;
+        }
+
+        .description {
+            color: #8b909a;
 
             font-size: 11px;
 
             line-height: 1.5;
 
-            padding-top: 3px;
+            height: 34px;
+
+            overflow: hidden;
+
+            margin-bottom: 14px;
+        }
+
+        .product-bottom {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 14px;
+        }
+
+        .price {
+            color: #4f51c9;
+
+            font-size: 17px;
+
+            font-weight: 800;
+        }
+
+        .stock {
+            font-size: 10px;
+
+            color: #777c86;
+
+            background: #f1f3f5;
+
+            padding: 5px 8px;
+
+            border-radius: 6px;
         }
 
 
         /* =========================
-           MOBILE
+           BUTTON
         ========================= */
 
-        @media (max-width: 850px) {
+        .view-btn {
+            display: block;
+
+            width: 100%;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            background: #f0f1ff;
+
+            color: #5557c9;
+
+            padding: 10px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .view-btn:hover {
+            background: #5b5ce2;
+
+            color: white;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty-state {
+            background: white;
+
+            border: 1px dashed #d9dbe3;
+
+            border-radius: 15px;
+
+            padding: 55px 20px;
+
+            text-align: center;
+        }
+
+        .empty-icon {
+            font-size: 38px;
+
+            margin-bottom: 12px;
+        }
+
+        .empty-state h2 {
+            font-size: 18px;
+
+            color: #30323a;
+
+            margin-bottom: 7px;
+        }
+
+        .empty-state p {
+            color: #9296a0;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+        @media (max-width: 750px) {
 
             .navbar {
                 padding: 0 22px;
             }
 
-            .page {
-                margin: 30px auto;
+            .nav-links a {
+                padding: 8px 9px;
             }
 
-            .form-layout {
-                grid-template-columns: 1fr;
+            .page-header {
+                align-items: flex-start;
+
+                gap: 15px;
+
+                flex-direction: column;
             }
 
-            .side-card {
-                position: static;
+            .toolbar {
+                flex-direction: column;
+            }
+
+            .filter {
+                width: 100%;
+            }
+
+            .product-grid {
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
             }
 
         }
 
-
-        @media (max-width: 600px) {
+        @media (max-width: 500px) {
 
             .navbar {
-                height: 68px;
+                height: 65px;
             }
 
             .logo {
-                font-size: 21px;
+                font-size: 20px;
             }
 
-            .back {
+            .nav-links a {
                 font-size: 11px;
-
-                padding: 8px 10px;
             }
 
-            .page {
+            .container {
+                margin: 28px auto;
+
                 padding: 0 15px;
-
-                margin: 25px auto;
             }
 
-            .page-header h1 {
-                font-size: 27px;
+            .header-left h1 {
+                font-size: 26px;
             }
 
-            .page-header p {
-                font-size: 12px;
-            }
-
-            .card-body {
-                padding: 21px;
-            }
-
-            .row {
+            .product-grid {
                 grid-template-columns: 1fr;
-
-                gap: 0;
             }
 
-            .button-area {
-                flex-direction: column-reverse;
-            }
-
-            .cancel-btn {
-                width: 100%;
-            }
-
-            .submit-btn {
-                width: 100%;
+            .product-image {
+                height: 210px;
             }
 
         }
@@ -606,329 +553,302 @@
             🛒 Shop<span>Sphere</span>
         </div>
 
-        <a href="/seller-dashboard" class="back">
-            ← Back to Dashboard
-        </a>
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/customer-dashboard">
+                Dashboard
+            </a>
+
+            <a href="/cart" class="cart-btn">
+                🛒 Cart
+            </a>
+
+        </div>
 
     </nav>
 
 
     <!-- =========================
-         PAGE
+         MAIN CONTENT
     ========================= -->
 
-    <main class="page">
+    <main class="container">
 
 
         <!-- PAGE HEADER -->
 
         <div class="page-header">
 
-            <div class="small-title">
-                Seller Panel
+            <div class="header-left">
+
+                <h1>
+                    Explore Products
+                </h1>
+
+                <p>
+                    Find products you love from ShopSphere sellers.
+                </p>
+
             </div>
 
-            <h1>
-                Add New Product
-            </h1>
-
-            <p>
-                Create a new product and add it to your ShopSphere store.
-            </p>
+            <div class="product-count">
+                All Products
+            </div>
 
         </div>
 
 
-        <!-- FORM LAYOUT -->
+        <!-- =========================
+             SEARCH / FILTER
+        ========================= -->
 
-        <div class="form-layout">
+        <div class="toolbar">
+
+            <div class="search-box">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                >
+
+            </div>
+
+            <select class="filter">
+
+                <option>
+                    All Categories
+                </option>
+
+                <option>
+                    Electronics
+                </option>
+
+                <option>
+                    Fashion
+                </option>
+
+                <option>
+                    Beauty
+                </option>
+
+                <option>
+                    Home & Living
+                </option>
+
+                <option>
+                    Sports
+                </option>
+
+                <option>
+                    Books
+                </option>
+
+            </select>
+
+        </div>
 
 
-            <!-- =========================
-                 FORM CARD
-            ========================= -->
+        <!-- =========================
+             PRODUCT GRID
+        ========================= -->
 
-            <div class="card">
+        <div class="product-grid">
 
-                <div class="card-header">
 
-                    <h2>
-                        Product Information
-                    </h2>
+            <!-- PRODUCT 1 -->
 
-                    <p>
-                        Enter the details of your product below.
-                    </p>
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="category-badge">
+                        Electronics
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
+                        alt="Headphones"
+                    >
 
                 </div>
 
+                <div class="product-info">
 
-                <div class="card-body">
+                    <h3>
+                        Wireless Headphones
+                    </h3>
 
-                    <form action="/add-product" method="POST">
+                    <p class="description">
+                        High-quality wireless headphones with clear sound.
+                    </p>
 
+                    <div class="product-bottom">
 
-                        <!-- PRODUCT NAME -->
+                        <span class="price">
+                            Rs. 2,500
+                        </span>
 
-                        <div class="form-group">
+                        <span class="stock">
+                            In Stock
+                        </span>
 
-                            <label for="name">
-                                Product Name
-                                <span class="required">*</span>
-                            </label>
+                    </div>
 
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                placeholder="Enter product name"
-                                required
-                            >
-
-                        </div>
-
-
-                        <!-- DESCRIPTION -->
-
-                        <div class="form-group">
-
-                            <label for="description">
-                                Product Description
-                            </label>
-
-                            <textarea
-                                id="description"
-                                name="description"
-                                placeholder="Describe your product..."
-                            ></textarea>
-
-                        </div>
-
-
-                        <!-- PRICE + STOCK -->
-
-                        <div class="row">
-
-                            <div class="form-group">
-
-                                <label for="price">
-                                    Price (Rs.)
-                                    <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="number"
-                                    id="price"
-                                    name="price"
-                                    placeholder="Enter price"
-                                    min="0"
-                                    step="0.01"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="stock">
-                                    Stock Quantity
-                                    <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="number"
-                                    id="stock"
-                                    name="stock"
-                                    placeholder="Enter quantity"
-                                    min="0"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- CATEGORY -->
-
-                        <div class="form-group">
-
-                            <label for="category">
-                                Category
-                                <span class="required">*</span>
-                            </label>
-
-                            <select
-                                id="category"
-                                name="category"
-                                required
-                            >
-
-                                <option value="">
-                                    Select Category
-                                </option>
-
-                                <option value="Electronics">
-                                    Electronics
-                                </option>
-
-                                <option value="Fashion">
-                                    Fashion
-                                </option>
-
-                                <option value="Beauty">
-                                    Beauty
-                                </option>
-
-                                <option value="Home">
-                                    Home & Living
-                                </option>
-
-                                <option value="Sports">
-                                    Sports
-                                </option>
-
-                                <option value="Books">
-                                    Books
-                                </option>
-
-                                <option value="Other">
-                                    Other
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <!-- IMAGE URL -->
-
-                        <div class="form-group">
-
-                            <label for="image_url">
-                                Product Image URL
-                            </label>
-
-                            <input
-                                type="text"
-                                id="image_url"
-                                name="image_url"
-                                placeholder="https://example.com/image.jpg"
-                            >
-
-                            <span class="input-hint">
-                                Use a direct URL for the product image.
-                            </span>
-
-                        </div>
-
-
-                        <!-- BUTTONS -->
-
-                        <div class="button-area">
-
-                            <a
-                                href="/seller-dashboard"
-                                class="btn cancel-btn"
-                            >
-                                Cancel
-                            </a>
-
-                            <button
-                                type="submit"
-                                class="btn submit-btn"
-                            >
-                                + Add Product
-                            </button>
-
-                        </div>
-
-
-                    </form>
+                    <a href="#" class="view-btn">
+                        View Product
+                    </a>
 
                 </div>
 
             </div>
 
 
-            <!-- =========================
-                 SIDE INFORMATION
-            ========================= -->
+            <!-- PRODUCT 2 -->
 
-            <div class="card side-card">
+            <div class="product-card">
 
-                <div class="side-icon">
-                    📦
+                <div class="product-image">
+
+                    <span class="category-badge">
+                        Fashion
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b"
+                        alt="Fashion"
+                    >
+
                 </div>
 
-                <h3>
-                    Product Tips
-                </h3>
+                <div class="product-info">
 
-                <p>
-                    Make your product easier for customers to discover
-                    by providing clear and complete information.
-                </p>
+                    <h3>
+                        Casual Fashion Wear
+                    </h3>
 
+                    <p class="description">
+                        Comfortable and stylish clothing for everyday use.
+                    </p>
 
-                <div class="tips">
+                    <div class="product-bottom">
 
-                    <div class="tips-title">
-                        Helpful Tips
-                    </div>
+                        <span class="price">
+                            Rs. 1,800
+                        </span>
 
-
-                    <div class="tip">
-
-                        <div class="tip-icon">
-                            ✨
-                        </div>
-
-                        <p>
-                            Use a clear and simple product name.
-                        </p>
+                        <span class="stock">
+                            In Stock
+                        </span>
 
                     </div>
 
+                    <a href="#" class="view-btn">
+                        View Product
+                    </a>
 
-                    <div class="tip">
+                </div>
 
-                        <div class="tip-icon">
-                            📝
-                        </div>
+            </div>
 
-                        <p>
-                            Write a short and useful description.
-                        </p>
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="category-badge">
+                        Beauty
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1596462502278-27bfdc403348"
+                        alt="Beauty Products"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Beauty Essentials
+                    </h3>
+
+                    <p class="description">
+                        Everyday beauty essentials for your personal care.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            Rs. 1,250
+                        </span>
+
+                        <span class="stock">
+                            In Stock
+                        </span>
 
                     </div>
 
+                    <a href="#" class="view-btn">
+                        View Product
+                    </a>
 
-                    <div class="tip">
+                </div>
 
-                        <div class="tip-icon">
-                            💰
-                        </div>
+            </div>
 
-                        <p>
-                            Enter the correct price and stock quantity.
-                        </p>
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product-card">
+
+                <div class="product-image">
+
+                    <span class="category-badge">
+                        Home
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
+                        alt="Home Product"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>
+                        Modern Home Decor
+                    </h3>
+
+                    <p class="description">
+                        Simple and beautiful products for your home.
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            Rs. 3,200
+                        </span>
+
+                        <span class="stock">
+                            In Stock
+                        </span>
 
                     </div>
 
-
-                    <div class="tip">
-
-                        <div class="tip-icon">
-                            🖼️
-                        </div>
-
-                        <p>
-                            Add a good product image URL.
-                        </p>
-
-                    </div>
+                    <a href="#" class="view-btn">
+                        View Product
+                    </a>
 
                 </div>
 
