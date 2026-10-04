@@ -246,6 +246,74 @@ app.get("/add-product", (req, res) => {
 
 
 // ===============================
+// ADD PRODUCT FORM
+// ===============================
+
+app.post("/add-product", (req, res) => {
+
+    const {
+        name,
+        description,
+        price,
+        stock,
+        category,
+        image_url
+    } = req.body;
+
+    console.log("New product:", name);
+
+    const sql = `
+        INSERT INTO products
+        (name, description, price, stock, category, image_url)
+        VALUES (?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        sql,
+        [name, description, price, stock, category, image_url],
+        (err, result) => {
+
+            if (err) {
+
+                console.log("Product insert error:", err);
+
+                return res.send(`
+                    <h2>Product Added Failed ❌</h2>
+                    <p>${err.message}</p>
+                    <br>
+                    <a href="/add-product">Go Back</a>
+                `);
+
+            }
+
+            console.log("Product added successfully! ✅");
+            console.log("Product ID:", result.insertId);
+
+            res.send(`
+                <h2>Product Added Successfully! 🎉</h2>
+
+                <p>Your product <strong>${name}</strong> has been added.</p>
+
+                <br>
+
+                <a href="/add-product">Add Another Product</a>
+
+                <br><br>
+
+                <a href="/products">View Products</a>
+
+                <br><br>
+
+                <a href="/seller-dashboard">Back to Seller Dashboard</a>
+            `);
+
+        }
+    );
+
+});
+
+
+// ===============================
 // CART PAGE
 // ===============================
 
