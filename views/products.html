@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,14 +22,12 @@
             color: #202124;
         }
 
-
         /* =========================
            NAVBAR
         ========================= */
 
         .navbar {
             height: 74px;
-
             background: #ffffff;
 
             display: flex;
@@ -43,16 +40,13 @@
 
             position: sticky;
             top: 0;
-
             z-index: 100;
         }
 
         .logo {
             font-size: 25px;
             font-weight: 800;
-
             color: #202124;
-
             letter-spacing: -0.7px;
         }
 
@@ -63,20 +57,17 @@
         .nav-links {
             display: flex;
             align-items: center;
-
             gap: 5px;
         }
 
         .nav-links a {
             text-decoration: none;
-
             color: #60636d;
 
             font-size: 12px;
             font-weight: 700;
 
             padding: 10px 14px;
-
             border-radius: 9px;
 
             transition: 0.2s ease;
@@ -89,7 +80,6 @@
 
         .cart-btn {
             background: #6256e8;
-
             color: white !important;
 
             padding: 10px 17px !important;
@@ -454,6 +444,11 @@
             font-weight: 800;
         }
 
+        .out-stock {
+            color: #b43d3d;
+            background: #fff0f0;
+        }
+
 
         /* =========================
            BUTTON
@@ -490,6 +485,39 @@
 
             box-shadow:
                 0 6px 14px rgba(98, 86, 232, 0.18);
+        }
+
+
+        /* =========================
+           EMPTY / ERROR MESSAGE
+        ========================= */
+
+        .message-box {
+            grid-column: 1 / -1;
+
+            background: white;
+
+            border: 1px solid #e3e4e9;
+
+            border-radius: 17px;
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: #8b8e98;
+        }
+
+        .message-box h3 {
+            color: #292b33;
+
+            font-size: 18px;
+
+            margin-bottom: 8px;
+        }
+
+        .message-box p {
+            font-size: 12px;
         }
 
 
@@ -601,7 +629,6 @@
             🛒 Shop<span>Sphere</span>
         </div>
 
-
         <div class="nav-links">
 
             <a href="/">
@@ -651,8 +678,8 @@
             </div>
 
 
-            <div class="product-count">
-                4 Products
+            <div class="product-count" id="productCount">
+                Loading...
             </div>
 
         </section>
@@ -672,40 +699,45 @@
 
                 <input
                     type="text"
+                    id="searchInput"
                     placeholder="Search products..."
                 >
 
             </div>
 
 
-            <select class="filter">
+            <select class="filter" id="categoryFilter">
 
-                <option>
+                <option value="all">
                     All Categories
                 </option>
 
-                <option>
+                <option value="Electronics">
                     Electronics
                 </option>
 
-                <option>
+                <option value="Fashion">
                     Fashion
                 </option>
 
-                <option>
+                <option value="Beauty">
                     Beauty
                 </option>
 
-                <option>
+                <option value="Home & Living">
                     Home & Living
                 </option>
 
-                <option>
+                <option value="Sports">
                     Sports
                 </option>
 
-                <option>
+                <option value="Books">
                     Books
+                </option>
+
+                <option value="Other">
+                    Other
                 </option>
 
             </select>
@@ -717,217 +749,254 @@
              PRODUCT GRID
         ========================= -->
 
-        <section class="product-grid">
+        <section class="product-grid" id="productGrid">
 
+            <div class="message-box">
 
-            <!-- PRODUCT 1 -->
+                <h3>
+                    Loading Products...
+                </h3>
 
-            <article class="product-card">
+                <p>
+                    Please wait while we load products.
+                </p>
 
-                <div class="product-image">
-
-                    <span class="category-badge">
-                        Electronics
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e"
-                        alt="Wireless Headphones"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <h3>
-                        Wireless Headphones
-                    </h3>
-
-                    <p class="description">
-                        High-quality wireless headphones with clear sound.
-                    </p>
-
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            Rs. 2,500
-                        </span>
-
-                        <span class="stock">
-                            In Stock
-                        </span>
-
-                    </div>
-
-
-                    <a href="#" class="view-btn">
-                        View Product
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCT 2 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="category-badge">
-                        Fashion
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b"
-                        alt="Casual Fashion Wear"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <h3>
-                        Casual Fashion Wear
-                    </h3>
-
-                    <p class="description">
-                        Comfortable and stylish clothing for everyday use.
-                    </p>
-
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            Rs. 1,800
-                        </span>
-
-                        <span class="stock">
-                            In Stock
-                        </span>
-
-                    </div>
-
-
-                    <a href="#" class="view-btn">
-                        View Product
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCT 3 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="category-badge">
-                        Beauty
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1596462502278-27bfdc403348"
-                        alt="Beauty Essentials"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <h3>
-                        Beauty Essentials
-                    </h3>
-
-                    <p class="description">
-                        Everyday beauty essentials for your personal care.
-                    </p>
-
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            Rs. 1,250
-                        </span>
-
-                        <span class="stock">
-                            In Stock
-                        </span>
-
-                    </div>
-
-
-                    <a href="#" class="view-btn">
-                        View Product
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- PRODUCT 4 -->
-
-            <article class="product-card">
-
-                <div class="product-image">
-
-                    <span class="category-badge">
-                        Home
-                    </span>
-
-                    <img
-                        src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc"
-                        alt="Modern Home Decor"
-                    >
-
-                </div>
-
-
-                <div class="product-info">
-
-                    <h3>
-                        Modern Home Decor
-                    </h3>
-
-                    <p class="description">
-                        Simple and beautiful products for your home.
-                    </p>
-
-
-                    <div class="product-bottom">
-
-                        <span class="price">
-                            Rs. 3,200
-                        </span>
-
-                        <span class="stock">
-                            In Stock
-                        </span>
-
-                    </div>
-
-
-                    <a href="#" class="view-btn">
-                        View Product
-                    </a>
-
-                </div>
-
-            </article>
-
+            </div>
 
         </section>
 
 
     </main>
+
+
+    <script>
+
+        let allProducts = [];
+
+
+        // ===============================
+        // LOAD PRODUCTS
+        // ===============================
+
+        async function loadProducts() {
+
+            try {
+
+                const response = await fetch("/api/products");
+
+                if (!response.ok) {
+                    throw new Error("Failed to load products");
+                }
+
+                allProducts = await response.json();
+
+                document.getElementById("productCount").textContent =
+                    `${allProducts.length} Products`;
+
+                displayProducts(allProducts);
+
+            } catch (error) {
+
+                console.error("Error loading products:", error);
+
+                document.getElementById("productCount").textContent =
+                    "0 Products";
+
+                document.getElementById("productGrid").innerHTML = `
+
+                    <div class="message-box">
+
+                        <h3>
+                            Unable to Load Products
+                        </h3>
+
+                        <p>
+                            Please make sure the server is running.
+                        </p>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        // ===============================
+        // DISPLAY PRODUCTS
+        // ===============================
+
+        function displayProducts(products) {
+
+            const productGrid =
+                document.getElementById("productGrid");
+
+            if (products.length === 0) {
+
+                productGrid.innerHTML = `
+
+                    <div class="message-box">
+
+                        <h3>
+                            No Products Found
+                        </h3>
+
+                        <p>
+                            Try searching for another product.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            productGrid.innerHTML = products.map(product => {
+
+                const image =
+                    product.image_url ||
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30";
+
+                const stockAvailable =
+                    Number(product.stock) > 0;
+
+
+                return `
+
+                    <article class="product-card">
+
+                        <div class="product-image">
+
+                            <span class="category-badge">
+                                ${product.category || "Other"}
+                            </span>
+
+                            <img
+                                src="${image}"
+                                alt="${product.name}"
+                                onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30'"
+                            >
+
+                        </div>
+
+
+                        <div class="product-info">
+
+                            <h3>
+                                ${product.name}
+                            </h3>
+
+                            <p class="description">
+                                ${product.description || "No description available."}
+                            </p>
+
+
+                            <div class="product-bottom">
+
+                                <span class="price">
+                                    Rs. ${Number(product.price).toLocaleString()}
+                                </span>
+
+                                ${
+                                    stockAvailable
+                                    ?
+                                    `<span class="stock">
+                                        ${product.stock} In Stock
+                                    </span>`
+                                    :
+                                    `<span class="stock out-stock">
+                                        Out of Stock
+                                    </span>`
+                                }
+
+                            </div>
+
+
+                            <a
+                                href="#"
+                                class="view-btn"
+                                onclick="return false;"
+                            >
+                                View Product
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            }).join("");
+
+        }
+
+
+        // ===============================
+        // SEARCH + CATEGORY FILTER
+        // ===============================
+
+        function filterProducts() {
+
+            const searchText =
+                document.getElementById("searchInput")
+                .value
+                .toLowerCase()
+                .trim();
+
+            const selectedCategory =
+                document.getElementById("categoryFilter")
+                .value;
+
+
+            const filteredProducts =
+                allProducts.filter(product => {
+
+                    const matchesSearch =
+                        product.name
+                            .toLowerCase()
+                            .includes(searchText) ||
+
+                        (product.description || "")
+                            .toLowerCase()
+                            .includes(searchText);
+
+
+                    const matchesCategory =
+                        selectedCategory === "all" ||
+                        product.category === selectedCategory;
+
+
+                    return matchesSearch && matchesCategory;
+
+                });
+
+
+            document.getElementById("productCount").textContent =
+                `${filteredProducts.length} Products`;
+
+            displayProducts(filteredProducts);
+
+        }
+
+
+        document
+            .getElementById("searchInput")
+            .addEventListener("input", filterProducts);
+
+
+        document
+            .getElementById("categoryFilter")
+            .addEventListener("change", filterProducts);
+
+
+        // Load products when page opens
+
+        loadProducts();
+
+    </script>
 
 
 </body>
