@@ -1,3 +1,4 @@
+
 const express = require("express");
 const mysql = require("mysql2");
 const path = require("path");
@@ -48,7 +49,9 @@ db.connect((err) => {
 
 app.get("/", (req, res) => {
 
-    res.sendFile(path.join(__dirname, "views", "home.html"));
+    res.sendFile(
+        path.join(__dirname, "views", "home.html")
+    );
 
 });
 
@@ -59,7 +62,9 @@ app.get("/", (req, res) => {
 
 app.get("/register", (req, res) => {
 
-    res.sendFile(path.join(__dirname, "views", "register.html"));
+    res.sendFile(
+        path.join(__dirname, "views", "register.html")
+    );
 
 });
 
@@ -93,6 +98,7 @@ app.post("/register", (req, res) => {
                     <p>${err.message}</p>
                     <a href="/register">Go Back</a>
                 `);
+
             }
 
             console.log("Registration successful! ✅");
@@ -125,7 +131,9 @@ app.post("/register", (req, res) => {
 
 app.get("/login", (req, res) => {
 
-    res.sendFile(path.join(__dirname, "views", "login.html"));
+    res.sendFile(
+        path.join(__dirname, "views", "login.html")
+    );
 
 });
 
@@ -180,6 +188,7 @@ app.post("/login", (req, res) => {
 
 
             // CUSTOMER
+
             if (user.role === "customer") {
 
                 return res.redirect("/customer-dashboard");
@@ -188,6 +197,7 @@ app.post("/login", (req, res) => {
 
 
             // SELLER
+
             if (user.role === "seller") {
 
                 return res.send(`
@@ -199,6 +209,13 @@ app.post("/login", (req, res) => {
                 `);
 
             }
+
+            // ADMIN / OTHER ROLE
+
+            return res.send(`
+                <h2>Login Successful!</h2>
+                <a href="/">Go to Home</a>
+            `);
 
         }
     );
@@ -228,6 +245,37 @@ app.get("/products", (req, res) => {
     res.sendFile(
         path.join(__dirname, "views", "products.html")
     );
+
+});
+
+
+// ===============================
+// GET PRODUCTS FROM MYSQL
+// ===============================
+
+app.get("/api/products", (req, res) => {
+
+    const sql = `
+        SELECT *
+        FROM products
+        ORDER BY created_at DESC
+    `;
+
+    db.query(sql, (err, results) => {
+
+        if (err) {
+
+            console.log("Products fetch error:", err);
+
+            return res.status(500).json({
+                error: "Failed to fetch products"
+            });
+
+        }
+
+        res.json(results);
+
+    });
 
 });
 
