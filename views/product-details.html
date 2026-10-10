@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details | ShopSphere</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f6fa;
+            color: #202124;
+        }
+
+        .navbar {
+            height: 74px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            border-bottom: 1px solid #e6e7ec;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: #6256e8;
+        }
+
+        .navbar a {
+            color: #6256e8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: #6256e8;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .details-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            background: white;
+            padding: 30px;
+            border: 1px solid #e3e4e9;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(30,34,55,0.06);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 360px;
+            object-fit: cover;
+            background: #eef0f4;
+            border-radius: 14px;
+        }
+
+        .category {
+            display: inline-block;
+            background: #f0efff;
+            color: #574ed3;
+            padding: 7px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-size: 29px;
+            margin-bottom: 15px;
+            overflow-wrap: anywhere;
+        }
+
+        .price {
+            font-size: 27px;
+            color: #5148d4;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 1.8;
+            color: #777b87;
+            margin-bottom: 25px;
+            overflow-wrap: anywhere;
+        }
+
+        .stock {
+            font-size: 13px;
+            color: #34805a;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .out-stock {
+            color: #c03939;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #6256e8;
+            color: white;
+            padding: 13px 20px;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .message {
+            background: white;
+            padding: 45px 20px;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 2;
+        }
+
+        @media (max-width: 650px) {
+            .navbar {
+                padding: 0 18px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .container {
+                margin: 25px auto;
+            }
+
+            .details-card {
+                grid-template-columns: 1fr;
+                padding: 18px;
+                gap: 25px;
+            }
+
+            .product-image {
+                height: 260px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">🛒 Shop<span>Sphere</span></div>
+        <a href="/products">All Products</a>
+    </nav>
+
+    <main class="container">
+        <a href="/products" class="back-link">← Back to Products</a>
+
+        <div id="productDetails">
+            <div class="message">Loading product details...</div>
+        </div>
+    </main>
+
+    <script>
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+        }
+
+        async function loadProductDetails() {
+            const container = document.getElementById("productDetails");
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get("id");
+
+            if (!id || !/^\d+$/.test(id) || Number(id) <= 0) {
+                container.innerHTML = `
+                    <div class="message">
+                        <h2>Invalid Product</h2>
+                        <p>Please select a valid product.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    `/api/products/${encodeURIComponent(id)}`
+                );
+
+                const product = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(
+                        product.message || "Product not found."
+                    );
+                }
+
+                const image = product.image_url ||
+                    "https://placehold.co/600x400?text=No+Product+Image";
+
+                const inStock = Number(product.stock) > 0;
+
+                container.innerHTML = `
+                    <section class="details-card">
+                        <div>
+                            <img
+                                class="product-image"
+                                src="${escapeHTML(image)}"
+                                alt="${escapeHTML(product.name || "Product")}"
+                                onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=No+Product+Image';"
+                            >
+                        </div>
+
+                        <div>
+                            <span class="category">
+                                ${escapeHTML(product.category || "Other")}
+                            </span>
+
+                            <h1>${escapeHTML(product.name || "Unnamed Product")}</h1>
+
+                            <div class="price">
+                                Rs. ${Number(product.price || 0).toLocaleString()}
+                            </div>
+
+                            <p class="description">
+                                ${escapeHTML(product.description || "No description available.")}
+                            </p>
+
+                            <p class="stock ${inStock ? "" : "out-stock"}">
+                                ${inStock
+                                    ? `${Number(product.stock)} items available`
+                                    : "Currently out of stock"}
+                            </p>
+
+                            <a href="/products" class="back-button">
+                                Continue Shopping
+                            </a>
+                        </div>
+                    </section>
+                `;
+
+            } catch (error) {
+                console.error("Product details error:", error);
+
+                container.innerHTML = `
+                    <div class="message">
+                        <h2>Product Not Found</h2>
+                        <p>${escapeHTML(error.message)}</p>
+                        <a href="/products">Return to Products</a>
+                    </div>
+                `;
+            }
+        }
+
+        loadProductDetails();
+    </script>
+</body>
+</html>
