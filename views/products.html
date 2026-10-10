@@ -1,15 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Products | ShopSphere</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -22,22 +19,14 @@
             color: #202124;
         }
 
-        /* =========================
-           NAVBAR
-        ========================= */
-
         .navbar {
             height: 74px;
-            background: #ffffff;
-
+            background: #fff;
             display: flex;
             align-items: center;
             justify-content: space-between;
-
             padding: 0 50px;
-
             border-bottom: 1px solid #e6e7ec;
-
             position: sticky;
             top: 0;
             z-index: 100;
@@ -47,7 +36,6 @@
             font-size: 25px;
             font-weight: 800;
             color: #202124;
-            letter-spacing: -0.7px;
         }
 
         .logo span {
@@ -63,14 +51,11 @@
         .nav-links a {
             text-decoration: none;
             color: #60636d;
-
             font-size: 12px;
             font-weight: 700;
-
             padding: 10px 14px;
             border-radius: 9px;
-
-            transition: 0.2s ease;
+            transition: 0.2s;
         }
 
         .nav-links a:hover {
@@ -81,56 +66,25 @@
         .cart-btn {
             background: #6256e8;
             color: white !important;
-
             padding: 10px 17px !important;
-
-            box-shadow:
-                0 5px 15px rgba(98, 86, 232, 0.20);
         }
-
-        .cart-btn:hover {
-            background: #5146d3 !important;
-        }
-
-
-        /* =========================
-           MAIN
-        ========================= */
 
         .container {
             max-width: 1180px;
-
             margin: 42px auto;
-
             padding: 0 25px;
         }
 
-
-        /* =========================
-           HERO HEADER
-        ========================= */
-
         .page-header {
-            background:
-                linear-gradient(
-                    135deg,
-                    #6256e8,
-                    #776df1
-                );
-
+            background: linear-gradient(135deg, #6256e8, #776df1);
             border-radius: 20px;
-
             padding: 32px 35px;
-
             display: flex;
-
             justify-content: space-between;
             align-items: center;
-
+            gap: 18px;
             margin-bottom: 25px;
-
-            box-shadow:
-                0 12px 30px rgba(98, 86, 232, 0.15);
+            box-shadow: 0 12px 30px rgba(98, 86, 232, 0.15);
         }
 
         .header-left {
@@ -139,254 +93,130 @@
 
         .label {
             display: inline-block;
-
-            background: rgba(255, 255, 255, 0.15);
-
-            border: 1px solid rgba(255, 255, 255, 0.20);
-
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.20);
             padding: 6px 11px;
-
             border-radius: 20px;
-
             font-size: 9px;
-
             font-weight: 800;
-
             letter-spacing: 1.2px;
-
-            text-transform: uppercase;
-
             margin-bottom: 12px;
         }
 
         .header-left h1 {
             font-size: 31px;
-
             margin-bottom: 8px;
-
-            letter-spacing: -0.6px;
         }
 
         .header-left p {
-            color: rgba(255, 255, 255, 0.78);
-
+            color: rgba(255,255,255,0.78);
             font-size: 13px;
         }
 
         .product-count {
             background: white;
-
             color: #5148ce;
-
             padding: 12px 17px;
-
             border-radius: 11px;
-
             font-size: 11px;
-
             font-weight: 800;
-
-            box-shadow:
-                0 7px 18px rgba(0, 0, 0, 0.10);
+            white-space: nowrap;
         }
-
-
-        /* =========================
-           TOOLBAR
-        ========================= */
 
         .toolbar {
             background: white;
-
             border: 1px solid #e2e3e9;
-
             border-radius: 14px;
-
             padding: 14px;
-
             display: flex;
-
             gap: 12px;
-
             margin-bottom: 25px;
-
-            box-shadow:
-                0 5px 18px rgba(30, 34, 55, 0.035);
         }
 
         .search-box {
             flex: 1;
-
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-
             height: 44px;
-
             padding: 0 15px 0 42px;
-
             border: 1px solid #dedfe6;
-
             border-radius: 9px;
-
             outline: none;
-
-            color: #30313a;
-
             font-size: 12px;
-
-            transition: 0.2s;
         }
 
-        .search-box input::placeholder {
-            color: #a3a5ae;
-        }
-
-        .search-box input:focus {
-            border-color: #6256e8;
-
-            box-shadow:
-                0 0 0 3px rgba(98, 86, 232, 0.08);
-        }
-
-        .search-icon {
-            position: absolute;
-
-            left: 15px;
-
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            font-size: 14px;
-
-            color: #9699a3;
-        }
-
-        .filter {
-            height: 44px;
-
-            min-width: 175px;
-
-            padding: 0 14px;
-
-            border: 1px solid #dedfe6;
-
-            border-radius: 9px;
-
-            background: white;
-
-            color: #555861;
-
-            outline: none;
-
-            font-size: 12px;
-
-            cursor: pointer;
-        }
-
+        .search-box input:focus,
         .filter:focus {
             border-color: #6256e8;
         }
 
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
 
-        /* =========================
-           PRODUCT GRID
-        ========================= */
+        .filter {
+            height: 44px;
+            min-width: 175px;
+            padding: 0 14px;
+            border: 1px solid #dedfe6;
+            border-radius: 9px;
+            background: white;
+            outline: none;
+            cursor: pointer;
+        }
 
         .product-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(4, minmax(0, 1fr));
-
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 20px;
         }
 
-
-        /* =========================
-           PRODUCT CARD
-        ========================= */
-
         .product-card {
             background: white;
-
             border: 1px solid #e3e4e9;
-
             border-radius: 17px;
-
             overflow: hidden;
-
-            transition: 0.25s ease;
-
-            box-shadow:
-                0 5px 18px rgba(30, 34, 55, 0.035);
+            transition: 0.25s;
+            box-shadow: 0 5px 18px rgba(30,34,55,0.035);
         }
 
         .product-card:hover {
-            transform: translateY(-6px);
-
+            transform: translateY(-4px);
             border-color: #d4d0f6;
-
-            box-shadow:
-                0 15px 30px rgba(30, 34, 55, 0.10);
+            box-shadow: 0 15px 30px rgba(30,34,55,0.10);
         }
-
-
-        /* =========================
-           PRODUCT IMAGE
-        ========================= */
 
         .product-image {
             height: 205px;
-
             background: #eef0f4;
-
             position: relative;
-
             overflow: hidden;
         }
 
         .product-image img {
             width: 100%;
             height: 100%;
-
             object-fit: cover;
-
-            transition: 0.35s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
         }
 
         .category-badge {
             position: absolute;
-
             top: 12px;
             left: 12px;
-
-            background: rgba(255, 255, 255, 0.95);
-
+            background: white;
             color: #574ed2;
-
             padding: 6px 10px;
-
             border-radius: 7px;
-
             font-size: 9px;
-
             font-weight: 800;
-
             z-index: 2;
         }
-
-
-        /* =========================
-           PRODUCT INFO
-        ========================= */
 
         .product-info {
             padding: 18px;
@@ -394,53 +224,38 @@
 
         .product-info h3 {
             color: #292b33;
-
             font-size: 15px;
-
             margin-bottom: 7px;
         }
 
         .description {
             color: #8b8e98;
-
             font-size: 11px;
-
             line-height: 1.55;
-
             min-height: 34px;
-
             margin-bottom: 16px;
         }
 
         .product-bottom {
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
-
+            gap: 8px;
             margin-bottom: 15px;
         }
 
         .price {
             color: #5148d4;
-
             font-size: 17px;
-
             font-weight: 800;
         }
 
         .stock {
             color: #34805a;
-
             background: #edf8f1;
-
             padding: 5px 8px;
-
             border-radius: 6px;
-
             font-size: 9px;
-
             font-weight: 800;
         }
 
@@ -449,70 +264,60 @@
             background: #fff0f0;
         }
 
-
-        /* =========================
-           BUTTON
-        ========================= */
+        .view-btn,
+        .delete-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+        }
 
         .view-btn {
-            display: block;
-
-            width: 100%;
-
-            text-align: center;
-
-            text-decoration: none;
-
             background: #f0efff;
-
             color: #574ed3;
-
-            padding: 10px;
-
-            border-radius: 8px;
-
-            font-size: 11px;
-
-            font-weight: 800;
-
-            transition: 0.2s ease;
+            margin-bottom: 9px;
         }
 
         .view-btn:hover {
             background: #6256e8;
-
             color: white;
-
-            box-shadow:
-                0 6px 14px rgba(98, 86, 232, 0.18);
         }
 
+        .delete-btn {
+            background: #fff0f0;
+            color: #c03939;
+            border: 1px solid #f5d0d0;
+        }
 
-        /* =========================
-           EMPTY / ERROR MESSAGE
-        ========================= */
+        .delete-btn:hover {
+            background: #c03939;
+            color: white;
+        }
+
+        .delete-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
 
         .message-box {
             grid-column: 1 / -1;
-
             background: white;
-
             border: 1px solid #e3e4e9;
-
             border-radius: 17px;
-
             padding: 55px 20px;
-
             text-align: center;
-
             color: #8b8e98;
         }
 
         .message-box h3 {
             color: #292b33;
-
             font-size: 18px;
-
             margin-bottom: 8px;
         }
 
@@ -520,37 +325,20 @@
             font-size: 12px;
         }
 
-
-        /* =========================
-           RESPONSIVE
-        ========================= */
-
         @media (max-width: 1050px) {
-
             .product-grid {
-                grid-template-columns:
-                    repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
-
         }
 
-
         @media (max-width: 800px) {
-
             .navbar {
                 padding: 0 22px;
             }
 
-            .container {
-                margin: 30px auto;
-            }
-
             .page-header {
                 align-items: flex-start;
-
                 flex-direction: column;
-
-                gap: 18px;
             }
 
             .toolbar {
@@ -562,18 +350,13 @@
             }
 
             .product-grid {
-                grid-template-columns:
-                    repeat(2, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-
         }
 
-
         @media (max-width: 550px) {
-
             .navbar {
                 height: 66px;
-
                 padding: 0 15px;
             }
 
@@ -583,13 +366,11 @@
 
             .nav-links a {
                 padding: 8px;
-
                 font-size: 10px;
             }
 
             .container {
                 padding: 0 15px;
-
                 margin: 25px auto;
             }
 
@@ -608,397 +389,269 @@
             .product-image {
                 height: 220px;
             }
-
         }
-
     </style>
-
 </head>
 
-
 <body>
-
-
-    <!-- =========================
-         NAVBAR
-    ========================= -->
-
     <nav class="navbar">
-
-        <div class="logo">
-            🛒 Shop<span>Sphere</span>
-        </div>
+        <div class="logo">🛒 Shop<span>Sphere</span></div>
 
         <div class="nav-links">
-
-            <a href="/">
-                Home
-            </a>
-
-            <a href="/customer-dashboard">
-                Dashboard
-            </a>
-
-            <a href="/cart" class="cart-btn">
-                🛒 Cart
-            </a>
-
+            <a href="/">Home</a>
+            <a href="/customer-dashboard">Dashboard</a>
+            <a href="/cart" class="cart-btn">🛒 Cart</a>
         </div>
-
     </nav>
 
-
-    <!-- =========================
-         MAIN CONTENT
-    ========================= -->
-
     <main class="container">
-
-
-        <!-- =========================
-             HEADER
-        ========================= -->
-
         <section class="page-header">
-
             <div class="header-left">
-
-                <div class="label">
-                    ShopSphere Store
-                </div>
-
-                <h1>
-                    Explore Products
-                </h1>
-
-                <p>
-                    Find products you love from ShopSphere sellers.
-                </p>
-
+                <div class="label">ShopSphere Store</div>
+                <h1>Explore Products</h1>
+                <p>Find products you love from ShopSphere sellers.</p>
             </div>
-
 
             <div class="product-count" id="productCount">
                 Loading...
             </div>
-
         </section>
-
-
-        <!-- =========================
-             SEARCH + FILTER
-        ========================= -->
 
         <section class="toolbar">
-
             <div class="search-box">
-
-                <span class="search-icon">
-                    🔍
-                </span>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search products..."
-                >
-
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput"
+                       placeholder="Search products...">
             </div>
-
 
             <select class="filter" id="categoryFilter">
-
-                <option value="all">
-                    All Categories
-                </option>
-
-                <option value="Electronics">
-                    Electronics
-                </option>
-
-                <option value="Fashion">
-                    Fashion
-                </option>
-
-                <option value="Beauty">
-                    Beauty
-                </option>
-
-                <option value="Home & Living">
-                    Home & Living
-                </option>
-
-                <option value="Sports">
-                    Sports
-                </option>
-
-                <option value="Books">
-                    Books
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
+                <option value="all">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Beauty">Beauty</option>
+                <option value="Home & Living">Home & Living</option>
+                <option value="Sports">Sports</option>
+                <option value="Books">Books</option>
+                <option value="Other">Other</option>
             </select>
-
         </section>
-
-
-        <!-- =========================
-             PRODUCT GRID
-        ========================= -->
 
         <section class="product-grid" id="productGrid">
-
             <div class="message-box">
-
-                <h3>
-                    Loading Products...
-                </h3>
-
-                <p>
-                    Please wait while we load products.
-                </p>
-
+                <h3>Loading Products...</h3>
+                <p>Please wait while we load products.</p>
             </div>
-
         </section>
-
-
     </main>
 
-
     <script>
-
         let allProducts = [];
 
-
-        // ===============================
-        // LOAD PRODUCTS
-        // ===============================
-
+        // Load products from the database
         async function loadProducts() {
+            const productGrid = document.getElementById("productGrid");
 
             try {
-
                 const response = await fetch("/api/products");
 
                 if (!response.ok) {
                     throw new Error("Failed to load products");
                 }
 
-                allProducts = await response.json();
+                const products = await response.json();
 
-                document.getElementById("productCount").textContent =
-                    `${allProducts.length} Products`;
+                if (!Array.isArray(products)) {
+                    throw new Error("Invalid products response");
+                }
 
-                displayProducts(allProducts);
+                allProducts = products;
+                filterProducts();
 
             } catch (error) {
-
                 console.error("Error loading products:", error);
 
                 document.getElementById("productCount").textContent =
-                    "0 Products";
-
-                document.getElementById("productGrid").innerHTML = `
-
-                    <div class="message-box">
-
-                        <h3>
-                            Unable to Load Products
-                        </h3>
-
-                        <p>
-                            Please make sure the server is running.
-                        </p>
-
-                    </div>
-
-                `;
-
-            }
-
-        }
-
-
-        // ===============================
-        // DISPLAY PRODUCTS
-        // ===============================
-
-        function displayProducts(products) {
-
-            const productGrid =
-                document.getElementById("productGrid");
-
-            if (products.length === 0) {
+                    "Unable to load";
 
                 productGrid.innerHTML = `
-
                     <div class="message-box">
-
-                        <h3>
-                            No Products Found
-                        </h3>
-
-                        <p>
-                            Try searching for another product.
-                        </p>
-
+                        <h3>Unable to Load Products</h3>
+                        <p>Please make sure the server and database are running.</p>
                     </div>
-
                 `;
+            }
+        }
 
+        // Prevent product text from being treated as HTML
+        function escapeHTML(value) {
+            return String(value).replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            })[character]);
+        }
+
+        // Display product cards
+        function displayProducts(products) {
+            const productGrid = document.getElementById("productGrid");
+
+            if (products.length === 0) {
+                productGrid.innerHTML = `
+                    <div class="message-box">
+                        <h3>No Products Found</h3>
+                        <p>Try searching for another product.</p>
+                    </div>
+                `;
                 return;
             }
 
-
             productGrid.innerHTML = products.map(product => {
+                const image = product.image_url ||
+                    "https://placehold.co/600x400?text=No+Product+Image";
 
-                const image =
-                    product.image_url ||
-                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30";
-
-                const stockAvailable =
-                    Number(product.stock) > 0;
-
+                const stockAvailable = Number(product.stock) > 0;
+                const productId = Number(product.id);
 
                 return `
-
                     <article class="product-card">
-
                         <div class="product-image">
-
                             <span class="category-badge">
-                                ${product.category || "Other"}
+                                ${escapeHTML(product.category || "Other")}
                             </span>
 
                             <img
-                                src="${image}"
-                                alt="${product.name}"
-                                onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30'"
+                                src="${escapeHTML(image)}"
+                                alt="${escapeHTML(product.name || "Product")}"
+                                onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=No+Product+Image';"
                             >
-
                         </div>
 
-
                         <div class="product-info">
-
-                            <h3>
-                                ${product.name}
-                            </h3>
+                            <h3>${escapeHTML(product.name || "Unnamed Product")}</h3>
 
                             <p class="description">
-                                ${product.description || "No description available."}
+                                ${escapeHTML(product.description || "No description available.")}
                             </p>
 
-
                             <div class="product-bottom">
-
                                 <span class="price">
-                                    Rs. ${Number(product.price).toLocaleString()}
+                                    Rs. ${Number(product.price || 0).toLocaleString()}
                                 </span>
 
                                 ${
                                     stockAvailable
-                                    ?
-                                    `<span class="stock">
-                                        ${product.stock} In Stock
-                                    </span>`
-                                    :
-                                    `<span class="stock out-stock">
-                                        Out of Stock
-                                    </span>`
+                                    ? `<span class="stock">${Number(product.stock)} In Stock</span>`
+                                    : `<span class="stock out-stock">Out of Stock</span>`
                                 }
-
                             </div>
 
+                            <a href="#" class="view-btn"
+                               onclick="return false;">View Product</a>
 
-                            <a
-                                href="#"
-                                class="view-btn"
-                                onclick="return false;"
-                            >
-                                View Product
-                            </a>
-
+                            <button class="delete-btn"
+                                onclick="deleteProduct(${productId}, this)">
+                                🗑 Delete Product
+                            </button>
                         </div>
-
                     </article>
-
                 `;
-
             }).join("");
-
         }
 
+        // Delete product after confirmation
+        async function deleteProduct(productId, button) {
+            if (!Number.isInteger(productId) || productId <= 0) {
+                alert("Invalid product ID.");
+                return;
+            }
 
-        // ===============================
-        // SEARCH + CATEGORY FILTER
-        // ===============================
+            const product = allProducts.find(
+                item => Number(item.id) === productId
+            );
 
-        function filterProducts() {
+            if (!product) {
+                alert("Product not found.");
+                return;
+            }
 
-            const searchText =
-                document.getElementById("searchInput")
-                .value
-                .toLowerCase()
-                .trim();
+            const confirmed = confirm(
+                `Are you sure you want to delete "${product.name}"? This cannot be undone.`
+            );
 
-            const selectedCategory =
-                document.getElementById("categoryFilter")
-                .value;
+            if (!confirmed) {
+                return;
+            }
 
+            button.disabled = true;
+            button.textContent = "Deleting...";
 
-            const filteredProducts =
-                allProducts.filter(product => {
-
-                    const matchesSearch =
-                        product.name
-                            .toLowerCase()
-                            .includes(searchText) ||
-
-                        (product.description || "")
-                            .toLowerCase()
-                            .includes(searchText);
-
-
-                    const matchesCategory =
-                        selectedCategory === "all" ||
-                        product.category === selectedCategory;
-
-
-                    return matchesSearch && matchesCategory;
-
+            try {
+                const response = await fetch(`/api/products/${productId}`, {
+                    method: "DELETE"
                 });
 
+                const result = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(result.message || "Could not delete product.");
+                }
+
+                allProducts = allProducts.filter(
+                    item => Number(item.id) !== productId
+                );
+
+                filterProducts();
+                alert("Product deleted successfully!");
+
+            } catch (error) {
+                console.error("Delete error:", error);
+                alert(error.message || "Failed to delete product.");
+                button.disabled = false;
+                button.textContent = "🗑 Delete Product";
+            }
+        }
+
+        // Search and category filter
+        function filterProducts() {
+            const searchText = document.getElementById("searchInput")
+                .value.toLowerCase().trim();
+
+            const selectedCategory =
+                document.getElementById("categoryFilter").value;
+
+            const filteredProducts = allProducts.filter(product => {
+                const name = String(product.name || "").toLowerCase();
+                const description = String(product.description || "").toLowerCase();
+                const category = String(product.category || "Other");
+
+                const matchesSearch =
+                    name.includes(searchText) ||
+                    description.includes(searchText);
+
+                const matchesCategory =
+                    selectedCategory === "all" ||
+                    category === selectedCategory;
+
+                return matchesSearch && matchesCategory;
+            });
 
             document.getElementById("productCount").textContent =
                 `${filteredProducts.length} Products`;
 
             displayProducts(filteredProducts);
-
         }
 
-
-        document
-            .getElementById("searchInput")
+        document.getElementById("searchInput")
             .addEventListener("input", filterProducts);
 
-
-        document
-            .getElementById("categoryFilter")
+        document.getElementById("categoryFilter")
             .addEventListener("change", filterProducts);
 
-
-        // Load products when page opens
-
         loadProducts();
-
     </script>
-
-
 </body>
-
 </html>
+
+

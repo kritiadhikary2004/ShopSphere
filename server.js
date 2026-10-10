@@ -32,14 +32,12 @@ const db = mysql.createConnection({
 // ===============================
 
 db.connect((err) => {
-
     if (err) {
         console.log("MySQL connection failed:", err);
         return;
     }
 
     console.log("MySQL database connected successfully!");
-
 });
 
 
@@ -48,11 +46,7 @@ db.connect((err) => {
 // ===============================
 
 app.get("/", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "home.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "home.html"));
 });
 
 
@@ -61,11 +55,7 @@ app.get("/", (req, res) => {
 // ===============================
 
 app.get("/register", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "register.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "register.html"));
 });
 
 
@@ -74,7 +64,6 @@ app.get("/register", (req, res) => {
 // ===============================
 
 app.post("/register", (req, res) => {
-
     const { name, email, password, role } = req.body;
 
     console.log("New registration:", name, email, role);
@@ -84,44 +73,30 @@ app.post("/register", (req, res) => {
         VALUES (?, ?, ?, ?)
     `;
 
-    db.query(
-        sql,
-        [name, email, password, role],
-        (err, result) => {
+    db.query(sql, [name, email, password, role], (err, result) => {
+        if (err) {
+            console.log("Registration error:", err);
 
-            if (err) {
-
-                console.log("Registration error:", err);
-
-                return res.send(`
-                    <h2>Registration Failed ❌</h2>
-                    <p>${err.message}</p>
-                    <a href="/register">Go Back</a>
-                `);
-
-            }
-
-            console.log("Registration successful! ✅");
-            console.log("New User ID:", result.insertId);
-
-            res.send(`
-                <h2>Registration Successful! 🎉</h2>
-
-                <p>Welcome to ShopSphere, ${name}!</p>
-                <p>Account Type: ${role}</p>
-
-                <br>
-
-                <a href="/login">Login to your account</a>
-
-                <br><br>
-
-                <a href="/">Go to Home</a>
+            return res.send(`
+                <h2>Registration Failed ❌</h2>
+                <p>Something went wrong during registration.</p>
+                <a href="/register">Go Back</a>
             `);
-
         }
-    );
 
+        console.log("Registration successful! ✅");
+        console.log("New User ID:", result.insertId);
+
+        res.send(`
+            <h2>Registration Successful! 🎉</h2>
+            <p>Welcome to ShopSphere, ${name}!</p>
+            <p>Account Type: ${role}</p>
+            <br>
+            <a href="/login">Login to your account</a>
+            <br><br>
+            <a href="/">Go to Home</a>
+        `);
+    });
 });
 
 
@@ -130,11 +105,7 @@ app.post("/register", (req, res) => {
 // ===============================
 
 app.get("/login", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "login.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "login.html"));
 });
 
 
@@ -143,7 +114,6 @@ app.get("/login", (req, res) => {
 // ===============================
 
 app.post("/login", (req, res) => {
-
     const { email, password } = req.body;
 
     console.log("Login attempt:", email);
@@ -153,73 +123,55 @@ app.post("/login", (req, res) => {
         WHERE email = ? AND password = ?
     `;
 
-    db.query(
-        sql,
-        [email, password],
-        (err, results) => {
-
-            if (err) {
-
-                console.log("Login error:", err);
-
-                return res.send(`
-                    <h2>Login Failed ❌</h2>
-                    <p>Something went wrong.</p>
-                    <a href="/login">Try Again</a>
-                `);
-
-            }
-
-            if (results.length === 0) {
-
-                return res.send(`
-                    <h2>Login Failed ❌</h2>
-                    <p>Invalid email or password.</p>
-                    <a href="/login">Try Again</a>
-                `);
-
-            }
-
-            const user = results[0];
-
-            console.log("Login successful! ✅");
-            console.log("User:", user.name);
-            console.log("Role:", user.role);
-
-
-            // CUSTOMER
-
-            if (user.role === "customer") {
-
-                return res.redirect("/customer-dashboard");
-
-            }
-
-
-            // SELLER
-
-            if (user.role === "seller") {
-
-                return res.send(`
-                    <h2>Seller Login Successful! 🎉</h2>
-                    <p>Welcome, ${user.name}!</p>
-                    <p>You are logged in as a Seller.</p>
-                    <br>
-                    <a href="/">Go to Home</a>
-                `);
-
-            }
-
-            // ADMIN / OTHER ROLE
+    db.query(sql, [email, password], (err, results) => {
+        if (err) {
+            console.log("Login error:", err);
 
             return res.send(`
-                <h2>Login Successful!</h2>
+                <h2>Login Failed ❌</h2>
+                <p>Something went wrong.</p>
+                <a href="/login">Try Again</a>
+            `);
+        }
+
+        if (results.length === 0) {
+            return res.send(`
+                <h2>Login Failed ❌</h2>
+                <p>Invalid email or password.</p>
+                <a href="/login">Try Again</a>
+            `);
+        }
+
+        const user = results[0];
+
+        console.log("Login successful! ✅");
+        console.log("User:", user.name);
+        console.log("Role:", user.role);
+
+        // CUSTOMER
+        if (user.role === "customer") {
+            return res.redirect("/customer-dashboard");
+        }
+
+        // SELLER
+        if (user.role === "seller") {
+            return res.send(`
+                <h2>Seller Login Successful! 🎉</h2>
+                <p>Welcome, ${user.name}!</p>
+                <p>You are logged in as a Seller.</p>
+                <br>
+                <a href="/seller-dashboard">Go to Seller Dashboard</a>
+                <br><br>
                 <a href="/">Go to Home</a>
             `);
-
         }
-    );
 
+        // ADMIN / OTHER ROLE
+        return res.send(`
+            <h2>Login Successful!</h2>
+            <a href="/">Go to Home</a>
+        `);
+    });
 });
 
 
@@ -228,11 +180,20 @@ app.post("/login", (req, res) => {
 // ===============================
 
 app.get("/customer-dashboard", (req, res) => {
-
     res.sendFile(
         path.join(__dirname, "views", "customer-dashboard.html")
     );
+});
 
+
+// ===============================
+// SELLER DASHBOARD
+// ===============================
+
+app.get("/seller-dashboard", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "views", "seller-dashboard.html")
+    );
 });
 
 
@@ -241,11 +202,7 @@ app.get("/customer-dashboard", (req, res) => {
 // ===============================
 
 app.get("/products", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "products.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "products.html"));
 });
 
 
@@ -254,7 +211,6 @@ app.get("/products", (req, res) => {
 // ===============================
 
 app.get("/api/products", (req, res) => {
-
     const sql = `
         SELECT *
         FROM products
@@ -262,21 +218,57 @@ app.get("/api/products", (req, res) => {
     `;
 
     db.query(sql, (err, results) => {
-
         if (err) {
-
             console.log("Products fetch error:", err);
 
             return res.status(500).json({
-                error: "Failed to fetch products"
+                message: "Failed to fetch products."
             });
-
         }
 
         res.json(results);
-
     });
+});
 
+
+// ===============================
+// DELETE PRODUCT FROM MYSQL
+// ===============================
+
+app.delete("/api/products/:id", (req, res) => {
+    const productId = Number(req.params.id);
+
+    // Check whether the product ID is valid
+    if (!Number.isInteger(productId) || productId <= 0) {
+        return res.status(400).json({
+            message: "Invalid product ID."
+        });
+    }
+
+    const sql = "DELETE FROM products WHERE id = ?";
+
+    db.query(sql, [productId], (err, result) => {
+        if (err) {
+            console.log("Product delete error:", err);
+
+            return res.status(500).json({
+                message: "Failed to delete product."
+            });
+        }
+
+        // Check whether the product exists
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                message: "Product not found."
+            });
+        }
+
+        console.log("Product deleted successfully. ID:", productId);
+
+        return res.json({
+            message: "Product deleted successfully."
+        });
+    });
 });
 
 
@@ -285,11 +277,9 @@ app.get("/api/products", (req, res) => {
 // ===============================
 
 app.get("/add-product", (req, res) => {
-
     res.sendFile(
         path.join(__dirname, "views", "add-product.html")
     );
-
 });
 
 
@@ -298,7 +288,6 @@ app.get("/add-product", (req, res) => {
 // ===============================
 
 app.post("/add-product", (req, res) => {
-
     const {
         name,
         description,
@@ -320,18 +309,15 @@ app.post("/add-product", (req, res) => {
         sql,
         [name, description, price, stock, category, image_url],
         (err, result) => {
-
             if (err) {
-
                 console.log("Product insert error:", err);
 
                 return res.send(`
-                    <h2>Product Added Failed ❌</h2>
-                    <p>${err.message}</p>
+                    <h2>Product Add Failed ❌</h2>
+                    <p>Something went wrong while adding the product.</p>
                     <br>
                     <a href="/add-product">Go Back</a>
                 `);
-
             }
 
             console.log("Product added successfully! ✅");
@@ -339,25 +325,16 @@ app.post("/add-product", (req, res) => {
 
             res.send(`
                 <h2>Product Added Successfully! 🎉</h2>
-
                 <p>Your product <strong>${name}</strong> has been added.</p>
-
                 <br>
-
                 <a href="/add-product">Add Another Product</a>
-
                 <br><br>
-
                 <a href="/products">View Products</a>
-
                 <br><br>
-
                 <a href="/seller-dashboard">Back to Seller Dashboard</a>
             `);
-
         }
     );
-
 });
 
 
@@ -366,11 +343,7 @@ app.post("/add-product", (req, res) => {
 // ===============================
 
 app.get("/cart", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "cart.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "cart.html"));
 });
 
 
@@ -379,11 +352,7 @@ app.get("/cart", (req, res) => {
 // ===============================
 
 app.get("/checkout", (req, res) => {
-
-    res.sendFile(
-        path.join(__dirname, "views", "checkout.html")
-    );
-
+    res.sendFile(path.join(__dirname, "views", "checkout.html"));
 });
 
 
@@ -392,7 +361,5 @@ app.get("/checkout", (req, res) => {
 // ===============================
 
 app.listen(PORT, () => {
-
     console.log(`Server running at http://localhost:${PORT}`);
-
 });
