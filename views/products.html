@@ -546,9 +546,9 @@
                                     : `<span class="stock out-stock">Out of Stock</span>`
                                 }
                             </div>
-
-                            <a href="#" class="view-btn"
-                               onclick="return false;">View Product</a>
+                               <a href="/product-details?id=${productId}" class="view-btn">
+                                          👁 View Product
+                                       </a>
 
                             <button class="delete-btn"
                                 onclick="deleteProduct(${productId}, this)">

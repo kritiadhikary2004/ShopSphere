@@ -84,7 +84,7 @@ app.post("/register", (req, res) => {
             `);
         }
 
-        console.log("Registration successful! ✅");
+        console.log("Registration successful!");
         console.log("New User ID:", result.insertId);
 
         res.send(`
@@ -144,16 +144,14 @@ app.post("/login", (req, res) => {
 
         const user = results[0];
 
-        console.log("Login successful! ✅");
+        console.log("Login successful!");
         console.log("User:", user.name);
         console.log("Role:", user.role);
 
-        // CUSTOMER
         if (user.role === "customer") {
             return res.redirect("/customer-dashboard");
         }
 
-        // SELLER
         if (user.role === "seller") {
             return res.send(`
                 <h2>Seller Login Successful! 🎉</h2>
@@ -166,7 +164,6 @@ app.post("/login", (req, res) => {
             `);
         }
 
-        // ADMIN / OTHER ROLE
         return res.send(`
             <h2>Login Successful!</h2>
             <a href="/">Go to Home</a>
@@ -207,7 +204,7 @@ app.get("/products", (req, res) => {
 
 
 // ===============================
-// GET PRODUCTS FROM MYSQL
+// GET ALL PRODUCTS
 // ===============================
 
 app.get("/api/products", (req, res) => {
@@ -232,13 +229,47 @@ app.get("/api/products", (req, res) => {
 
 
 // ===============================
-// DELETE PRODUCT FROM MYSQL
+// VIEW SINGLE PRODUCT DETAILS
+// ===============================
+
+app.get("/api/products/:id", (req, res) => {
+    const productId = Number(req.params.id);
+
+    if (!Number.isInteger(productId) || productId <= 0) {
+        return res.status(400).json({
+            message: "Invalid product ID."
+        });
+    }
+
+    const sql = "SELECT * FROM products WHERE id = ?";
+
+    db.query(sql, [productId], (err, results) => {
+        if (err) {
+            console.log("Product details error:", err);
+
+            return res.status(500).json({
+                message: "Failed to fetch product details."
+            });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({
+                message: "Product not found."
+            });
+        }
+
+        res.json(results[0]);
+    });
+});
+
+
+// ===============================
+// DELETE PRODUCT
 // ===============================
 
 app.delete("/api/products/:id", (req, res) => {
     const productId = Number(req.params.id);
 
-    // Check whether the product ID is valid
     if (!Number.isInteger(productId) || productId <= 0) {
         return res.status(400).json({
             message: "Invalid product ID."
@@ -256,7 +287,6 @@ app.delete("/api/products/:id", (req, res) => {
             });
         }
 
-        // Check whether the product exists
         if (result.affectedRows === 0) {
             return res.status(404).json({
                 message: "Product not found."
@@ -265,7 +295,7 @@ app.delete("/api/products/:id", (req, res) => {
 
         console.log("Product deleted successfully. ID:", productId);
 
-        return res.json({
+        res.json({
             message: "Product deleted successfully."
         });
     });
@@ -320,7 +350,7 @@ app.post("/add-product", (req, res) => {
                 `);
             }
 
-            console.log("Product added successfully! ✅");
+            console.log("Product added successfully!");
             console.log("Product ID:", result.insertId);
 
             res.send(`
