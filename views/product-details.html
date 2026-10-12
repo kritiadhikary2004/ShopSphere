@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +21,8 @@
             --muted: #777b8c;
             --border: #e9e8f2;
             --background: #f7f7fc;
+            --success: #218653;
+            --danger: #d94343;
         }
 
         body {
@@ -31,17 +32,23 @@
         }
 
         a {
+            color: inherit;
             text-decoration: none;
+        }
+
+        button {
+            font: inherit;
         }
 
         /* NAVBAR */
 
         .navbar {
-            height: 76px;
+            min-height: 76px;
             padding: 0 7%;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 20px;
             background: #fff;
             border-bottom: 1px solid var(--border);
             position: sticky;
@@ -52,41 +59,49 @@
         .logo {
             font-size: 25px;
             font-weight: 800;
-            color: var(--text);
             letter-spacing: -0.8px;
+            white-space: nowrap;
         }
 
         .logo span {
             color: var(--primary);
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .nav-link {
             color: var(--text);
             font-size: 14px;
             font-weight: 600;
-            padding: 11px 17px;
+            padding: 11px 15px;
             border-radius: 10px;
             transition: 0.25s;
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link.active {
             color: var(--primary);
             background: var(--light-purple);
         }
 
-        /* MAIN CONTAINER */
+        /* MAIN */
 
         .container {
-            max-width: 1120px;
-            margin: 45px auto 70px;
+            max-width: 1200px;
+            margin: 35px auto 60px;
             padding: 0 24px;
         }
 
         .breadcrumb {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
             color: var(--muted);
             font-size: 13px;
         }
@@ -104,14 +119,14 @@
 
         .details-card {
             display: grid;
-            grid-template-columns: 1.05fr 1fr;
-            gap: 48px;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 35px;
-            box-shadow: 0 15px 45px rgba(54, 45, 120, 0.06);
-            animation: appear 0.5s ease;
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow: 0 12px 40px rgba(54, 45, 120, 0.06);
+            animation: appear 0.45s ease;
         }
 
         @keyframes appear {
@@ -125,21 +140,19 @@
             }
         }
 
-        /* IMAGE AREA */
+        /* IMAGE */
 
         .image-area {
-            position: relative;
             min-width: 0;
         }
 
         .image-frame {
-            width: 100%;
-            height: 440px;
-            padding: 18px;
+            height: 420px;
+            padding: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(145deg, #f6f4ff, #f5f7ff);
+            background: linear-gradient(145deg, #f0efff, #f8f8ff);
             border-radius: 18px;
             overflow: hidden;
         }
@@ -153,61 +166,65 @@
         }
 
         .image-frame:hover .product-image {
-            transform: scale(1.04);
+            transform: scale(1.05);
         }
 
         .image-caption {
+            margin-top: 14px;
             text-align: center;
-            margin-top: 15px;
-            font-size: 12px;
             color: var(--muted);
+            font-size: 12px;
+        }
+
+        .image-placeholder {
+            font-size: 75px;
+            color: var(--primary);
         }
 
         /* PRODUCT INFORMATION */
 
         .product-info {
+            min-width: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-width: 0;
-            padding: 8px 0;
+            padding: 5px 0;
         }
 
         .top-labels {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
+            flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 23px;
+            margin-bottom: 20px;
         }
 
         .category {
-            display: inline-block;
+            padding: 8px 12px;
             background: var(--light-purple);
             color: var(--primary-dark);
-            padding: 8px 13px;
             border-radius: 8px;
             font-size: 11px;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
         }
 
         .stock-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-size: 11px;
-            font-weight: 700;
-            color: #238454;
-            background: #eaf8f0;
+            gap: 7px;
             padding: 8px 11px;
             border-radius: 8px;
+            background: #eaf8f0;
+            color: var(--success);
+            font-size: 11px;
+            font-weight: 700;
         }
 
         .stock-badge.out {
-            color: #c03939;
             background: #fff0f0;
+            color: var(--danger);
         }
 
         .stock-dot {
@@ -218,11 +235,11 @@
         }
 
         h1 {
-            font-size: clamp(27px, 3vw, 37px);
+            font-size: clamp(27px, 3vw, 38px);
             line-height: 1.25;
-            letter-spacing: -1px;
-            margin-bottom: 17px;
+            letter-spacing: -0.8px;
             overflow-wrap: anywhere;
+            margin-bottom: 12px;
         }
 
         .small-heading {
@@ -233,71 +250,113 @@
         }
 
         .price {
+            color: var(--primary);
             font-size: 34px;
             font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -1px;
-            margin-bottom: 23px;
+            letter-spacing: -0.8px;
+            margin-bottom: 22px;
+            overflow-wrap: anywhere;
         }
 
         .price-prefix {
             font-size: 16px;
-            font-weight: 700;
             letter-spacing: 0;
         }
 
         .section-divider {
             height: 1px;
             background: var(--border);
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .description-title {
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 800;
             margin-bottom: 10px;
         }
 
         .description {
+            color: var(--muted);
             font-size: 14px;
             line-height: 1.9;
-            color: var(--muted);
-            margin-bottom: 26px;
-            overflow-wrap: anywhere;
             white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            margin-bottom: 23px;
         }
+
+        /* STOCK INFORMATION */
 
         .stock-info {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 13px;
             padding: 15px;
             background: #faf9ff;
             border: 1px solid #eeecff;
             border-radius: 12px;
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .stock-icon {
-            width: 38px;
-            height: 38px;
+            width: 42px;
+            height: 42px;
             flex-shrink: 0;
             display: grid;
             place-items: center;
             background: #e9e6ff;
-            border-radius: 10px;
-            font-size: 18px;
+            border-radius: 11px;
+            font-size: 20px;
         }
 
         .stock-text strong {
             display: block;
             font-size: 13px;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
         }
 
         .stock-text span {
-            font-size: 12px;
             color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* PRODUCT HIGHLIGHTS */
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .highlight {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            min-width: 0;
+        }
+
+        .highlight-icon {
+            width: 37px;
+            height: 37px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--light-purple);
+            font-size: 17px;
+        }
+
+        .highlight strong {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 4px;
+        }
+
+        .highlight span {
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.5;
         }
 
         /* BUTTONS */
@@ -307,51 +366,51 @@
             gap: 12px;
         }
 
-        .back-button {
-            flex: 1;
+        .button {
+            min-height: 50px;
+            padding: 13px 18px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 9px;
-            min-height: 50px;
-            padding: 13px 18px;
+            border-radius: 11px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .primary-button {
+            flex: 1;
             color: #fff;
             background: var(--primary);
             border: 1px solid var(--primary);
-            border-radius: 11px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: 0.25s;
-            box-shadow: 0 7px 18px rgba(98, 86, 232, 0.19);
+            box-shadow: 0 7px 18px rgba(98, 86, 232, 0.18);
         }
 
-        .back-button:hover {
+        .primary-button:hover:not(:disabled) {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px rgba(98, 86, 232, 0.25);
+        }
+
+        .primary-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            box-shadow: none;
         }
 
         .secondary-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 50px;
-            padding: 13px 18px;
             color: var(--text);
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 11px;
-            font-size: 13px;
-            font-weight: 700;
-            transition: 0.25s;
         }
 
         .secondary-button:hover {
-            border-color: var(--primary);
             color: var(--primary);
+            border-color: var(--primary);
         }
 
-        /* MESSAGE / LOADING */
+        /* LOADING AND ERROR */
 
         .message {
             background: #fff;
@@ -376,7 +435,7 @@
             color: var(--muted);
             font-size: 14px;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .loading-spinner {
@@ -390,9 +449,74 @@
         }
 
         @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+            to { transform: rotate(360deg); }
+        }
+
+        /* EXTRA DETAILS */
+
+        .extra-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 28px;
+            margin-top: 24px;
+            box-shadow: 0 8px 28px rgba(54, 45, 120, 0.035);
+        }
+
+        .extra-card h2 {
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: grid;
+            gap: 13px;
+        }
+
+        .feature-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .check {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .detail-item {
+            padding: 15px;
+            background: #faf9ff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .detail-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+
+        .detail-item strong {
+            font-size: 14px;
+            overflow-wrap: anywhere;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
         }
 
         /* FOOTER */
@@ -411,15 +535,12 @@
             font-weight: 700;
         }
 
-        /* RESPONSIVE DESIGN */
+        /* RESPONSIVE */
 
-        @media (max-width: 850px) {
+        @media (max-width: 900px) {
             .navbar {
-                padding: 0 5%;
-            }
-
-            .container {
-                margin-top: 30px;
+                padding: 15px 5%;
+                flex-wrap: wrap;
             }
 
             .details-card {
@@ -429,22 +550,23 @@
             }
 
             .image-frame {
-                height: 350px;
+                height: 370px;
             }
 
             .product-info {
                 padding: 0;
             }
 
-            h1 {
-                font-size: 30px;
+            .extra-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 520px) {
             .navbar {
-                height: 66px;
-                padding: 0 18px;
+                min-height: 65px;
+                padding: 12px 16px;
+                gap: 10px;
             }
 
             .logo {
@@ -457,46 +579,54 @@
             }
 
             .container {
-                margin: 22px auto 40px;
+                margin: 23px auto 40px;
                 padding: 0 14px;
             }
 
             .breadcrumb {
                 font-size: 12px;
-                margin-bottom: 18px;
+                margin-bottom: 17px;
             }
 
             .details-card {
                 padding: 16px;
                 border-radius: 17px;
-                gap: 24px;
+                gap: 23px;
             }
 
             .image-frame {
-                height: 270px;
+                height: 275px;
                 padding: 12px;
                 border-radius: 13px;
             }
 
-            .top-labels {
-                margin-bottom: 17px;
-            }
-
             h1 {
-                font-size: 26px;
+                font-size: 27px;
             }
 
             .price {
                 font-size: 30px;
             }
 
+            .highlights {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
             .actions {
                 flex-direction: column;
             }
 
-            .back-button,
-            .secondary-button {
+            .button {
                 width: 100%;
+            }
+
+            .extra-card {
+                padding: 20px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -506,17 +636,21 @@
 
     <nav class="navbar">
         <a href="/" class="logo">🛒 Shop<span>Sphere</span></a>
-        <a href="/products" class="nav-link">← All Products</a>
+
+        <div class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/products" class="nav-link active">Products</a>
+        </div>
     </nav>
 
     <main class="container">
 
         <div class="breadcrumb">
             <a href="/">Home</a>
-            <span>/</span>
+            <span>›</span>
             <a href="/products">Products</a>
-            <span>/</span>
-            <span>Details</span>
+            <span>›</span>
+            <span>Product Details</span>
         </div>
 
         <div id="productDetails">
@@ -527,6 +661,8 @@
             </div>
         </div>
 
+        <div id="extraDetails" hidden></div>
+
     </main>
 
     <footer>
@@ -535,7 +671,7 @@
 
     <script>
         function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, character => ({
+            return String(value ?? "").replace(/[&<>"']/g, character => ({
                 "&": "&amp;",
                 "<": "&lt;",
                 ">": "&gt;",
@@ -544,20 +680,32 @@
             })[character]);
         }
 
+        function formatPrice(value) {
+            const price = Number(value);
+
+            if (!Number.isFinite(price)) {
+                return "0.00";
+            }
+
+            return price.toLocaleString("en-IN", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
         async function loadProductDetails() {
             const container = document.getElementById("productDetails");
+            const extra = document.getElementById("extraDetails");
+
             const params = new URLSearchParams(window.location.search);
             const id = params.get("id");
 
             if (!id || !/^\d+$/.test(id) || Number(id) <= 0) {
-                container.innerHTML = `
-                    <div class="message">
-                        <div class="message-icon">🔎</div>
-                        <h2>Invalid Product</h2>
-                        <p>Please select a valid product from our products page.</p>
-                        <a href="/products" class="back-button">Browse Products</a>
-                    </div>
-                `;
+                showError(
+                    container,
+                    "Invalid Product",
+                    "Please select a valid product from the products page."
+                );
                 return;
             }
 
@@ -574,12 +722,15 @@
                     );
                 }
 
+                const name = product.name || "Unnamed Product";
+                const category = product.category || "Other";
+                const description = product.description ||
+                    "No description available for this product yet.";
+                const stock = Math.max(0, Number(product.stock) || 0);
+                const inStock = stock > 0;
+
                 const image = product.image_url ||
                     "https://placehold.co/600x400?text=No+Product+Image";
-
-                const stock = Number(product.stock) || 0;
-                const inStock = stock > 0;
-                const price = Number(product.price);
 
                 container.innerHTML = `
                     <section class="details-card">
@@ -589,7 +740,7 @@
                                 <img
                                     class="product-image"
                                     src="${escapeHTML(image)}"
-                                    alt="${escapeHTML(product.name || "Product")}"
+                                    alt="${escapeHTML(name)}"
                                     onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=No+Product+Image';"
                                 >
                             </div>
@@ -603,7 +754,7 @@
 
                             <div class="top-labels">
                                 <span class="category">
-                                    ${escapeHTML(product.category || "Other")}
+                                    ${escapeHTML(category)}
                                 </span>
 
                                 <span class="stock-badge ${inStock ? "" : "out"}">
@@ -612,25 +763,48 @@
                                 </span>
                             </div>
 
-                            <h1>${escapeHTML(product.name || "Unnamed Product")}</h1>
+                            <h1>${escapeHTML(name)}</h1>
 
                             <p class="small-heading">OUR PRICE</p>
 
                             <div class="price">
                                 <span class="price-prefix">Rs.</span>
-                                ${Number.isFinite(price) ? price.toLocaleString("en-IN", {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2
-                                }) : "0.00"}
+                                ${formatPrice(product.price)}
                             </div>
 
                             <div class="section-divider"></div>
 
-                            <h3 class="description-title">Product Description</h3>
+                            <h3 class="description-title">
+                                Product Description
+                            </h3>
 
-                            <p class="description">${escapeHTML(
-                                product.description || "No description available for this product yet."
-                            )}</p>
+                            <p class="description">${escapeHTML(description)}</p>
+
+                            <div class="highlights">
+                                <div class="highlight">
+                                    <div class="highlight-icon">✦</div>
+                                    <div>
+                                        <strong>Quality Products</strong>
+                                        <span>Selected for you</span>
+                                    </div>
+                                </div>
+
+                                <div class="highlight">
+                                    <div class="highlight-icon">🛡️</div>
+                                    <div>
+                                        <strong>Secure Shopping</strong>
+                                        <span>Shop with confidence</span>
+                                    </div>
+                                </div>
+
+                                <div class="highlight">
+                                    <div class="highlight-icon">📦</div>
+                                    <div>
+                                        <strong>Stock Status</strong>
+                                        <span>${inStock ? "Available now" : "Currently unavailable"}</span>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="stock-info">
                                 <div class="stock-icon">
@@ -638,24 +812,26 @@
                                 </div>
 
                                 <div class="stock-text">
-                                    <strong>${inStock
-                                        ? `${stock} item${stock === 1 ? "" : "s"} available`
-                                        : "Currently unavailable"
-                                    }</strong>
+                                    <strong>
+                                        ${inStock
+                                            ? `${stock} item${stock === 1 ? "" : "s"} available`
+                                            : "Currently unavailable"}
+                                    </strong>
 
-                                    <span>${inStock
-                                        ? "This product is available in stock."
-                                        : "Please explore our other available products."
-                                    }</span>
+                                    <span>
+                                        ${inStock
+                                            ? "This product is available in stock."
+                                            : "Please explore our other products."}
+                                    </span>
                                 </div>
                             </div>
 
                             <div class="actions">
-                                <a href="/products" class="back-button">
+                                <a href="/products" class="button primary-button">
                                     ← Continue Shopping
                                 </a>
 
-                                <a href="/" class="secondary-button">
+                                <a href="/" class="button secondary-button">
                                     Home
                                 </a>
                             </div>
@@ -664,18 +840,88 @@
                     </section>
                 `;
 
+                extra.hidden = false;
+
+                extra.innerHTML = `
+                    <div class="extra-grid">
+
+                        <section class="extra-card">
+                            <h2>Product Highlights</h2>
+
+                            <ul class="feature-list">
+                                <li>
+                                    <span class="check">✓</span>
+                                    <span>Product information displayed directly from your database.</span>
+                                </li>
+
+                                <li>
+                                    <span class="check">✓</span>
+                                    <span>Clear product pricing and availability information.</span>
+                                </li>
+
+                                <li>
+                                    <span class="check">✓</span>
+                                    <span>Responsive design for desktop, tablet and mobile.</span>
+                                </li>
+
+                                <li>
+                                    <span class="check">✓</span>
+                                    <span>Automatic fallback image when a product image is unavailable.</span>
+                                </li>
+                            </ul>
+                        </section>
+
+                        <section class="extra-card">
+                            <h2>Product Information</h2>
+
+                            <div class="details-grid">
+                                <div class="detail-item">
+                                    <span>Product Name</span>
+                                    <strong>${escapeHTML(name)}</strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>Category</span>
+                                    <strong>${escapeHTML(category)}</strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>Price</span>
+                                    <strong>Rs. ${formatPrice(product.price)}</strong>
+                                </div>
+
+                                <div class="detail-item">
+                                    <span>Availability</span>
+                                    <strong>${inStock ? "In Stock" : "Out of Stock"}</strong>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+                `;
+
             } catch (error) {
                 console.error("Product details error:", error);
 
-                container.innerHTML = `
-                    <div class="message">
-                        <div class="message-icon">📦</div>
-                        <h2>Product Not Found</h2>
-                        <p>${escapeHTML(error.message || "Unable to load product details.")}</p>
-                        <a href="/products" class="back-button">Back to Products</a>
-                    </div>
-                `;
+                showError(
+                    container,
+                    "Unable to Load Product",
+                    error.message || "Please try again later."
+                );
             }
+        }
+
+        function showError(container, heading, message) {
+            container.innerHTML = `
+                <div class="message">
+                    <div class="message-icon">📦</div>
+                    <h2>${escapeHTML(heading)}</h2>
+                    <p>${escapeHTML(message)}</p>
+                    <a href="/products" class="button primary-button">
+                        ← Back to Products
+                    </a>
+                </div>
+            `;
         }
 
         loadProductDetails();
