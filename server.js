@@ -201,6 +201,15 @@ app.get("/seller-dashboard", (req, res) => {
 app.get("/products", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "products.html"));
 });
+// ===============================
+// PRODUCT DETAILS PAGE
+// ===============================
+
+app.get("/product-details", (req, res) => {
+    res.sendFile(
+        path.join(__dirname, "views", "product-details.html")
+    );
+});
 
 
 // ===============================
