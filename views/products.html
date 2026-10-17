@@ -7,84 +7,140 @@
     <title>Products | ShopSphere</title>
 
     <style>
+        :root {
+            --primary: #6256e8;
+            --primary-dark: #4c40ce;
+            --primary-light: #f0efff;
+            --background: #f7f7fc;
+            --text: #25243a;
+            --muted: #85869a;
+            --border: #e9e8f2;
+            --white: #ffffff;
+            --success: #198754;
+            --danger: #dc3545;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: "Segoe UI", Arial, sans-serif;
         }
 
         body {
-            background: #f5f6fa;
-            color: #202124;
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
         }
 
+        /* NAVBAR */
         .navbar {
-            height: 74px;
-            background: #fff;
+            min-height: 76px;
+            background: rgba(255, 255, 255, 0.96);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 50px;
-            border-bottom: 1px solid #e6e7ec;
+            padding: 0 7%;
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
             z-index: 100;
+            box-shadow: 0 3px 15px rgba(36, 31, 90, 0.03);
         }
 
         .logo {
             font-size: 25px;
             font-weight: 800;
-            color: #202124;
+            color: var(--text);
+            letter-spacing: -1px;
+            white-space: nowrap;
         }
 
         .logo span {
-            color: #6256e8;
+            color: var(--primary);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #60636d;
-            font-size: 12px;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-radius: 9px;
-            transition: 0.2s;
+            color: #68687b;
+            font-size: 13px;
+            font-weight: 650;
+            padding: 11px 16px;
+            border-radius: 10px;
+            transition: 0.2s ease;
         }
 
         .nav-links a:hover {
-            color: #6256e8;
-            background: #f2f1fb;
+            color: var(--primary);
+            background: var(--primary-light);
         }
 
-        .cart-btn {
-            background: #6256e8;
-            color: white !important;
-            padding: 10px 17px !important;
+        .nav-links .cart-btn {
+            color: white;
+            background: var(--primary);
+            box-shadow: 0 5px 12px rgba(98, 86, 232, 0.2);
         }
 
+        .nav-links .cart-btn:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        /* MAIN CONTAINER */
         .container {
-            max-width: 1180px;
-            margin: 42px auto;
-            padding: 0 25px;
+            max-width: 1240px;
+            margin: 42px auto 70px;
+            padding: 0 28px;
         }
 
+        /* PAGE HEADER */
         .page-header {
-            background: linear-gradient(135deg, #6256e8, #776df1);
-            border-radius: 20px;
-            padding: 32px 35px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(125deg, #5145d4, #776af4 65%, #968bff);
+            border-radius: 24px;
+            padding: 42px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 18px;
-            margin-bottom: 25px;
-            box-shadow: 0 12px 30px rgba(98, 86, 232, 0.15);
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(98, 86, 232, 0.17);
+        }
+
+        .page-header::before {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 45px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            right: 110px;
+            top: -150px;
+        }
+
+        .page-header::after {
+            content: "";
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 50%;
+            right: -35px;
+            bottom: -75px;
+        }
+
+        .header-left,
+        .product-count {
+            position: relative;
+            z-index: 1;
         }
 
         .header-left {
@@ -93,44 +149,50 @@
 
         .label {
             display: inline-block;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.20);
-            padding: 6px 11px;
-            border-radius: 20px;
-            font-size: 9px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.24);
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 10px;
             font-weight: 800;
-            letter-spacing: 1.2px;
-            margin-bottom: 12px;
+            letter-spacing: 1.4px;
+            margin-bottom: 16px;
         }
 
         .header-left h1 {
-            font-size: 31px;
-            margin-bottom: 8px;
+            font-size: clamp(28px, 4vw, 38px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
 
         .header-left p {
-            color: rgba(255,255,255,0.78);
-            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 14px;
+            line-height: 1.7;
         }
 
         .product-count {
             background: white;
-            color: #5148ce;
-            padding: 12px 17px;
-            border-radius: 11px;
-            font-size: 11px;
+            color: var(--primary);
+            padding: 16px 21px;
+            border-radius: 13px;
+            font-size: 13px;
             font-weight: 800;
             white-space: nowrap;
+            box-shadow: 0 6px 20px rgba(30, 20, 90, 0.12);
         }
 
+        /* SEARCH AND FILTER */
         .toolbar {
             background: white;
-            border: 1px solid #e2e3e9;
-            border-radius: 14px;
-            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            padding: 17px;
             display: flex;
-            gap: 12px;
-            margin-bottom: 25px;
+            gap: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(36, 31, 90, 0.035);
         }
 
         .search-box {
@@ -138,63 +200,95 @@
             position: relative;
         }
 
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 17px;
+            pointer-events: none;
+        }
+
         .search-box input {
             width: 100%;
-            height: 44px;
-            padding: 0 15px 0 42px;
-            border: 1px solid #dedfe6;
-            border-radius: 9px;
+            height: 49px;
+            padding: 0 16px 0 46px;
+            border: 1px solid #e5e4ee;
+            border-radius: 11px;
             outline: none;
-            font-size: 12px;
+            font-size: 13px;
+            background: #fcfcff;
+            color: var(--text);
+            transition: 0.2s;
         }
 
         .search-box input:focus,
         .filter:focus {
-            border-color: #6256e8;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(98, 86, 232, 0.09);
         }
 
         .filter {
-            height: 44px;
-            min-width: 175px;
-            padding: 0 14px;
-            border: 1px solid #dedfe6;
-            border-radius: 9px;
-            background: white;
+            height: 49px;
+            min-width: 195px;
+            padding: 0 15px;
+            border: 1px solid #e5e4ee;
+            border-radius: 11px;
+            background: #fcfcff;
+            color: #53536a;
             outline: none;
             cursor: pointer;
+            font-size: 13px;
+            transition: 0.2s;
         }
 
+        /* SECTION HEADING */
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* PRODUCT GRID */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 20px;
+            gap: 23px;
         }
 
         .product-card {
             background: white;
-            border: 1px solid #e3e4e9;
-            border-radius: 17px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
             overflow: hidden;
-            transition: 0.25s;
-            box-shadow: 0 5px 18px rgba(30,34,55,0.035);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 5px 20px rgba(36, 31, 90, 0.035);
+            min-width: 0;
         }
 
         .product-card:hover {
-            transform: translateY(-4px);
-            border-color: #d4d0f6;
-            box-shadow: 0 15px 30px rgba(30,34,55,0.10);
+            transform: translateY(-6px);
+            border-color: #d9d3ff;
+            box-shadow: 0 17px 35px rgba(47, 39, 112, 0.11);
         }
 
         .product-image {
-            height: 205px;
-            background: #eef0f4;
+            height: 215px;
+            background: #f0eff7;
             position: relative;
             overflow: hidden;
         }
@@ -202,38 +296,51 @@
         .product-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 12px;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
 
         .category-badge {
             position: absolute;
-            top: 12px;
-            left: 12px;
-            background: white;
-            color: #574ed2;
-            padding: 6px 10px;
-            border-radius: 7px;
-            font-size: 9px;
+            top: 13px;
+            left: 13px;
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--primary-dark);
+            padding: 7px 11px;
+            border-radius: 8px;
+            font-size: 10px;
             font-weight: 800;
             z-index: 2;
+            box-shadow: 0 3px 10px rgba(30, 25, 80, 0.06);
+            max-width: calc(100% - 26px);
+            overflow-wrap: anywhere;
         }
 
         .product-info {
-            padding: 18px;
+            padding: 20px;
         }
 
         .product-info h3 {
-            color: #292b33;
-            font-size: 15px;
-            margin-bottom: 7px;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 750;
+            line-height: 1.45;
+            margin-bottom: 8px;
+            overflow-wrap: anywhere;
         }
 
         .description {
-            color: #8b8e98;
-            font-size: 11px;
-            line-height: 1.55;
-            min-height: 34px;
-            margin-bottom: 16px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.7;
+            min-height: 41px;
+            margin-bottom: 18px;
+            overflow-wrap: anywhere;
         }
 
         .product-bottom {
@@ -241,62 +348,68 @@
             align-items: center;
             justify-content: space-between;
             gap: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
         }
 
         .price {
-            color: #5148d4;
-            font-size: 17px;
-            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 19px;
+            font-weight: 850;
+            letter-spacing: -0.5px;
         }
 
         .stock {
-            color: #34805a;
-            background: #edf8f1;
-            padding: 5px 8px;
-            border-radius: 6px;
-            font-size: 9px;
+            color: var(--success);
+            background: #eaf8f0;
+            padding: 7px 9px;
+            border-radius: 7px;
+            font-size: 10px;
             font-weight: 800;
         }
 
         .out-stock {
-            color: #b43d3d;
+            color: #c03939;
             background: #fff0f0;
         }
 
+        /* BUTTONS */
         .view-btn,
         .delete-btn {
             display: block;
             width: 100%;
             text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
+            padding: 12px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 750;
             cursor: pointer;
             text-decoration: none;
-            border: none;
+            border: 1px solid transparent;
+            transition: 0.2s ease;
         }
 
         .view-btn {
-            background: #f0efff;
-            color: #574ed3;
-            margin-bottom: 9px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            margin-bottom: 10px;
         }
 
         .view-btn:hover {
-            background: #6256e8;
+            background: var(--primary);
             color: white;
+            box-shadow: 0 5px 12px rgba(98, 86, 232, 0.2);
         }
 
         .delete-btn {
-            background: #fff0f0;
-            color: #c03939;
-            border: 1px solid #f5d0d0;
+            background: #fff5f5;
+            color: var(--danger);
+            border-color: #ffe0e0;
         }
 
         .delete-btn:hover {
-            background: #c03939;
+            background: var(--danger);
+            border-color: var(--danger);
             color: white;
         }
 
@@ -305,40 +418,103 @@
             cursor: not-allowed;
         }
 
+        /* LOADING, ERROR AND EMPTY STATES */
         .message-box {
             grid-column: 1 / -1;
             background: white;
-            border: 1px solid #e3e4e9;
-            border-radius: 17px;
-            padding: 55px 20px;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 65px 20px;
             text-align: center;
-            color: #8b8e98;
+            color: var(--muted);
+        }
+
+        .message-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
         }
 
         .message-box h3 {
-            color: #292b33;
-            font-size: 18px;
-            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
         .message-box p {
-            font-size: 12px;
+            font-size: 13px;
+            line-height: 1.7;
         }
 
+        .retry-btn {
+            margin-top: 18px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 11px 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .retry-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .spinner {
+            width: 35px;
+            height: 35px;
+            border: 3px solid #e9e6ff;
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 18px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            padding: 25px 15px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 12px;
+            background: white;
+        }
+
+        .footer span {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* RESPONSIVE DESIGN */
         @media (max-width: 1050px) {
             .product-grid {
                 grid-template-columns: repeat(3, minmax(0, 1fr));
             }
+
+            .navbar {
+                padding: 0 4%;
+            }
         }
 
         @media (max-width: 800px) {
-            .navbar {
-                padding: 0 22px;
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 17px;
+            }
+
+            .container {
+                padding: 0 20px;
+                margin-top: 28px;
             }
 
             .page-header {
-                align-items: flex-start;
-                flex-direction: column;
+                padding: 30px;
             }
 
             .toolbar {
@@ -349,37 +525,125 @@
                 width: 100%;
             }
 
-            .product-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+            .product-image {
+                height: 190px;
+            }
+
+            .navbar {
+                padding: 0 20px;
             }
         }
 
-        @media (max-width: 550px) {
+        @media (max-width: 520px) {
             .navbar {
-                height: 66px;
-                padding: 0 15px;
+                min-height: 68px;
+                padding: 0 13px;
             }
 
             .logo {
-                font-size: 20px;
+                font-size: 19px;
+            }
+
+            .nav-links {
+                gap: 3px;
             }
 
             .nav-links a {
-                padding: 8px;
                 font-size: 10px;
+                padding: 9px 8px;
             }
 
             .container {
-                padding: 0 15px;
-                margin: 25px auto;
+                padding: 0 14px;
+                margin: 22px auto 40px;
             }
 
             .page-header {
-                padding: 25px;
+                padding: 25px 21px;
+                border-radius: 18px;
+                align-items: flex-start;
+                flex-direction: column;
             }
 
             .header-left h1 {
-                font-size: 27px;
+                font-size: 29px;
+            }
+
+            .header-left p {
+                font-size: 12px;
+            }
+
+            .product-count {
+                padding: 12px 15px;
+                font-size: 11px;
+            }
+
+            .toolbar {
+                padding: 12px;
+                border-radius: 13px;
+            }
+
+            .section-heading h2 {
+                font-size: 18px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .product-card {
+                border-radius: 13px;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            .product-info {
+                padding: 12px;
+            }
+
+            .product-info h3 {
+                font-size: 13px;
+            }
+
+            .description {
+                font-size: 11px;
+                min-height: 52px;
+            }
+
+            .price {
+                font-size: 15px;
+            }
+
+            .stock {
+                font-size: 9px;
+                padding: 6px;
+            }
+
+            .view-btn,
+            .delete-btn {
+                font-size: 10px;
+                padding: 10px 5px;
+            }
+
+            .category-badge {
+                top: 8px;
+                left: 8px;
+                font-size: 8px;
+                padding: 5px 7px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .logo {
+                font-size: 16px;
+            }
+
+            .nav-links a {
+                font-size: 9px;
+                padding: 8px 5px;
             }
 
             .product-grid {
@@ -407,9 +671,9 @@
     <main class="container">
         <section class="page-header">
             <div class="header-left">
-                <div class="label">ShopSphere Store</div>
-                <h1>Explore Products</h1>
-                <p>Find products you love from ShopSphere sellers.</p>
+                <div class="label">SHOPSPHERE STORE</div>
+                <h1>Find Your Favorites.</h1>
+                <p>Discover amazing products from ShopSphere sellers.</p>
             </div>
 
             <div class="product-count" id="productCount">
@@ -420,11 +684,19 @@
         <section class="toolbar">
             <div class="search-box">
                 <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput"
-                       placeholder="Search products...">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search by product name or description..."
+                    aria-label="Search products"
+                >
             </div>
 
-            <select class="filter" id="categoryFilter">
+            <select
+                class="filter"
+                id="categoryFilter"
+                aria-label="Filter by category"
+            >
                 <option value="all">All Categories</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Fashion">Fashion</option>
@@ -436,13 +708,25 @@
             </select>
         </section>
 
-        <section class="product-grid" id="productGrid">
+        <div class="section-heading">
+            <div>
+                <h2>Our Products</h2>
+                <p>Browse our collection and find something you love.</p>
+            </div>
+        </div>
+
+        <section class="product-grid" id="productGrid" aria-live="polite">
             <div class="message-box">
-                <h3>Loading Products...</h3>
-                <p>Please wait while we load products.</p>
+                <div class="spinner"></div>
+                <h3>Loading Products</h3>
+                <p>Please wait while we fetch the latest products.</p>
             </div>
         </section>
     </main>
+
+    <footer class="footer">
+        Made with 💜 by <span>ShopSphere</span> · Your shopping destination
+    </footer>
 
     <script>
         let allProducts = [];
@@ -450,18 +734,27 @@
         // Load products from the database
         async function loadProducts() {
             const productGrid = document.getElementById("productGrid");
+            const productCount = document.getElementById("productCount");
+
+            productGrid.innerHTML = `
+                <div class="message-box">
+                    <div class="spinner"></div>
+                    <h3>Loading Products</h3>
+                    <p>Please wait while we fetch the latest products.</p>
+                </div>
+            `;
 
             try {
                 const response = await fetch("/api/products");
 
                 if (!response.ok) {
-                    throw new Error("Failed to load products");
+                    throw new Error("Failed to load products.");
                 }
 
                 const products = await response.json();
 
                 if (!Array.isArray(products)) {
-                    throw new Error("Invalid products response");
+                    throw new Error("Invalid products response.");
                 }
 
                 allProducts = products;
@@ -470,19 +763,22 @@
             } catch (error) {
                 console.error("Error loading products:", error);
 
-                document.getElementById("productCount").textContent =
-                    "Unable to load";
+                productCount.textContent = "Load failed";
 
                 productGrid.innerHTML = `
                     <div class="message-box">
+                        <div class="message-icon">⚠️</div>
                         <h3>Unable to Load Products</h3>
-                        <p>Please make sure the server and database are running.</p>
+                        <p>Please check whether the server and database are running.</p>
+                        <button class="retry-btn" onclick="loadProducts()">
+                            Try Again
+                        </button>
                     </div>
                 `;
             }
         }
 
-        // Prevent product text from being treated as HTML
+        // Escape text before displaying it in HTML
         function escapeHTML(value) {
             return String(value).replace(/[&<>"']/g, character => ({
                 "&": "&amp;",
@@ -500,8 +796,9 @@
             if (products.length === 0) {
                 productGrid.innerHTML = `
                     <div class="message-box">
+                        <div class="message-icon">🔎</div>
                         <h3>No Products Found</h3>
-                        <p>Try searching for another product.</p>
+                        <p>Try another search term or choose a different category.</p>
                     </div>
                 `;
                 return;
@@ -546,12 +843,18 @@
                                     : `<span class="stock out-stock">Out of Stock</span>`
                                 }
                             </div>
-                               <a href="/product-details?id=${productId}" class="view-btn">
-                                          👁 View Product
-                                       </a>
 
-                            <button class="delete-btn"
-                                onclick="deleteProduct(${productId}, this)">
+                            <a
+                                href="/product-details?id=${encodeURIComponent(productId)}"
+                                class="view-btn"
+                            >
+                                👁 View Product
+                            </a>
+
+                            <button
+                                class="delete-btn"
+                                onclick="deleteProduct(${productId}, this)"
+                            >
                                 🗑 Delete Product
                             </button>
                         </div>
@@ -560,7 +863,7 @@
             }).join("");
         }
 
-        // Delete product after confirmation
+        // Delete a product after confirmation
         async function deleteProduct(productId, button) {
             if (!Number.isInteger(productId) || productId <= 0) {
                 alert("Invalid product ID.");
@@ -595,7 +898,9 @@
                 const result = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(result.message || "Could not delete product.");
+                    throw new Error(
+                        result.message || "Could not delete product."
+                    );
                 }
 
                 allProducts = allProducts.filter(
@@ -608,6 +913,7 @@
             } catch (error) {
                 console.error("Delete error:", error);
                 alert(error.message || "Failed to delete product.");
+
                 button.disabled = false;
                 button.textContent = "🗑 Delete Product";
             }
@@ -632,26 +938,27 @@
 
                 const matchesCategory =
                     selectedCategory === "all" ||
-                    category === selectedCategory;
+                    category.toLowerCase() === selectedCategory.toLowerCase();
 
                 return matchesSearch && matchesCategory;
             });
 
             document.getElementById("productCount").textContent =
-                `${filteredProducts.length} Products`;
+                `${filteredProducts.length} Product${filteredProducts.length === 1 ? "" : "s"}`;
 
             displayProducts(filteredProducts);
         }
 
+        // Search as the user types
         document.getElementById("searchInput")
             .addEventListener("input", filterProducts);
 
+        // Filter when a category is selected
         document.getElementById("categoryFilter")
             .addEventListener("change", filterProducts);
 
+        // Load products when the page opens
         loadProducts();
     </script>
 </body>
 </html>
-
-
