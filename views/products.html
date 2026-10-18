@@ -728,237 +728,400 @@
         Made with 💜 by <span>ShopSphere</span> · Your shopping destination
     </footer>
 
-    <script>
-        let allProducts = [];
+<script>
+    let allProducts = [];
 
-        // Load products from the database
-        async function loadProducts() {
-            const productGrid = document.getElementById("productGrid");
-            const productCount = document.getElementById("productCount");
+    // ===============================
+    // ADD PRODUCT TO CART
+    // ===============================
+
+    function addToCart(productId) {
+        const product = allProducts.find(
+            item => Number(item.id) === Number(productId)
+        );
+
+        if (!product) {
+            alert("Product not found.");
+            return;
+        }
+
+        const stock = Number(product.stock);
+
+        if (stock <= 0) {
+            alert("Sorry, this product is out of stock.");
+            return;
+        }
+
+        // Get existing cart from localStorage
+        let cart = [];
+
+        try {
+            cart = JSON.parse(
+                localStorage.getItem("shopsphereCart")
+            ) || [];
+
+            if (!Array.isArray(cart)) {
+                cart = [];
+            }
+        } catch (error) {
+            cart = [];
+        }
+
+        // Check whether product is already in cart
+        const existingItem = cart.find(
+            item => Number(item.id) === Number(productId)
+        );
+
+        if (existingItem) {
+            if (Number(existingItem.quantity) >= stock) {
+                alert("You cannot add more than the available stock.");
+                return;
+            }
+
+            existingItem.quantity =
+                Number(existingItem.quantity) + 1;
+
+        } else {
+            // Add a new product to the cart
+            cart.push({
+                id: Number(product.id),
+                name: product.name,
+                price: Number(product.price),
+                image_url: product.image_url || "",
+                stock: stock,
+                quantity: 1
+            });
+        }
+
+        // Save cart in the browser
+        localStorage.setItem(
+            "shopsphereCart",
+            JSON.stringify(cart)
+        );
+
+        alert(`${product.name} added to your cart!`);
+    }
+
+
+    // ===============================
+    // LOAD PRODUCTS FROM DATABASE
+    // ===============================
+
+    async function loadProducts() {
+        const productGrid =
+            document.getElementById("productGrid");
+
+        const productCount =
+            document.getElementById("productCount");
+
+        productGrid.innerHTML = `
+            <div class="message-box">
+                <div class="spinner"></div>
+                <h3>Loading Products</h3>
+                <p>Please wait while we fetch the latest products.</p>
+            </div>
+        `;
+
+        try {
+            const response = await fetch("/api/products");
+
+            if (!response.ok) {
+                throw new Error("Failed to load products.");
+            }
+
+            const products = await response.json();
+
+            if (!Array.isArray(products)) {
+                throw new Error("Invalid products response.");
+            }
+
+            allProducts = products;
+            filterProducts();
+
+        } catch (error) {
+            console.error("Error loading products:", error);
+
+            productCount.textContent = "Load failed";
 
             productGrid.innerHTML = `
                 <div class="message-box">
-                    <div class="spinner"></div>
-                    <h3>Loading Products</h3>
-                    <p>Please wait while we fetch the latest products.</p>
+                    <div class="message-icon">⚠️</div>
+                    <h3>Unable to Load Products</h3>
+                    <p>
+                        Please check whether the server and
+                        database are running.
+                    </p>
+                    <button class="retry-btn" onclick="loadProducts()">
+                        Try Again
+                    </button>
                 </div>
             `;
+        }
+    }
 
-            try {
-                const response = await fetch("/api/products");
 
-                if (!response.ok) {
-                    throw new Error("Failed to load products.");
-                }
+    // ===============================
+    // ESCAPE HTML
+    // ===============================
 
-                const products = await response.json();
+    function escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, character => ({
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        })[character]);
+    }
 
-                if (!Array.isArray(products)) {
-                    throw new Error("Invalid products response.");
-                }
 
-                allProducts = products;
-                filterProducts();
+    // ===============================
+    // DISPLAY PRODUCT CARDS
+    // ===============================
 
-            } catch (error) {
-                console.error("Error loading products:", error);
+    function displayProducts(products) {
+        const productGrid =
+            document.getElementById("productGrid");
 
-                productCount.textContent = "Load failed";
-
-                productGrid.innerHTML = `
-                    <div class="message-box">
-                        <div class="message-icon">⚠️</div>
-                        <h3>Unable to Load Products</h3>
-                        <p>Please check whether the server and database are running.</p>
-                        <button class="retry-btn" onclick="loadProducts()">
-                            Try Again
-                        </button>
-                    </div>
-                `;
-            }
+        if (products.length === 0) {
+            productGrid.innerHTML = `
+                <div class="message-box">
+                    <div class="message-icon">🔎</div>
+                    <h3>No Products Found</h3>
+                    <p>
+                        Try another search term or choose
+                        a different category.
+                    </p>
+                </div>
+            `;
+            return;
         }
 
-        // Escape text before displaying it in HTML
-        function escapeHTML(value) {
-            return String(value).replace(/[&<>"']/g, character => ({
-                "&": "&amp;",
-                "<": "&lt;",
-                ">": "&gt;",
-                '"': "&quot;",
-                "'": "&#39;"
-            })[character]);
-        }
+        productGrid.innerHTML = products.map(product => {
+            const image = product.image_url ||
+                "https://placehold.co/600x400?text=No+Product+Image";
 
-        // Display product cards
-        function displayProducts(products) {
-            const productGrid = document.getElementById("productGrid");
+            const stockAvailable =
+                Number(product.stock) > 0;
 
-            if (products.length === 0) {
-                productGrid.innerHTML = `
-                    <div class="message-box">
-                        <div class="message-icon">🔎</div>
-                        <h3>No Products Found</h3>
-                        <p>Try another search term or choose a different category.</p>
+            const productId = Number(product.id);
+
+            return `
+                <article class="product-card">
+
+                    <div class="product-image">
+                        <span class="category-badge">
+                            ${escapeHTML(product.category || "Other")}
+                        </span>
+
+                        <img
+                            src="${escapeHTML(image)}"
+                            alt="${escapeHTML(product.name || "Product")}"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=No+Product+Image';"
+                        >
                     </div>
-                `;
-                return;
-            }
 
-            productGrid.innerHTML = products.map(product => {
-                const image = product.image_url ||
-                    "https://placehold.co/600x400?text=No+Product+Image";
+                    <div class="product-info">
 
-                const stockAvailable = Number(product.stock) > 0;
-                const productId = Number(product.id);
+                        <h3>
+                            ${escapeHTML(product.name || "Unnamed Product")}
+                        </h3>
 
-                return `
-                    <article class="product-card">
-                        <div class="product-image">
-                            <span class="category-badge">
-                                ${escapeHTML(product.category || "Other")}
+                        <p class="description">
+                            ${escapeHTML(
+                                product.description ||
+                                "No description available."
+                            )}
+                        </p>
+
+                        <div class="product-bottom">
+
+                            <span class="price">
+                                Rs. ${Number(
+                                    product.price || 0
+                                ).toLocaleString()}
                             </span>
 
-                            <img
-                                src="${escapeHTML(image)}"
-                                alt="${escapeHTML(product.name || "Product")}"
-                                onerror="this.onerror=null;this.src='https://placehold.co/600x400?text=No+Product+Image';"
-                            >
+                            ${
+                                stockAvailable
+                                ? `<span class="stock">
+                                       ${Number(product.stock)} In Stock
+                                   </span>`
+                                : `<span class="stock out-stock">
+                                       Out of Stock
+                                   </span>`
+                            }
+
                         </div>
 
-                        <div class="product-info">
-                            <h3>${escapeHTML(product.name || "Unnamed Product")}</h3>
+                        <!-- VIEW PRODUCT BUTTON -->
+                        <a
+                            href="/product-details?id=${encodeURIComponent(productId)}"
+                            class="view-btn"
+                        >
+                            👁 View Product
+                        </a>
 
-                            <p class="description">
-                                ${escapeHTML(product.description || "No description available.")}
-                            </p>
+                        <!-- ADD TO CART BUTTON -->
+                        <button
+                            type="button"
+                            class="view-btn add-cart-btn"
+                            onclick="addToCart(${productId})"
+                            ${stockAvailable ? "" : "disabled"}
+                        >
+                            ${
+                                stockAvailable
+                                ? "🛒 Add to Cart"
+                                : "Out of Stock"
+                            }
+                        </button>
 
-                            <div class="product-bottom">
-                                <span class="price">
-                                    Rs. ${Number(product.price || 0).toLocaleString()}
-                                </span>
+                        <!-- DELETE PRODUCT BUTTON -->
+                        <button
+                            type="button"
+                            class="delete-btn"
+                            onclick="deleteProduct(${productId}, this)"
+                        >
+                            🗑 Delete Product
+                        </button>
 
-                                ${
-                                    stockAvailable
-                                    ? `<span class="stock">${Number(product.stock)} In Stock</span>`
-                                    : `<span class="stock out-stock">Out of Stock</span>`
-                                }
-                            </div>
+                    </div>
+                </article>
+            `;
+        }).join("");
+    }
 
-                            <a
-                                href="/product-details?id=${encodeURIComponent(productId)}"
-                                class="view-btn"
-                            >
-                                👁 View Product
-                            </a>
 
-                            <button
-                                class="delete-btn"
-                                onclick="deleteProduct(${productId}, this)"
-                            >
-                                🗑 Delete Product
-                            </button>
-                        </div>
-                    </article>
-                `;
-            }).join("");
+    // ===============================
+    // DELETE PRODUCT
+    // ===============================
+
+    async function deleteProduct(productId, button) {
+        if (!Number.isInteger(productId) || productId <= 0) {
+            alert("Invalid product ID.");
+            return;
         }
 
-        // Delete a product after confirmation
-        async function deleteProduct(productId, button) {
-            if (!Number.isInteger(productId) || productId <= 0) {
-                alert("Invalid product ID.");
-                return;
-            }
+        const product = allProducts.find(
+            item => Number(item.id) === productId
+        );
 
-            const product = allProducts.find(
-                item => Number(item.id) === productId
-            );
+        if (!product) {
+            alert("Product not found.");
+            return;
+        }
 
-            if (!product) {
-                alert("Product not found.");
-                return;
-            }
+        const confirmed = confirm(
+            `Are you sure you want to delete "${product.name}"? This cannot be undone.`
+        );
 
-            const confirmed = confirm(
-                `Are you sure you want to delete "${product.name}"? This cannot be undone.`
-            );
+        if (!confirmed) {
+            return;
+        }
 
-            if (!confirmed) {
-                return;
-            }
+        button.disabled = true;
+        button.textContent = "Deleting...";
 
-            button.disabled = true;
-            button.textContent = "Deleting...";
-
-            try {
-                const response = await fetch(`/api/products/${productId}`, {
+        try {
+            const response = await fetch(
+                `/api/products/${productId}`,
+                {
                     method: "DELETE"
-                });
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                    throw new Error(
-                        result.message || "Could not delete product."
-                    );
                 }
+            );
 
-                allProducts = allProducts.filter(
-                    item => Number(item.id) !== productId
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(
+                    result.message || "Could not delete product."
                 );
-
-                filterProducts();
-                alert("Product deleted successfully!");
-
-            } catch (error) {
-                console.error("Delete error:", error);
-                alert(error.message || "Failed to delete product.");
-
-                button.disabled = false;
-                button.textContent = "🗑 Delete Product";
             }
-        }
 
-        // Search and category filter
-        function filterProducts() {
-            const searchText = document.getElementById("searchInput")
+            allProducts = allProducts.filter(
+                item => Number(item.id) !== productId
+            );
+
+            filterProducts();
+
+            alert("Product deleted successfully!");
+
+        } catch (error) {
+            console.error("Delete error:", error);
+
+            alert(error.message || "Failed to delete product.");
+
+            button.disabled = false;
+            button.textContent = "🗑 Delete Product";
+        }
+    }
+
+
+    // ===============================
+    // SEARCH AND CATEGORY FILTER
+    // ===============================
+
+    function filterProducts() {
+        const searchText =
+            document.getElementById("searchInput")
                 .value.toLowerCase().trim();
 
-            const selectedCategory =
-                document.getElementById("categoryFilter").value;
+        const selectedCategory =
+            document.getElementById("categoryFilter").value;
 
-            const filteredProducts = allProducts.filter(product => {
-                const name = String(product.name || "").toLowerCase();
-                const description = String(product.description || "").toLowerCase();
-                const category = String(product.category || "Other");
+        const filteredProducts = allProducts.filter(product => {
+            const name =
+                String(product.name || "").toLowerCase();
 
-                const matchesSearch =
-                    name.includes(searchText) ||
-                    description.includes(searchText);
+            const description =
+                String(product.description || "").toLowerCase();
 
-                const matchesCategory =
-                    selectedCategory === "all" ||
-                    category.toLowerCase() === selectedCategory.toLowerCase();
+            const category =
+                String(product.category || "Other");
 
-                return matchesSearch && matchesCategory;
-            });
+            const matchesSearch =
+                name.includes(searchText) ||
+                description.includes(searchText);
 
-            document.getElementById("productCount").textContent =
-                `${filteredProducts.length} Product${filteredProducts.length === 1 ? "" : "s"}`;
+            const matchesCategory =
+                selectedCategory === "all" ||
+                category.toLowerCase() ===
+                    selectedCategory.toLowerCase();
 
-            displayProducts(filteredProducts);
-        }
+            return matchesSearch && matchesCategory;
+        });
 
-        // Search as the user types
-        document.getElementById("searchInput")
-            .addEventListener("input", filterProducts);
+        document.getElementById("productCount").textContent =
+            `${filteredProducts.length} Product${
+                filteredProducts.length === 1 ? "" : "s"
+            }`;
 
-        // Filter when a category is selected
-        document.getElementById("categoryFilter")
-            .addEventListener("change", filterProducts);
+        displayProducts(filteredProducts);
+    }
 
-        // Load products when the page opens
-        loadProducts();
-    </script>
+
+    // ===============================
+    // SEARCH EVENT
+    // ===============================
+
+    document.getElementById("searchInput")
+        .addEventListener("input", filterProducts);
+
+
+    // ===============================
+    // CATEGORY FILTER EVENT
+    // ===============================
+
+    document.getElementById("categoryFilter")
+        .addEventListener("change", filterProducts);
+
+
+    // ===============================
+    // LOAD PRODUCTS WHEN PAGE OPENS
+    // ===============================
+
+    loadProducts();
+</script>
+
 </body>
 </html>
