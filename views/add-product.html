@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +15,6 @@
             --muted: #85869a;
             --border: #e9e8f2;
             --white: #ffffff;
-            --success: #198754;
-            --danger: #dc3545;
         }
 
         * {
@@ -28,16 +25,19 @@
         }
 
         body {
-            background: var(--background);
+            background:
+                radial-gradient(circle at 8% 8%, rgba(98, 86, 232, 0.07), transparent 28%),
+                var(--background);
             color: var(--text);
             min-height: 100vh;
         }
 
-        /* NAVIGATION */
+        /* NAVBAR */
+
         .navbar {
             min-height: 76px;
             padding: 0 7%;
-            background: rgba(255, 255, 255, 0.97);
+            background: rgba(255, 255, 255, 0.95);
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
@@ -45,13 +45,14 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 3px 15px rgba(36, 31, 90, 0.035);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 3px 15px rgba(36, 31, 90, 0.04);
         }
 
         .logo {
-            font-size: 25px;
+            font-size: 27px;
             font-weight: 850;
-            letter-spacing: -1px;
+            letter-spacing: -1.2px;
             color: var(--text);
             white-space: nowrap;
         }
@@ -68,40 +69,44 @@
             background: var(--primary-light);
             padding: 11px 16px;
             border: 1px solid #e3dfff;
-            border-radius: 11px;
+            border-radius: 30px;
             text-decoration: none;
             font-size: 12px;
             font-weight: 750;
             transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(98, 86, 232, 0.08);
         }
 
         .back-link:hover {
             background: var(--primary);
             color: white;
-            transform: translateY(-1px);
+            transform: translateY(-2px);
         }
 
         /* MAIN PAGE */
+
         .page {
-            max-width: 1220px;
+            max-width: 1280px;
             margin: 42px auto;
             padding: 0 28px 65px;
         }
 
         /* PAGE HEADER */
+
         .page-header {
             position: relative;
             overflow: hidden;
             background: linear-gradient(
-                125deg,
-                #5145d4,
-                #7569f1 65%,
-                #9288ff
+                120deg,
+                #4338ca,
+                #6256e8 52%,
+                #8b80ff
             );
-            border-radius: 23px;
-            padding: 38px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 25px;
+            padding: 42px;
             margin-bottom: 30px;
-            box-shadow: 0 14px 32px rgba(98, 86, 232, 0.16);
+            box-shadow: 0 18px 40px rgba(79, 70, 229, 0.20);
         }
 
         .page-header::before {
@@ -149,19 +154,21 @@
 
         .page-header h1 {
             color: white;
-            font-size: clamp(28px, 4vw, 38px);
-            letter-spacing: -1px;
+            font-size: clamp(30px, 4vw, 42px);
+            font-weight: 850;
+            letter-spacing: -1.4px;
             margin-bottom: 10px;
         }
 
         .page-header p {
-            color: rgba(255, 255, 255, 0.84);
-            font-size: 13px;
+            color: rgba(255, 255, 255, 0.86);
+            font-size: 14px;
             line-height: 1.8;
             max-width: 600px;
         }
 
         /* MAIN LAYOUT */
+
         .layout {
             display: grid;
             grid-template-columns: minmax(0, 1.65fr) minmax(270px, 0.85fr);
@@ -172,20 +179,22 @@
         .card {
             background: white;
             border: 1px solid var(--border);
-            border-radius: 19px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 7px 25px rgba(36, 31, 90, 0.04);
+            box-shadow: 0 10px 35px rgba(37, 36, 58, 0.055);
+            transition: box-shadow 0.2s ease;
         }
 
         .card-header {
-            padding: 25px 28px;
+            padding: 27px 30px;
             border-bottom: 1px solid #f0eff7;
-            background: #fff;
+            background: linear-gradient(180deg, #ffffff, #fdfcff);
         }
 
         .card-header h2 {
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 800;
+            letter-spacing: -0.3px;
             margin-bottom: 8px;
         }
 
@@ -196,10 +205,11 @@
         }
 
         .card-body {
-            padding: 28px;
+            padding: 30px;
         }
 
-        /* FORM FIELDS */
+        /* FORM */
+
         .form-group {
             margin-bottom: 23px;
         }
@@ -221,15 +231,14 @@
         select {
             display: block;
             width: 100%;
-            border: 1px solid #e3e2ed;
-            border-radius: 11px;
-            padding: 14px 15px;
+            border: 1px solid #e4e3ef;
+            border-radius: 12px;
+            padding: 15px 16px;
             color: var(--text);
-            background: #fcfcff;
+            background: #fbfbff;
             font-size: 13px;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s,
-                        background 0.2s;
+            transition: 0.2s;
         }
 
         input::placeholder,
@@ -248,7 +257,7 @@
         select:focus {
             background: white;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(98, 86, 232, 0.09);
+            box-shadow: 0 0 0 4px rgba(98, 86, 232, 0.10);
         }
 
         textarea {
@@ -280,11 +289,12 @@
         }
 
         /* IMAGE PREVIEW */
+
         .preview-box {
-            border: 1px dashed #cfc9ff;
-            background: #faf9ff;
+            border: 1px dashed #d9d3ff;
+            background: linear-gradient(145deg, #faf9ff, #f4f2ff);
             border-radius: 14px;
-            padding: 16px;
+            padding: 18px;
             margin-top: 13px;
         }
 
@@ -298,10 +308,11 @@
 
         .preview-image {
             width: 100%;
-            height: 205px;
+            height: 225px;
             object-fit: contain;
             border-radius: 10px;
             background: white;
+            padding: 8px;
             display: none;
         }
 
@@ -330,10 +341,11 @@
         }
 
         /* BUTTONS */
+
         .button-area {
             display: flex;
             align-items: center;
-            gap: 13px;
+            gap: 14px;
             padding-top: 24px;
             border-top: 1px solid #eeeef5;
         }
@@ -343,10 +355,10 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            min-height: 48px;
+            min-height: 50px;
             padding: 13px 20px;
             border: none;
-            border-radius: 11px;
+            border-radius: 12px;
             font-size: 12px;
             font-weight: 800;
             text-decoration: none;
@@ -361,19 +373,20 @@
 
         .cancel-btn:hover {
             background: #e6e6f0;
+            transform: translateY(-2px);
         }
 
         .submit-btn {
             flex: 1;
             color: white;
             background: linear-gradient(135deg, #6256e8, #8174ff);
-            box-shadow: 0 7px 17px rgba(98, 86, 232, 0.2);
+            box-shadow: 0 8px 20px rgba(98, 86, 232, 0.22);
         }
 
         .submit-btn:hover {
             background: linear-gradient(135deg, #4c40ce, #6c5de8);
             transform: translateY(-2px);
-            box-shadow: 0 10px 22px rgba(98, 86, 232, 0.26);
+            box-shadow: 0 12px 26px rgba(98, 86, 232, 0.28);
         }
 
         .submit-btn:disabled {
@@ -383,8 +396,12 @@
         }
 
         /* SELLER TIPS */
+
         .side-card {
             padding: 27px;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(130, 116, 255, 0.09), transparent 34%),
+                #ffffff;
         }
 
         .side-icon {
@@ -398,6 +415,7 @@
             border-radius: 17px;
             font-size: 27px;
             margin-bottom: 20px;
+            box-shadow: 0 7px 18px rgba(98, 86, 232, 0.10);
         }
 
         .side-card h3 {
@@ -429,6 +447,7 @@
             align-items: center;
             justify-content: center;
             background: #f4f2ff;
+            border: 1px solid #e9e5ff;
             font-size: 17px;
         }
 
@@ -445,10 +464,10 @@
         }
 
         .notice {
-            background: #f8f7ff;
+            background: #f7f6ff;
             border: 1px solid #e8e5ff;
             padding: 16px;
-            border-radius: 12px;
+            border-radius: 14px;
             font-size: 11px;
             line-height: 1.9;
             color: #6e6b89;
@@ -459,6 +478,7 @@
         }
 
         /* FOOTER */
+
         .footer {
             text-align: center;
             padding: 24px 15px;
@@ -474,6 +494,7 @@
         }
 
         /* RESPONSIVE */
+
         @media (max-width: 900px) {
             .layout {
                 grid-template-columns: 1fr;
@@ -524,7 +545,7 @@
             }
 
             .page-header h1 {
-                font-size: 28px;
+                font-size: 29px;
             }
 
             .page-header p {
@@ -559,7 +580,7 @@
             }
 
             .preview-image {
-                height: 175px;
+                height: 185px;
             }
         }
 
@@ -576,6 +597,8 @@
 </head>
 
 <body>
+
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">🛒 Shop<span>Sphere</span></div>
 
@@ -584,12 +607,16 @@
         </a>
     </nav>
 
+    <!-- MAIN PAGE -->
     <main class="page">
 
+        <!-- PAGE HEADER -->
         <header class="page-header">
             <div class="header-content">
                 <div class="eyebrow">✦ Seller Panel</div>
+
                 <h1>Add a New Product</h1>
+
                 <p>
                     Bring your products to ShopSphere. Add clear details,
                     set your price, and prepare your product for customers.
@@ -601,8 +628,10 @@
 
             <!-- PRODUCT FORM -->
             <section class="card">
+
                 <div class="card-header">
                     <h2>📦 Product Information</h2>
+
                     <p>
                         Enter your product details below.
                         Fields marked <span class="required">*</span> are required.
@@ -610,8 +639,10 @@
                 </div>
 
                 <div class="card-body">
+
                     <form id="productForm" action="/add-product" method="POST">
 
+                        <!-- PRODUCT NAME -->
                         <div class="form-group">
                             <label for="name">
                                 Product Name <span class="required">*</span>
@@ -628,6 +659,7 @@
                             >
                         </div>
 
+                        <!-- DESCRIPTION -->
                         <div class="form-group">
                             <label for="description">
                                 Product Description
@@ -646,7 +678,9 @@
                             </div>
                         </div>
 
+                        <!-- PRICE AND STOCK -->
                         <div class="row">
+
                             <div class="form-group">
                                 <label for="price">
                                     Price (Rs.) <span class="required">*</span>
@@ -678,8 +712,10 @@
                                     required
                                 >
                             </div>
+
                         </div>
 
+                        <!-- CATEGORY -->
                         <div class="form-group">
                             <label for="category">
                                 Category <span class="required">*</span>
@@ -697,8 +733,11 @@
                             </select>
                         </div>
 
+                        <!-- IMAGE URL -->
                         <div class="form-group">
-                            <label for="image_url">Product Image URL</label>
+                            <label for="image_url">
+                                Product Image URL
+                            </label>
 
                             <input
                                 type="url"
@@ -711,8 +750,12 @@
                                 <span>Paste a direct link to your product image.</span>
                             </div>
 
+                            <!-- IMAGE PREVIEW -->
                             <div class="preview-box">
-                                <div class="preview-label">IMAGE PREVIEW</div>
+
+                                <div class="preview-label">
+                                    IMAGE PREVIEW
+                                </div>
 
                                 <img
                                     id="imagePreview"
@@ -725,13 +768,20 @@
                                     class="preview-placeholder"
                                 >
                                     <span>🖼️</span>
+
                                     <p>Your product image will appear here.</p>
                                 </div>
+
                             </div>
                         </div>
 
+                        <!-- BUTTONS -->
                         <div class="button-area">
-                            <a href="/seller-dashboard" class="btn cancel-btn">
+
+                            <a
+                                href="/seller-dashboard"
+                                class="btn cancel-btn"
+                            >
                                 Cancel
                             </a>
 
@@ -742,13 +792,16 @@
                             >
                                 + Add Product
                             </button>
+
                         </div>
+
                     </form>
                 </div>
             </section>
 
             <!-- SELLER TIPS -->
             <aside class="card side-card">
+
                 <div class="side-icon">✨</div>
 
                 <h3>Make Your Product Stand Out</h3>
@@ -760,50 +813,74 @@
 
                 <div class="tip">
                     <div class="tip-icon">🏷️</div>
+
                     <div>
                         <strong>Clear product name</strong>
-                        <p>Choose a short, descriptive title that customers can easily understand.</p>
+
+                        <p>
+                            Choose a short, descriptive title that customers
+                            can easily understand.
+                        </p>
                     </div>
                 </div>
 
                 <div class="tip">
                     <div class="tip-icon">📝</div>
+
                     <div>
                         <strong>Helpful description</strong>
-                        <p>Explain the important features, uses, and benefits of your product.</p>
+
+                        <p>
+                            Explain the important features, uses, and
+                            benefits of your product.
+                        </p>
                     </div>
                 </div>
 
                 <div class="tip">
                     <div class="tip-icon">💰</div>
+
                     <div>
                         <strong>Accurate pricing</strong>
-                        <p>Double-check the selling price and available stock quantity.</p>
+
+                        <p>
+                            Double-check the selling price and available
+                            stock quantity.
+                        </p>
                     </div>
                 </div>
 
                 <div class="tip">
                     <div class="tip-icon">🖼️</div>
+
                     <div>
                         <strong>Quality product image</strong>
-                        <p>Use a clear image that matches the actual product you are selling.</p>
+
+                        <p>
+                            Use a clear image that matches the actual
+                            product you are selling.
+                        </p>
                     </div>
                 </div>
 
                 <div class="notice">
                     <strong>💡 Seller tip</strong><br>
+
                     Review your product details before submitting.
                     Accurate information creates a better shopping experience.
                 </div>
+
             </aside>
 
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
         Made with 💜 by <span>ShopSphere</span> · Your shopping destination
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
         const imageUrl = document.getElementById("image_url");
         const imagePreview = document.getElementById("imagePreview");
@@ -815,7 +892,7 @@
         const price = document.getElementById("price");
         const stock = document.getElementById("stock");
 
-        // Display the image preview or a useful error message.
+        // IMAGE PREVIEW
         function updateImagePreview() {
             const url = imageUrl.value.trim();
 
@@ -825,6 +902,7 @@
             if (!url) {
                 previewPlaceholder.querySelector("p").textContent =
                     "Your product image will appear here.";
+
                 imagePreview.removeAttribute("src");
                 return;
             }
@@ -837,10 +915,13 @@
                 if (!["http:", "https:"].includes(parsedUrl.protocol)) {
                     throw new Error("Invalid URL");
                 }
+
             } catch {
                 imagePreview.removeAttribute("src");
+
                 previewPlaceholder.querySelector("p").textContent =
                     "Enter a valid image URL to preview.";
+
                 return;
             }
 
@@ -855,6 +936,7 @@
             imagePreview.onerror = () => {
                 imagePreview.style.display = "none";
                 previewPlaceholder.style.display = "flex";
+
                 previewPlaceholder.querySelector("p").textContent =
                     "Unable to load this image. Check the URL.";
             };
@@ -864,35 +946,42 @@
 
         imageUrl.addEventListener("input", updateImagePreview);
 
-        // Update the description character counter.
+        // DESCRIPTION CHARACTER COUNTER
         description.addEventListener("input", () => {
             charCount.textContent =
                 `${description.value.length}/1000`;
         });
 
-        // Validate the price and stock before submitting.
+        // FORM VALIDATION
         productForm.addEventListener("submit", (event) => {
             const priceValue = Number(price.value);
             const stockValue = Number(stock.value);
 
+            // Validate price
             if (!Number.isFinite(priceValue) || priceValue <= 0) {
                 event.preventDefault();
+
                 alert("Please enter a price greater than Rs. 0.");
+
                 price.focus();
                 return;
             }
 
+            // Validate stock
             if (!Number.isInteger(stockValue) || stockValue < 0) {
                 event.preventDefault();
+
                 alert("Stock must be a whole number of 0 or more.");
+
                 stock.focus();
                 return;
             }
 
-            // Allow normal form submission to the Express server.
+            // Allow form submission to Express server
             submitBtn.disabled = true;
             submitBtn.textContent = "Adding Product...";
         });
     </script>
+
 </body>
 </html>
